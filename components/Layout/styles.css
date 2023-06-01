@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.carousel > div {
+  @apply rounded-none;
+}
