@@ -5,7 +5,7 @@ import { NaLogo } from '@components/NaLogo'
 export const MobileMenu = () => (
   <>
     <div className='h-20 sm:hidden'></div>
-    <div className='fixed z-10 bg-primary h-20 w-full flex justify-between items-center sm:hidden'>
+    <div className='fixed z-10 bg-primary-blue h-20 w-full flex justify-between items-center sm:hidden'>
       <ArrowSmallLeftIcon className='text-white w-12' />
       <div className='flex w-40 justify-between items-center'>
         <NaLogo className='relative z-0' size={40} />

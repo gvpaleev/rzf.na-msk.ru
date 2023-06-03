@@ -1,1 +1,3 @@
-export const MainFooter = () => <footer>Footer</footer>
+export const MainFooter = () => (
+  <footer className='bg-primary-grey'>Footer</footer>
+)

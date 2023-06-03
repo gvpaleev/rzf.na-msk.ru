@@ -18,8 +18,9 @@ module.exports = {
       },
     },
     colors: {
-      primary: '#204EE9',
-      secondary: '#2CB742',
+      'primary-blue': '#204EE9',
+      'primary-green': '#2CB742',
+      'primary-grey': '#F1F2F6',
     },
   },
   plugins: [require('flowbite/plugin')],
