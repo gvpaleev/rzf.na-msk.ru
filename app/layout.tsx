@@ -1,10 +1,13 @@
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 
 import { MainLayout } from '@components/Layout/Layout'
 
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 
 export default function RootLayout({
   children,
@@ -13,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <MainLayout>{children}</MainLayout>
       </body>
     </html>
