@@ -7,12 +7,14 @@ import './styles.css'
 
 export const MainLayout: FC = ({ children }) => {
   return (
-    <div className='wrapper flex flex-col min-h-screen'>
-      <header className='page-header'>
-        <TopBanner />
-      </header>
-      <main className='page-main flex-grow'>{children}</main>
-      <footer className='page-footer'>Footer</footer>g
-    </div>
+    <>
+      <div className='wrapper flex flex-col min-h-screen'>
+        <header>
+          <TopBanner />
+        </header>
+        <main className='flex-grow'>{children}</main>
+        <footer>Footer</footer>
+      </div>
+    </>
   )
 }
