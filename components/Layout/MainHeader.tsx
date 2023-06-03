@@ -13,7 +13,7 @@ export const MainHeader: FC<{ currentRegion: string }> = ({
         <h1 className='font-bold md:font-black md:text-6xl text-2xl mb-2 mt-2'>
           Анонимные Наркоманы
         </h1>
-        <h2 className='font-normal md:font-medium md:text-lg text-base mb-2 mt-2'>
+        <h2 className='font-normal md:font-semibold md:text-lg text-base mb-2 mt-2'>
           Официальный сайт Региона <span>{currentRegion}</span>
         </h2>
         <div className='hidden md:block'>

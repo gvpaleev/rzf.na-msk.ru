@@ -1,4 +1,5 @@
 export * from './Layout'
 export { NaLogo } from '@components/NaLogo/NaLogo'
-export { MainHeader } from '@components/MainHeader/MainHeader'
-export { MainFooter } from '@components/MainFooter/MainFooter'
+export { MainHeader } from '@components/Layout/MainHeader'
+export { MainFooter } from '@components/Layout/MainFooter'
+export { MobileMenu } from '@components/Layout/MobileMenu'

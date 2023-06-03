@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
 
-export const NaLogo: FC<{ className: string; size: number }> = ({
+export const NaLogo: FC<{ className?: string; size: number }> = ({
   className,
   size = 140,
 }) => (
