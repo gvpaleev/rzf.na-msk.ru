@@ -11,8 +11,6 @@ export const TopBanner: FC = () => (
     showArrows={false}
     autoPlay={true}
   >
-    <div>
-      <img alt='...' src='/top-banner.jpg' />
-    </div>
+    [<img alt='...' src='/top-banner.jpg' />]
   </Carousel>
 )

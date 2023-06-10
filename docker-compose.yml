@@ -1,0 +1,7 @@
+version: '3'
+services:
+  na-rzf-react:
+    build:
+      context: .
+    ports:
+      - "3000:3000"

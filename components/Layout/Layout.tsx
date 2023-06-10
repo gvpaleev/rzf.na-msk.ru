@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 
 import { MainFooter } from '@components/Layout/MainFooter'
 import { MainHeader } from '@components/Layout/MainHeader'
@@ -7,7 +7,7 @@ import { TopBanner } from '@components/Layout/TopBanner'
 
 import './styles.css'
 
-export const MainLayout: FC = ({ children }) => {
+export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const currentRegion = 'Большая Москва'
   return (
     <div className='flex flex-col min-h-screen'>

@@ -1,4 +1,5 @@
 import { Roboto } from 'next/font/google'
+import React from 'react'
 
 import { MainLayout } from '@components/Layout/Layout'
 
