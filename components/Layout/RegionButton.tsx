@@ -1,10 +1,11 @@
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, MouseEventHandler } from 'react'
 
-export const RegionButton: FC<{ currentRegion: string }> = ({
-  currentRegion,
-}) => (
-  <button>
+export const RegionButton: FC<{
+  currentRegion: string
+  onClick?: MouseEventHandler<HTMLButtonElement>
+}> = ({ currentRegion, onClick }) => (
+  <button onClick={onClick}>
     <Image
       className='animate-spin-slow inline'
       src={'/location.svg'}
