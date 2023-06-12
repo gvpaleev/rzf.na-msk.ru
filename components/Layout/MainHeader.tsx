@@ -19,9 +19,8 @@ export const MainHeader: FC<{ currentRegion: string }> = ({
         <div className='flex items-center justify-between pt-7'>
           <RegionButton
             currentRegion={currentRegion}
-            onClick={(event) => {
-              console.log('>>>>>>>>>>>>>>>> HI!')
-              console.log('>>>>>>>>>>>>>>>> event', event)
+            onClick={() => {
+              console.log('>>>>>>>>>>>>>>>> current_region', currentRegion)
             }}
           />
         </div>
