@@ -18,7 +18,7 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
     <div className='flex flex-col min-h-screen'>
       <MobileMenu />
       <TopBanner />
-      <div className={`flex flex-col w-full lg:w-4/6 mx-auto flex-grow`}>
+      <div className={`flex flex-col w-full lg:w-[1126px] mx-auto flex-grow`}>
         <MainHeader currentRegion={currentRegion} />
         <main className='flex-grow'>{children}</main>
       </div>

@@ -21,6 +21,7 @@ module.exports = {
       'primary-blue': '#204EE9',
       'primary-green': '#2CB742',
       'primary-grey': '#F1F2F6',
+      'secondary-grey': '#939496',
     },
   },
   plugins: [require('flowbite/plugin')],
