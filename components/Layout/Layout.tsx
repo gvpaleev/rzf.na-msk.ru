@@ -4,10 +4,10 @@ import { $currentRegionName } from '@/store/currentDistrict'
 import { useStore } from 'effector-react'
 import { FC, ReactNode } from 'react'
 
-import { MainFooter } from '@components/Layout/MainFooter'
 import { MainHeader } from '@components/Layout/MainHeader'
 import { MobileMenu } from '@components/Layout/MobileMenu'
 import { TopBanner } from '@components/Layout/TopBanner'
+import { MainFooter } from '@components/MainFooter'
 
 import './styles.css'
 

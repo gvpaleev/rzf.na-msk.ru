@@ -1,16 +1,9 @@
+import { Phone } from '@components/Phone'
 import { WhatsappLogo } from '@components/WhatsappLogo'
-
-const Phone = () => {
-  return (
-    <div className='text-primary-green text-xl font-black'>
-      +7 (495) 505-33-96
-    </div>
-  )
-}
 
 export const PhoneBlock = () => {
   return (
-    <div className='flex'>
+    <div className='flex items-center sm:items-start'>
       <WhatsappLogo className='pr-3' />
       <div className='flex flex-col'>
         <div className='text-sm'>Информационный телефон:</div>
