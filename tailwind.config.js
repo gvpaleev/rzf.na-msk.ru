@@ -4,6 +4,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -12,7 +13,16 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+      },
+    },
+    colors: {
+      'primary-blue': '#204EE9',
+      'primary-green': '#2CB742',
+      'primary-grey': '#F1F2F6',
+      'secondary-grey': '#939496',
     },
   },
-  plugins: [],
+  plugins: [require('flowbite/plugin')],
 }
