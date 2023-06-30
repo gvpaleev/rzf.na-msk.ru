@@ -23,12 +23,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN \
+  if [ -f yarn.lock ]; then yarn build; \
+  elif [ -f package-lock.json ]; then npm run build; \
+  elif [ -f pnpm-lock.yaml ]; then pnpm build; \
+  else yarn build; \
+  fi
+
 # Environment variables must be present at build time
 # https://github.com/vercel/next.js/discussions/14030
 ARG ENV_VARIABLE
 ENV ENV_VARIABLE=${ENV_VARIABLE}
-ARG NEXT_PUBLIC_ENV_VARIABLE
-ENV NEXT_PUBLIC_ENV_VARIABLE=${NEXT_PUBLIC_ENV_VARIABLE}
 
 # Step 2. Production image, copy all the files and run next
 FROM base AS runner
