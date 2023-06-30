@@ -8,7 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 
 import { selectTownModal } from './store'
 
-export const SelectTownModal: FC<{}> = ({ openModal }) => {
+export const SelectTownModal: FC = () => {
   const isOpen = useStore(selectTownModal.$isModalOpen)
   const closeModal = useEvent(selectTownModal.closeModalEvent)
 
