@@ -5,7 +5,7 @@ type SelectTownParams = { townId: number }
 type TownType = { id: number; name: string }
 
 export const selectTown = ({ townId }: SelectTownParams) =>
-  requestService.get<SelectTownParams, TownType>('/current_town/', {
+  requestService.get<SelectTownParams, TownType>('/current-town/', {
     params: {
       town_id: townId,
     },
