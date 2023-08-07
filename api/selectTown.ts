@@ -1,12 +1,6 @@
+import { Response, requestWrapper } from '@/api/helpers'
 import { requestService } from '@/api/requestService'
+import { TownType } from '@/utils/types/town'
 
-type SelectTownParams = { townId: number }
-
-type TownType = { id: number; name: string }
-
-export const selectTown = ({ townId }: SelectTownParams) =>
-  requestService.get<SelectTownParams, TownType>('/current-town/', {
-    params: {
-      town_id: townId,
-    },
-  })
+export const loadTowns = () =>
+  requestWrapper(requestService.get<void, Response<TownType[]>>('/towns'))
