@@ -12,11 +12,9 @@ const setTownsEvent = createEvent<TownType[]>()
 
 $towns.on(setTownsEvent, (_, towns) => towns).watch(console.log)
 
-export const $currentTown = createStore<TownType | null>(
-  getItemFromLocalStorage(LocalStorageKeys.CURRENT_TOWN),
-)
+export const $currentTown = createStore<TownType | null>(null)
 
-export const setTownEvent = createEvent<number>()
+export const setCurrentTownEvent = createEvent<number>()
 
 const selectTownFx = createEffect(
   async ({ towns, townId }: { towns: TownType[]; townId: number }) => {
@@ -34,7 +32,7 @@ const selectTownFx = createEffect(
 )
 
 sample({
-  clock: setTownEvent,
+  clock: setCurrentTownEvent,
   source: $towns,
   fn: (towns, townId) => ({ towns, townId }),
   target: selectTownFx,

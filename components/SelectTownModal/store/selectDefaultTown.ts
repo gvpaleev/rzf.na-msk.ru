@@ -1,6 +1,6 @@
 import { createModalStore } from '@/utils/store'
 import { createEvent, sample } from 'effector'
-import { setTownEvent } from './currentTown'
+import { setCurrentTownEvent } from './currentTown'
 
 export const selectTownModal = createModalStore()
 
@@ -11,5 +11,5 @@ const DEFAULT_TOWN_ID = 1
 sample({
   clock: selectDefaultTownEvent,
   fn: () => DEFAULT_TOWN_ID,
-  target: setTownEvent,
+  target: setCurrentTownEvent,
 })
