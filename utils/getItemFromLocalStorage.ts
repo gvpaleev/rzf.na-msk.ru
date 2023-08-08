@@ -1,16 +1,29 @@
-'use client'
-
 import { LocalStorageKeys } from '@/utils/types/utils'
 
+export const IS_SERVER = typeof window === 'undefined'
+
 export const getItemFromLocalStorage = <T>(key: LocalStorageKeys): T | null => {
-  if (window.localStorage?.getItem) {
+  if (IS_SERVER) {
     return null
   }
   const item = localStorage.getItem(key)
   try {
-    return item ? (JSON.stringify(item) as T) : null
+    return item ? (JSON.parse(item) as T) : null
   } catch (e) {
-    console.log('>>>>>>>>>>>>>>>> Error parsing item: ', key)
+    console.error('>>>>>>>>>>>>>>>> Error parsing item: ', key)
     return null
+  }
+}
+
+export const setItemToLocalStorage = <T>(
+  key: LocalStorageKeys,
+  value: T,
+): void => {
+  if (IS_SERVER) return
+
+  try {
+    localStorage.setItem(key, JSON.stringify(value))
+  } catch (e) {
+    console.error('>>>>>>>>>>>>>>>> Error setting item: ', key)
   }
 }

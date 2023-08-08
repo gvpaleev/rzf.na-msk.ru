@@ -2,10 +2,10 @@ import Image from 'next/image'
 import { FC, MouseEventHandler } from 'react'
 
 export const RegionButton: FC<{
-  currentRegion: string
+  currentTown?: string
   onClick?: MouseEventHandler<HTMLButtonElement>
   className?: string
-}> = ({ currentRegion, onClick, className }) => (
+}> = ({ currentTown, onClick, className }) => (
   <div className={className}>
     <button onClick={onClick}>
       <Image
@@ -16,7 +16,7 @@ export const RegionButton: FC<{
         width={23}
       />
       <span className='font-medium text-lg font-bold text-primary-blue pl-2'>
-        {currentRegion}
+        {currentTown}
       </span>
     </button>
   </div>
