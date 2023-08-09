@@ -1,24 +1,25 @@
-import { Roboto } from 'next/font/google'
+'use client'
+
 import React from 'react'
 
 import { MainLayout } from '@components/Layout/Layout'
 
 import './globals.css'
-
-const roboto = Roboto({
-  weight: '400',
-  subsets: ['latin'],
-})
+import { useScope } from '@/hooks/useScope'
+import { Provider } from 'effector-react'
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const scope = useScope()
   return (
     <html lang='en'>
-      <body className={roboto.className}>
-        <MainLayout>{children}</MainLayout>
+      <body>
+        <Provider key={scope?.graphite?.id || '0'} value={scope}>
+          <MainLayout>{children}</MainLayout>
+        </Provider>
       </body>
     </html>
   )

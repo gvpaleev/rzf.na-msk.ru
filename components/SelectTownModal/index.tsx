@@ -1,16 +1,16 @@
 'use client'
 
-import { useStore } from 'effector-react'
-import { useEvent } from 'effector-react/effector-react.umd'
+import { useEvent, useStore } from 'effector-react'
 import { Button, Modal } from 'flowbite-react'
 import { FC } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
-import { selectTownModal } from './store'
+import { selectDefaultTownEvent, selectTownModal } from './store'
 
 export const SelectTownModal: FC = () => {
   const isOpen = useStore(selectTownModal.$isModalOpen)
   const closeModal = useEvent(selectTownModal.closeModalEvent)
+  const selectDefaultTown = useEvent(selectDefaultTownEvent)
 
   return (
     <Modal dismissible size='sm' show={isOpen} onClose={closeModal}>
@@ -26,7 +26,9 @@ export const SelectTownModal: FC = () => {
             Ваш город <span className='font-bold'>Москва</span>?
           </div>
           <div className='flex flex-col w-full'>
-            <Button color='purple'>Все верно</Button>
+            <Button color='purple' onClick={selectDefaultTown}>
+              Все верно
+            </Button>
             <Button color='gray'>Сменить город</Button>
           </div>
         </div>
