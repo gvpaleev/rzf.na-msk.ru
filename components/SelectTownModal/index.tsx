@@ -2,12 +2,11 @@
 
 import { useEvent, useStore } from 'effector-react'
 import { Button, Modal } from 'flowbite-react'
-import { FC } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
-
+import { FC } from 'react'
 import { selectDefaultTownEvent, selectTownModal } from './store'
 
-export const SelectTownModal: FC = () => {
+const SelectTownModal: FC = () => {
   const isOpen = useStore(selectTownModal.$isModalOpen)
   const closeModal = useEvent(selectTownModal.closeModalEvent)
   const selectDefaultTown = useEvent(selectDefaultTownEvent)
@@ -36,3 +35,5 @@ export const SelectTownModal: FC = () => {
     </Modal>
   )
 }
+
+export default SelectTownModal

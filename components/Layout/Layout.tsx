@@ -7,7 +7,7 @@ import { MainHeader } from '@components/Layout/MainHeader'
 import { MobileMenu } from '@components/Layout/MobileMenu'
 import { TopBanner } from '@components/Layout/TopBanner'
 import { MainFooter } from '@components/MainFooter'
-import { SelectTownModal } from '@components/SelectTownModal'
+import SelectTownModal from '@components/SelectTownModal'
 
 import './styles.css'
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
