@@ -5,7 +5,7 @@ export function HeaderDescription(props: { currentTown?: string }) {
         Анонимные Наркоманы
       </h1>
       <h2 className='font-normal md:font-semibold md:text-lg text-base mb-2 mt-2'>
-        Официальный сайт Региона <span>{props.currentTown}</span>
+        Официальный сайт города <span>{props.currentTown}</span>
       </h2>
       <div className='hidden md:block'>
         Анонимные Наркоманы (АН) — это некоммерческое, непрофессиональное и

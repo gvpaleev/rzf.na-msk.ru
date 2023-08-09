@@ -6,7 +6,7 @@ import { MainLayout } from '@components/Layout/Layout'
 
 import './globals.css'
 import { useScope } from '@/hooks/useScope'
-import { Provider } from 'effector-react/effector-react.umd'
+import { Provider } from 'effector-react'
 
 export default function RootLayout({
   children,

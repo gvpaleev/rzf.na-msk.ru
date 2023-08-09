@@ -12,11 +12,6 @@ export const SelectTownModal: FC = () => {
   const closeModal = useEvent(selectTownModal.closeModalEvent)
   const selectDefaultTown = useEvent(selectDefaultTownEvent)
 
-  const onClickDefaultButton = () => {
-    selectDefaultTown()
-    closeModal()
-  }
-
   return (
     <Modal dismissible size='sm' show={isOpen} onClose={closeModal}>
       <Modal.Body>
@@ -31,7 +26,7 @@ export const SelectTownModal: FC = () => {
             Ваш город <span className='font-bold'>Москва</span>?
           </div>
           <div className='flex flex-col w-full'>
-            <Button color='purple' onClick={onClickDefaultButton}>
+            <Button color='purple' onClick={selectDefaultTown}>
               Все верно
             </Button>
             <Button color='gray'>Сменить город</Button>

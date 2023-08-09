@@ -6,10 +6,10 @@ export const selectTownModal = createModalStore()
 
 export const selectDefaultTownEvent = createEvent()
 
-const DEFAULT_TOWN_ID = 1
+const DEFAULT_TOWN_ID = 3 // Moscow
 
 sample({
   clock: selectDefaultTownEvent,
   fn: () => DEFAULT_TOWN_ID,
-  target: setCurrentTownEvent,
+  target: [setCurrentTownEvent, selectTownModal.closeModalEvent],
 })
