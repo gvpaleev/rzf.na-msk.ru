@@ -10,8 +10,6 @@ import { createEffect, createEvent, createStore, sample } from 'effector'
 const $towns = createStore<TownType[]>([])
 const setTownsEvent = createEvent<TownType[]>()
 
-$towns.on(setTownsEvent, (_, towns) => towns).watch(console.log)
-
 export const $currentTown = createStore<TownType | null>(null)
 
 export const setCurrentTownEvent = createEvent<number>()

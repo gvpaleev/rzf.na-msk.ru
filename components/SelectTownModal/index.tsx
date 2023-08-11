@@ -1,26 +1,24 @@
 'use client'
 
-import { useEvent, useStore } from 'effector-react'
+import { useUnit } from 'effector-react'
 import { Button, Modal } from 'flowbite-react'
-import { AiOutlineClose } from 'react-icons/ai'
 import { FC } from 'react'
-import { selectDefaultTownEvent, selectTownModal } from './store'
+import {
+  openTownsListEvent,
+  selectDefaultTownEvent,
+  selectTownModal,
+} from './store'
 
 const SelectTownModal: FC = () => {
-  const isOpen = useStore(selectTownModal.$isModalOpen)
-  const closeModal = useEvent(selectTownModal.closeModalEvent)
-  const selectDefaultTown = useEvent(selectDefaultTownEvent)
-
+  const isOpen = useUnit(selectTownModal.$isModalOpen)
+  const closeModal = useUnit(selectTownModal.closeModalEvent)
+  const selectDefaultTown = useUnit(selectDefaultTownEvent)
+  const openTownList = useUnit(openTownsListEvent)
   return (
-    <Modal dismissible size='sm' show={isOpen} onClose={closeModal}>
+    <Modal dismissible size='sm' show={isOpen} onClose={closeModal} popup>
+      <Modal.Header />
       <Modal.Body>
         <div className='flex flex-col items-center'>
-          <div
-            className='self-end cursor-pointer hover:bg-gray-300 rounded-md'
-            onClick={closeModal}
-          >
-            <AiOutlineClose />
-          </div>
           <div>
             Ваш город <span className='font-bold'>Москва</span>?
           </div>
@@ -28,7 +26,9 @@ const SelectTownModal: FC = () => {
             <Button color='purple' onClick={selectDefaultTown}>
               Все верно
             </Button>
-            <Button color='gray'>Сменить город</Button>
+            <Button color='gray' onClick={openTownList}>
+              Сменить город
+            </Button>
           </div>
         </div>
       </Modal.Body>

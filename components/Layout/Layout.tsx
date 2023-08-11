@@ -12,6 +12,7 @@ import SelectTownModal from '@components/SelectTownModal'
 import './styles.css'
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import { $currentTown } from '../SelectTownModal/store/currentTown'
+import TownsListModal from '../TownsListModal'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const currentTown = useStore($currentTown)
@@ -26,6 +27,7 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <>
       <SelectTownModal />
+      <TownsListModal />
       <div className='flex flex-col min-h-screen'>
         <MobileMenu />
         <TopBanner />
