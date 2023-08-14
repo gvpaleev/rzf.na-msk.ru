@@ -1,4 +1,4 @@
-import { fork, Scope, serialize } from 'effector'
+import { Scope, fork, serialize } from 'effector'
 import { useMemo } from 'react'
 
 let scope: any
