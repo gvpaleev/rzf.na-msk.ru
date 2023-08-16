@@ -1,46 +1,40 @@
-import { loadTowns } from '@/api/selectTown'
+import { setItemToLocalStorage } from '@utils/getItemFromLocalStorage'
+import { TownType } from '@utils/types/town'
+import { LocalStorageKeys } from '@utils/types/utils'
 import {
-  getItemFromLocalStorage,
-  setItemToLocalStorage,
-} from '@/utils/getItemFromLocalStorage'
-import { TownType } from '@/utils/types/town'
-import { LocalStorageKeys } from '@/utils/types/utils'
-import { createEffect, createEvent, createStore, sample } from 'effector'
+  combine,
+  createEffect,
+  createEvent,
+  createStore,
+  sample,
+} from 'effector'
 
-const $towns = createStore<TownType[]>([])
-const setTownsEvent = createEvent<TownType[]>()
+import { loadTowns } from '@api/loadTowns'
 
-export const $currentTown = createStore<TownType | null>(null)
+export const $towns = createStore<TownType[]>([])
 
-export const setCurrentTownEvent = createEvent<number>()
+const $currentTownId = createStore<number | null>(null)
+export const setCurrentTownIdEvent = createEvent<number>()
+$currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
-const selectTownFx = createEffect(
-  async ({ towns, townId }: { towns: TownType[]; townId: number }) => {
-    const findTown = (towns: TownType[]): TownType | null => {
-      return towns.find((town) => town.id === townId) || null
-    }
+export const $currentTown = combine([$towns, $currentTownId]).map(
+  ([towns, currentId]) => towns.find(({ id }) => id === currentId) ?? null,
+)
 
-    if (towns.length > 0) {
-      return findTown(towns)
-    }
-    const loadedTowns = await loadTowns()
-    setTownsEvent(loadedTowns)
-    return findTown(loadedTowns)
-  },
+$currentTown.watch((currentTown) => {
+  if (!currentTown) return
+  setItemToLocalStorage(LocalStorageKeys.CURRENT_TOWN, currentTown)
+})
+
+const loadTownsFx = createEffect(async () => loadTowns())
+$towns.on(
+  loadTownsFx.done.map(({ result }) => result),
+  (_, towns) => towns,
 )
 
 sample({
-  clock: setCurrentTownEvent,
+  clock: setCurrentTownIdEvent,
   source: $towns,
-  fn: (towns, townId) => ({ towns, townId }),
-  target: selectTownFx,
-})
-
-$currentTown.on(
-  selectTownFx.done.map(({ result }) => result),
-  (_, currentTown) => currentTown,
-)
-
-selectTownFx.done.watch(({ result }) => {
-  setItemToLocalStorage(LocalStorageKeys.CURRENT_TOWN, result)
+  filter: (towns) => towns.length === 0,
+  target: loadTownsFx,
 })

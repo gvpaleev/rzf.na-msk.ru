@@ -1,7 +1,8 @@
-import { Response, requestWrapper } from '@/api/helpers'
-import { requestService } from '@/api/requestService'
-import { TownType } from '@/utils/types/town'
+import { TownType } from '@utils/types/town'
 import { AxiosResponse } from 'axios'
+
+import { Response, requestWrapper } from '@api/helpers'
+import { requestService } from '@api/requestService'
 
 export const loadTowns = () =>
   requestWrapper(
