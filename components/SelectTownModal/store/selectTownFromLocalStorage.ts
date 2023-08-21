@@ -2,7 +2,8 @@ import { getItemFromLocalStorage } from '@/utils/getItemFromLocalStorage'
 import { TownType } from '@/utils/types/town'
 import { LocalStorageKeys } from '@/utils/types/utils'
 import { createEffect, createEvent, sample } from 'effector'
-import { setCurrentTownEvent } from './currentTown'
+
+import { setCurrentTownIdEvent } from './currentTown'
 import { selectTownModal } from './selectDefaultTown'
 
 export const checkTownIsSelectedEvent = createEvent()
@@ -24,7 +25,7 @@ sample({
 sample({
   clock: getTownFromLocalStorageFx.done,
   fn: ({ result: town }) => town?.id,
-  target: setCurrentTownEvent,
+  target: setCurrentTownIdEvent,
 })
 
 sample({
