@@ -12,8 +12,10 @@ import {
 import { loadTowns } from '@api/loadTowns'
 
 export const $towns = createStore<TownType[]>([])
+export const loadTownsEvent = createEvent()
 
 const $currentTownId = createStore<number | null>(null)
+
 export const setCurrentTownIdEvent = createEvent<number>()
 $currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
@@ -27,13 +29,14 @@ $currentTown.watch((currentTown) => {
 })
 
 const loadTownsFx = createEffect(async () => loadTowns())
+
 $towns.on(
   loadTownsFx.done.map(({ result }) => result),
   (_, towns) => towns,
 )
 
 sample({
-  clock: setCurrentTownIdEvent,
+  clock: [setCurrentTownIdEvent, loadTownsEvent],
   source: $towns,
   filter: (towns) => towns.length === 0,
   target: loadTownsFx,
