@@ -27,7 +27,14 @@ const TownsListModal: FC = () => {
       <Modal.Header />
       <Modal.Body>
         {towns.map((town) => (
-          <Town key={town.id} {...town} onClick={() => setTown(town.id)} />
+          <Town
+            key={town.id}
+            {...town}
+            onClick={() => {
+              setTown(town.id)
+              closeModal()
+            }}
+          />
         ))}
       </Modal.Body>
     </Modal>
