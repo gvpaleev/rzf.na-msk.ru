@@ -10,6 +10,10 @@ services:
         ENV_VARIABLE: ${ENV_VARIABLE}
         NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
     restart: always
+    environment:
+      - UID=1000
+      - GUID=1000
+    user: '${UID}:${GID}'
     ports:
       - 127.0.0.1:3000:3000
     volumes:
