@@ -1,7 +1,7 @@
 import { Colors } from './types'
 
 const headerCommonClasses =
-  'w-full h-36 flex justify-between items-center px-10 rounded-t-2xl'
+  'w-full h-36 flex justify-between items-center px-10 lg:rounded-t-2xl'
 
 export const HEADER: Record<Colors, string> = {
   [Colors.GREEN]: `bg-green-500 ${headerCommonClasses}`,

@@ -1,1 +1,3 @@
-export * from './MainBlock'
+export * from './ForNewcomer'
+export * from './ForParticipant'
+export * from './ANInComunity'

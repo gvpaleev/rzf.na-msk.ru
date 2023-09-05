@@ -1,6 +1,6 @@
 'use client'
 
-import { useStore, useEvent } from 'effector-react'
+import { useEvent, useStore } from 'effector-react'
 import { FC, ReactNode, useEffect } from 'react'
 
 import { MainHeader } from '@components/Layout/MainHeader'
@@ -9,10 +9,10 @@ import { TopBanner } from '@components/Layout/TopBanner'
 import { MainFooter } from '@components/MainFooter'
 import SelectTownModal from '@components/SelectTownModal'
 
-import './styles.css'
-import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import { $currentTown } from '../SelectTownModal/store/currentTown'
+import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import TownsListModal from '../TownsListModal'
+import './styles.css'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const currentTown = useStore($currentTown)
@@ -31,7 +31,7 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
       <div className='flex flex-col min-h-screen'>
         <MobileMenu />
         <TopBanner />
-        <div className={`flex flex-col w-full lg:w-[1126px] mx-auto flex-grow`}>
+        <div className={`flex flex-col w-full lg:w-128 mx-auto flex-grow`}>
           <MainHeader currentTown={currentTown?.name} />
           <main className='flex-grow'>{children}</main>
         </div>

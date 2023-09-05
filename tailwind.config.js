@@ -16,6 +16,9 @@ module.exports = {
       animation: {
         'spin-slow': 'spin 3s linear infinite',
       },
+      width: {
+        128: '1340px',
+      },
     },
     colors: {
       'primary-blue': '#204EE9',

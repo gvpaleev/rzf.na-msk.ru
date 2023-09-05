@@ -1,20 +1,13 @@
 import React, { FC } from 'react'
 
-import { MainBlock } from './components'
-import { Colors } from './types'
+import { ANInComunity, ForNewcomer, ForParticipant } from './components'
 
 export const Main: FC = () => {
   return (
-    <div className='flex justify-around h-[1510px] w-full gap-10'>
-      <MainBlock title='Новичку' color={Colors.GREEN}>
-        Content
-      </MainBlock>
-      <MainBlock title='Участнику' color={Colors.BLUE}>
-        Content
-      </MainBlock>
-      <MainBlock title='АН в обществе' color={Colors.RED}>
-        Content
-      </MainBlock>
+    <div className='flex flex-col lg:flex-row lg:justify-around w-full lg:gap-10'>
+      <ForNewcomer />
+      <ForParticipant />
+      <ANInComunity />
     </div>
   )
 }
