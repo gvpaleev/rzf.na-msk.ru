@@ -1,16 +1,23 @@
-import { DetailedPhoneBlock } from '../PhoneBlock'
+import Image from 'next/image'
+import { PhoneBlock } from '../PhoneBlock'
+import { Menu } from '../Menu'
 
 export const MainFooter = () => (
-  <>
-    <div className='flex flex-row w-full lg:w-[1126px] mx-auto flex-grow items-center justify-between'>
-      <div className='flex items-end'>
-        <div className='text-sm text-secondary-grey'>
-          © 2003-{new Date().getFullYear()} Официальный сайт сообщества
-          <br />
-          Анонимные Наркоманы региона Большая Москва
-        </div>
-      </div>
-      <DetailedPhoneBlock />
+  <div className="bg-primary-grey px-22 py-20 mt-10">
+    <div className='flex flex-row w-full lg:w-[1189px] mx-auto flex-grow items-start justify-between'>
+      <PhoneBlock />
+
+      <Menu />
     </div>
-  </>
+
+    <div className='flex flex-row w-full pt-10 lg:w-[1189px] mx-auto flex-grow items-start justify-between'>
+      <div className='text-sm text-secondary-blue'>
+        © 2003-{new Date().getFullYear()} Официальный сайт сообщества
+        <br />
+        Анонимные Наркоманы региона Большая Москва
+      </div>
+
+      <Image width="172" height="151" alt="Google Play" src="/play.svg" />
+    </div>
+  </div>
 )
