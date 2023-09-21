@@ -29,140 +29,140 @@ export const groups: Group[] = [
 export const menu: MenuItem[] = [
   {
     text: "Расписание групп",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
   {
     text: "О программе «Анонимные Наркоманы»",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
   {
     text: "Информация для родственников",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
   {
     text: "Вопрос-ответ",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
   {
     text: "Личные истории",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
   {
     text: "Литература",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
   {
     text: "Ссылки",
-    href: "javascript:void(0);",
+    href: "/",
     group: "newbie"
   },
 
 
   {
     text: "Расписание групп",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Принципы сообщества",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Структура обслуживания",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Расписание комитетов",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Служения в регионе",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Новости",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Мероприятия",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Ежедневные размышления",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Литература",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
   {
     text: "Ссылки",
-    href: "javascript:void(0);",
+    href: "/",
     group: "participant"
   },
 
 
   {
     text: "О сообществе «Анонимные Наркоманы»",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "Рекомендательные письма",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "Сотрудничество",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "СМИ о нас",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "Статистика",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "Открытые собрания",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "Обратная связь",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
   {
     text: "Ссылки",
-    href: "javascript:void(0);",
+    href: "/",
     group: "professional"
   },
 ];
 
 export const Menu = () => {
   return (
-    <div className='flex flex-row w-full flex-grow items-start justify-end gap-x-10'>
+    <div className='flex flex-row w-full flex-grow items-start justify-between gap-x-10'>
       {groups.map(group => (
-        <div key={group.name} className="flex flex-col lg:w-[274px] gap-y-5">
+        <div key={group.name} className="flex flex-col gap-y-5">
           <div className="text-xl font-bold">{group.label}</div>
 
           {menu.filter(item => item.group === group.name).map(item => (
