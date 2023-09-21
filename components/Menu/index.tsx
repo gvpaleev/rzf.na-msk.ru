@@ -162,7 +162,7 @@ export const Menu = () => {
   return (
     <div className='flex flex-row w-full flex-grow items-start justify-between gap-x-10'>
       {groups.map(group => (
-        <div key={group.name} className="flex flex-col gap-y-5">
+        <div key={group.name} className="flex flex-col grow gap-y-5">
           <div className="text-xl font-bold">{group.label}</div>
 
           {menu.filter(item => item.group === group.name).map(item => (
