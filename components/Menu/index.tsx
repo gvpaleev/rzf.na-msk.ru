@@ -160,13 +160,13 @@ export const menu: MenuItem[] = [
 
 export const Menu = () => {
   return (
-    <div className='flex flex-row w-full flex-grow items-start justify-between gap-x-10'>
+    <div className='flex-row w-full flex-grow items-start justify-between gap-x-10 flex max-lg:hidden'>
       {groups.map(group => (
         <div key={group.name} className="flex flex-col grow gap-y-5">
           <div className="text-xl font-bold">{group.label}</div>
 
           {menu.filter(item => item.group === group.name).map(item => (
-            <div key={item.text} className="whitespace-nowrap text-sm text-primary-blue">
+            <div key={item.text} className="text-sm text-primary-blue">
               <Link href={item.href}>{item.text}</Link>
             </div>
           ))}

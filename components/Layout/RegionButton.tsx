@@ -7,7 +7,7 @@ export const RegionButton: FC<{
   className?: string
 }> = ({ currentTown, onClick, className }) => (
   <div className={className}>
-    <button onClick={onClick}>
+    <button onClick={onClick} className='flex items-center'>
       <Image
         className='animate-spin-slow inline'
         src={'/location.svg'}

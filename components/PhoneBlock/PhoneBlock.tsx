@@ -3,8 +3,9 @@ import { WhatsappLogo } from '@components/WhatsappLogo'
 
 export const PhoneBlock = () => {
   return (
-    <div className='flex items-center sm:items-start'>
-      <WhatsappLogo className='pr-3' />
+    <div className='flex items-center max-lg:items-start shrink-0'>
+      <WhatsappLogo className='pr-3 shrink-0 flex max-lg:hidden' />
+
       <div className='flex flex-col pl-2'>
         <div className='text-sm'>Информационный телефон:</div>
         <Phone />
