@@ -25,7 +25,7 @@ export const Meditation: FC = () => {
   const [data, setData] = useState<any>();
 
   useEffect(() => {
-    fetch('https://rzf.na-msk.ru/api/daily-meditation/').then(async resp => (await resp.json())[0]).then(setData);
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/daily-meditation/`).then(async resp => (await resp.json())[0]).then(setData);
   }, []);
 
   const item = useMemo(() => data && {
@@ -67,7 +67,7 @@ export const Meditation: FC = () => {
           </div>
         </div>
 
-        <div className={`mt-4 text-md ${expanded ? '' : 'line-clamp-15'} lg:line-clamp-none`}>
+        <div className={`mt-4 text-md ${expanded ? '' : 'line-clamp-4'} lg:line-clamp-none`}>
           {item.text}
           <br />
           <br />

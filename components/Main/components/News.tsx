@@ -8,7 +8,7 @@ export const News: FC = () => {
   const [items, setItems] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('https://rzf.na-msk.ru/api/news/').then(async resp => (await resp.json()).results.slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
   }, []);
 
   const news = new Array(4).fill(true).map((i, j) => ({
