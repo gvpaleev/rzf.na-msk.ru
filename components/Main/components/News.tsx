@@ -18,8 +18,8 @@ export const News: FC = () => {
   }));
 
   return (
-    <div className='flex flex-col col-span-1'>
-      <h1 className="text-[36px] font-bold">Новости сообщества</h1>
+    <div className='flex flex-col col-span-1 p-10 lg:p-0 lg:order-last'>
+      <h1 className="text-[20px] lg:text-[36px] font-bold">Новости сообщества</h1>
 
       {items?.map(i => (
         <div key={i.id} className='border-t my-5 border-secondary-blue'>

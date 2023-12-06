@@ -1,27 +1,48 @@
-import { FC } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 import { Colors } from '../types'
 import { MainBlock } from './MainBlock'
 
+import ReactHtmlParser from 'react-html-parser';
+import Link from 'next/link';
+
+const MONTHS = [
+  'января',
+  'февраля',
+  'марта',
+  'апреля',
+  'мая',
+  'июня',
+  'июля',
+  'августа',
+  'сентября',
+  'октября',
+  'ноября',
+  'декабря',
+]
+
 export const Meditation: FC = () => {
-  const item = {
-    date: "6 октября",
-    title: "Возмещать ущерб, ничего не ожидая",
-    quote: "«Построение планов по поводу того, чтобы претворить возмещение ущерба в жизнь, может стать главным препятствием как при составлении списка, так и в том, чтобы преисполниться готовности».",
-    source: "Базовый текст, с. 48",
+  const [data, setData] = useState<any>();
 
-    text: `Восьмой Шаг предлагает нам преисполниться готовностью возместить ущерб всем, кому мы его причинили. Приступая к этому Шагу, мы, вероятно, будем волноваться о том, что получим в ответ на возмещение. Простят ли нас? Освободимся ли мы от застаревшей вины? Или те, кому мы навредили, измажут нас смолой и изваляют в перьях?
+  useEffect(() => {
+    fetch('https://rzf.na-msk.ru/api/daily-meditation/').then(async resp => (await resp.json())[0]).then(setData);
+  }, []);
 
-Мы должны перестать стремиться к тому, чтобы нас простили, иначе Восьмой и Девятый Шаги не принесут нам духовной пользы. Если у нас есть какие-то ожидания от этих Шагов, то, скорее всего, мы будем разочарованы результатами. Нам следует спросить себя, с какой целью мы приступаем к возмещению ущерба. Может быть, мы убедили себя в том, что человек, которому мы нанесли ущерб, с радостью простит нас, или какой-то добросердечный кредитор спишет нам долги, пустив слезу над нашей страшной историей со счастливым концом.
-      
-Нам нужно быть готовыми возмещать ущерб независимо от результата. Мы можем планировать только процесс возмещения, но не его результат. И хотя нам не гарантировано полное прощение от каждого, кому мы навредили, зато мы научимся прощать себя. В процессе работы по этим Шагам мы поймем, что нам больше не нужно нести на себе груз прошлого.`,
+  const item = useMemo(() => data && {
+    date: `${data.day} ${MONTHS[data.month - 1]}`,
+    title: <>{ReactHtmlParser(data.title)}</>,
+    quote: <>{ReactHtmlParser(data.quote)}</>,
+    source: <>{ReactHtmlParser(data.quote_from)}</>,
+    text: <>{ReactHtmlParser(data.body)}</>,
+    just4today: <>ТОЛЬКО СЕГОДНЯ: {ReactHtmlParser(data.jft)}</>,
+  }, [data]);
 
-    just4today: "ТОЛЬКО СЕГОДНЯ: Я перестану чего-либо ожидать от людей, которым я причинил ущерб.",
-  }
+  const [expanded, setExpanded] = useState(false);
 
-  return (
-    <div className='flex flex-col col-span-2'>
-      <h1 className="text-[36px] font-bold">Медитация на сегодня</h1>
+  return item ? (
+    <div className='flex p-10 lg:p-0 flex-col col-span-2'>
+      <h1 className="hidden lg:block text-[36px] font-bold">Медитация на сегодня</h1>
+      <h1 className="block lg:hidden text-[20px] font-bold">Ежедневные размышления</h1>
 
       <div className='border-t mt-5 border-secondary-blue'>
         <div className='mt-4 text-md'>
@@ -40,20 +61,27 @@ export const Meditation: FC = () => {
           </div>
 
           <div className=''>
-            <div className='text-md whitespace-nowrap'>
+            <div className='text-md whitespace-nowrap text-secondary-blue'>
               {item.source}
             </div>
           </div>
         </div>
 
-        <div className='mt-4 text-md'>
+        <div className={`mt-4 text-md ${expanded ? '' : 'line-clamp-15'} lg:line-clamp-none`}>
           {item.text}
-        </div>
-
-        <div className='mt-4 text-md'>
+          <br />
+          <br />
           {item.just4today}
         </div>
+
+        {!expanded && (
+          <div className='block lg:hidden border-t mt-5 pt-5 border-secondary-blue'>
+            <div className='text-md text-primary-blue text-underline'>
+              <Link href={'javascript: void(0);'} onClick={() => setExpanded(true)}>Читать далее</Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
-  )
+  ) : null;
 }
