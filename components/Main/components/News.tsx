@@ -8,7 +8,7 @@ export const News: FC = () => {
   const [items, setItems] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('https://rzf.na-msk.ru/api/news/').then(async resp => (await resp.json()).results.slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
   }, []);
 
   const news = new Array(4).fill(true).map((i, j) => ({
@@ -18,8 +18,8 @@ export const News: FC = () => {
   }));
 
   return (
-    <div className='flex flex-col col-span-1'>
-      <h1 className="text-[36px] font-bold">Новости сообщества</h1>
+    <div className='flex flex-col col-span-1 p-10 lg:p-0 lg:order-last'>
+      <h1 className="text-[20px] lg:text-[36px] font-bold">Новости сообщества</h1>
 
       {items?.map(i => (
         <div key={i.id} className='border-t my-5 border-secondary-blue'>

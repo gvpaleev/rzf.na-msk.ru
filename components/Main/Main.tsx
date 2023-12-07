@@ -16,9 +16,9 @@ export const Main: FC = () => {
         <ForParticipant />
         <ANInComunity />
       </div>
-      <div className='w-full lg:gap-10 grid grid-cols-3'>
-        <Meditation />
+      <div className='w-full lg:gap-10 grid grid-cols-1 lg:grid-cols-3'>
         <News />
+        <Meditation />
       </div>
       <Radio/>
       <div className='flex flex-col lg:flex-row lg:justify-around w-full lg:gap-25'>
