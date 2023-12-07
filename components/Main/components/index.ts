@@ -1,4 +1,7 @@
 export * from './ForNewcomer'
 export * from './ForParticipant'
 export * from './ANInComunity'
+export * from './Youtube'
+export * from './Insta'
+export * from './Dzen'
 export * from './Radio'
