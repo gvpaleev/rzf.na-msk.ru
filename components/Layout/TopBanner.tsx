@@ -11,6 +11,12 @@ export const TopBanner: FC = () => (
     showArrows={false}
     autoPlay={true}
   >
-    {[<img key='na-banner-1' alt='...' src='/top-banner.jpg' />]}
+    {
+      [
+        <img key='na-banner-1' alt='...' src='/top-banner.jpg' />,
+        <img key='na-banner-1' alt='...' src='/top-banner.jpg' />,
+        <img key='na-banner-1' alt='...' src='/top-banner.jpg' />
+      ]
+    }
   </Carousel>
 )
