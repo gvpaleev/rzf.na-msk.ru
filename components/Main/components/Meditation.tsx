@@ -3,7 +3,7 @@ import { FC, useEffect, useMemo, useState } from 'react'
 import { Colors } from '../types'
 import { MainBlock } from './MainBlock'
 
-import ReactHtmlParser from 'react-html-parser';
+import parse from 'html-react-parser';
 import Link from 'next/link';
 
 const MONTHS = [
@@ -30,11 +30,11 @@ export const Meditation: FC = () => {
 
   const item = useMemo(() => data && {
     date: `${data.day} ${MONTHS[data.month - 1]}`,
-    title: <>{ReactHtmlParser(data.title)}</>,
-    quote: <>{ReactHtmlParser(data.quote)}</>,
-    source: <>{ReactHtmlParser(data.quote_from)}</>,
-    text: <>{ReactHtmlParser(data.body)}</>,
-    just4today: <>ТОЛЬКО СЕГОДНЯ: {ReactHtmlParser(data.jft)}</>,
+    title: <>{parse(data.title)}</>,
+    quote: <>{parse(data.quote)}</>,
+    source: <>{parse(data.quote_from)}</>,
+    text: <>{parse(data.body)}</>,
+    just4today: <>ТОЛЬКО СЕГОДНЯ: {parse(data.jft)}</>,
   }, [data]);
 
   const [expanded, setExpanded] = useState(false);
@@ -54,14 +54,11 @@ export const Meditation: FC = () => {
         </div>
 
         <div className="mt-4 flex flex-row items-end gap-10 lg:gap-20">
-          <div className='flex w-full'>
+          <div className='w-full'>
             <div className='text-md'>
               {item.quote}
             </div>
-          </div>
-
-          <div className=''>
-            <div className='text-md whitespace-nowrap text-secondary-blue'>
+            <div className='text-md text-right whitespace-nowrap text-secondary-blue'>
               {item.source}
             </div>
           </div>
