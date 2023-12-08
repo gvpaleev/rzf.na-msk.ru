@@ -10,6 +10,7 @@ export const TopBanner: FC = () => (
     showThumbs={false}
     showArrows={false}
     autoPlay={true}
+    infiniteLoop={true}
   >
     {
       [
