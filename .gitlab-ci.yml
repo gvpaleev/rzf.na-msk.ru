@@ -17,3 +17,8 @@ deploy_dev_front_rzf:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - ssh deploy@194.67.108.231 "cd /home/deploy/na-rzf-front-react && docker compose -f docker-compose.prod.yml down && git fetch --all && git checkout $CI_COMMIT_REF_NAME && git pull --force && pwd && docker compose -f docker-compose.prod.yml up --build -d && exit"
+
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+    - if: $CI_COMMIT_BRANCH == "main"
