@@ -11,7 +11,8 @@ export const MainFooter = () => {
   const openModal = useEvent(selectTownModal.openModalEvent)
 
   return (
-    <div className="bg-primary-grey px-22 py-2 max-lg:py-10 lg:mt-10">
+    <div className="bg-primary-grey px-22 py-10 lg:mt-10">
+      <div className='container mx-auto'>
       <div className='flex flex-row mx-auto gap-x-10 flex-grow items-start justify-between max-lg:justify-center'>
         <PhoneBlock />
 
@@ -28,6 +29,7 @@ export const MainFooter = () => {
         </div>
 
         <Image width="172" height="151" alt="Google Play" src="/play.svg" className="max-lg:p-5" />
+      </div>
       </div>
     </div>
   );
