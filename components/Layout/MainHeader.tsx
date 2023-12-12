@@ -13,21 +13,21 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   const openModal = useEvent(selectTownModal.openModalEvent)
   return (
     <header>
-      <div className='flex justify-between -mt-5 content-end items-end'>
-        <NaLogo className='relative z-0 hidden sm:block' />
-        <div className='sm:block hidden w-[734px]'>
+      <div className='flex justify-around lg:-mt-5 content-end items-end'>
+        <NaLogo className='relative z-0' />
+        <div className=''>
           <HeaderTitle currentTown={currentTown} />
         </div>
-        <div className='flex flex-col items-end justify-around'>
+        <div className='flex flex-col items-end hidden lg:block'>
           <RegionButton
-            className='hidden sm:block'
+            className=''
             currentTown={currentTown}
             onClick={openModal}
           />
           <PhoneBlock />
         </div>
       </div>
-      <div className='hidden md:block my-8'>
+      <div className='hidden lg:block my-8'>
         Анонимные Наркоманы (АН) — это некоммерческое, непрофессиональное и
         нерелигиозное сообщество выздоравливающих зависимых, которые бескорыстно
         помогают друг другу прекратить употреблять наркотики и научиться жить
