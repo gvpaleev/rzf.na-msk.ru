@@ -11,8 +11,8 @@ export const MainFooter = () => {
   const openModal = useEvent(selectTownModal.openModalEvent)
 
   return (
-    <div className="bg-primary-grey px-22 py-2 max-lg:py-10 mt-10">
-      <div className='flex flex-row w-full lg:w-128 mx-auto gap-x-10 flex-grow items-start justify-between max-lg:justify-center'>
+    <div className="bg-primary-grey px-22 py-2 max-lg:py-10 lg:mt-10">
+      <div className='flex flex-row mx-auto gap-x-10 flex-grow items-start justify-between max-lg:justify-center'>
         <PhoneBlock />
 
         <Menu />
@@ -22,8 +22,8 @@ export const MainFooter = () => {
         <RegionButton currentTown={currentTown?.name} onClick={openModal} />
       </div>
 
-      <div className='flex flex-row w-full pt-10 max-lg:pt-0 lg:w-128 mx-auto flex-grow justify-between items-start max-lg:items-center max-lg:flex-col'>
-        <div className='text-sm text-secondary-blue max-lg:text-center w-96 max-lg:w-80'>
+      <div className='flex flex-row pt-10 max-lg:pt-0 mx-auto flex-grow justify-between items-start max-lg:items-center max-lg:flex-col'>
+        <div className='text-sm text-secondary-blue max-lg:text-center'>
           © 2003-{new Date().getFullYear()} Официальный сайт сообщества Анонимные Наркоманы региона Большая Москва
         </div>
 

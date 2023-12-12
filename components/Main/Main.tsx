@@ -6,7 +6,7 @@ import { News } from './components/News'
 
 export const Main: FC = () => {
   return (
-    <div className="flex flex-col gap-10 lg:gap-10">
+    <div className="flex flex-col lg:gap-10">
       <div className='flex flex-col lg:flex-row lg:justify-around w-full lg:gap-10'>
         <ForNewcomer />
         <ForParticipant />

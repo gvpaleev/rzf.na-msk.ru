@@ -26,17 +26,14 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
-      <SelectTownModal />
-      <TownsListModal />
-      <div className='flex flex-col min-h-screen'>
-        <MobileMenu />
-        <TopBanner />
-        <div className={`flex flex-col w-full lg:w-128 mx-auto flex-grow`}>
+      <TopBanner />
+      <div className='container mx-auto flex flex-col min-h-screen'>
+        <div className={`flex flex-col mx-auto flex-grow`}>
           <MainHeader currentTown={currentTown?.name} />
           <main className='flex-grow'>{children}</main>
         </div>
-        <MainFooter />
       </div>
+      <MainFooter />
     </>
   )
 }
