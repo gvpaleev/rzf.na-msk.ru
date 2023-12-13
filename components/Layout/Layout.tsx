@@ -26,6 +26,8 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
+      <SelectTownModal />
+      <TownsListModal />
       <TopBanner />
       <div className='container mx-auto flex flex-col min-h-screen'>
         <div className={`flex flex-col mx-auto flex-grow`}>
