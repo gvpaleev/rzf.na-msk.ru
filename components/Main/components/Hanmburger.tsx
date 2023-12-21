@@ -28,7 +28,7 @@ export interface HamburgerProps {
             />
             <div
                 className={`bg-white block w-8 h-[0.35rem] rounded transition-all origin-[1px] ${
-                    isOpen ? 'translate-x-full bg-transparent' : 'translate-x-0'
+                    isOpen ? 'opacity-0' : 'opacity-1'
                 }`}
             />
             <div
