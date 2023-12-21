@@ -8,7 +8,7 @@ import { setCurrentTownIdEvent } from '../SelectTownModal/store/currentTown'
 import { townListModal } from './store/townListModal'
 
 const Town: FC<TownType & { onClick?: () => void }> = ({ name, onClick }) => (
-  <div onClick={onClick}>{name}</div>
+  <div className='mb-5 hover:cursor-pointer hover:text-blue-700' onClick={onClick}>{name}</div>
 )
 
 const TownsListModal: FC = () => {
