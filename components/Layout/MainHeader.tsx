@@ -13,11 +13,18 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   const openModal = useEvent(selectTownModal.openModalEvent)
   return (
     <header>
-      <div className='flex justify-around lg:-mt-5 content-end items-end'>
-        <NaLogo className='relative z-0' />
-        <div className=''>
-          <HeaderTitle currentTown={currentTown} />
+      <div className='flex flex-col lg:flex-row lg:justify-around lg:-mt-5 content-end lg:items-end'>
+        <div className='flex flex-row items-end content-end'>
+          <NaLogo className='relative' />
+          <div className='p-1'>
+            <HeaderTitle currentTown={currentTown} />
+          </div>
         </div>
+        <RegionButton
+            className='lg:hidden flex justify-center m-4'
+            currentTown={currentTown}
+            onClick={openModal}
+          />
         <div className='flex flex-col items-end hidden lg:block'>
           <RegionButton
             className=''

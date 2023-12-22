@@ -6,8 +6,8 @@ import { MainBlock } from './MainBlock'
 
 export const ForNewcomer: FC = () => (
   <MainBlock title='Новичку' color={Colors.GREEN}>
-    <div className='flex flex-col gap-10'>
-      <ul className='flex flex-col gap-5'>
+    <div className='flex flex-col gap-5 sm:gap-10'>
+      <ul className='flex flex-col gap-1 sm:gap-5'>
         <ListItem>
           Анонимные Наркоманы — это бесплатное анонимное сообщество, которое
           поможет тебе отказаться от наркотиков и научиться жить без них.

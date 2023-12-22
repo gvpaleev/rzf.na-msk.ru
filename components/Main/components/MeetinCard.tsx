@@ -11,9 +11,9 @@ export const MeetinCard: FC<{ hoursFirst: string, hoursSecond: string, minuneFir
             <div className='p-4 bg-blue-100 rounded-lg'>{minuneFirst}</div>
             <div className='p-4 bg-blue-100 rounded-lg'>{minuteSecond}</div>
         </div>
-        <a href={linkGroup} className='my-2.5 text-base font-bold text-blue-700 my-8 hover:underline'>{groupTitle}</a>
+        <a href={linkGroup} className='text-base font-bold text-blue-700 my-2 hover:underline'>{groupTitle}</a>
         <p className='text-center'>{groupAdressTitle}</p>
         <a href={groupAdressTitleLink} className='text-base text-blue-700 hover:underline'>Показать на карте</a>
-        <Image className='mx-auto my-5' src='special_tag_icon.svg' width={23} height={23} alt='special tag icon' />
+        <Image className='mx-auto my-2' src='special_tag_icon.svg' width={23} height={23} alt='special tag icon' />
     </div>
 );

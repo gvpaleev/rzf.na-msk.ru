@@ -1,8 +1,5 @@
 import { FC, useEffect, useMemo, useState } from 'react'
 
-import { Colors } from '../types'
-import { MainBlock } from './MainBlock'
-
 import parse from 'html-react-parser';
 import Link from 'next/link';
 
