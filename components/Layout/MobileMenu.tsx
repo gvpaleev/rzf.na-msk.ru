@@ -8,7 +8,7 @@ export const MobileMenu = () => (
     <div className='fixed z-10 bg-primary-blue h-20 w-full flex justify-between items-center sm:hidden'>
       <ArrowSmallLeftIcon className='text-white w-12' />
       <div className='flex w-40 justify-between items-center'>
-        <NaLogo className='relative z-0' size={40} />
+        <NaLogo className='relative z-0' />
         <div className='w-28 font-medium text-sm text-white'>
           Анонимные Наркоманы
         </div>
