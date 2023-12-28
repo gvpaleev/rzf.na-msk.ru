@@ -3,13 +3,21 @@ import { FC, useEffect, useState } from 'react'
 import { Colors } from '../types'
 import { MainBlock } from './MainBlock'
 import Link from 'next/link';
+import { useStore } from 'effector-react';
+import { $currentTown, $towns } from '@/components/SelectTownModal/store/currentTown';
 
 export const News: FC = () => {
   const [items, setItems] = useState<any[]>([]);
 
+  const town = useStore($currentTown);
+
+  const towns = useStore($towns);
+
+  console.log(town, towns);
+
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
-  }, []);
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.filter((i: any) => i.is_global || !i.geographic_region || i.geographic_region === town?.geographic_region ).slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
+  }, [town]);
 
   const news = new Array(4).fill(true).map((i, j) => ({
     id: j,

@@ -1,6 +1,5 @@
 import { FC, useEffect, useMemo, useState } from 'react'
 
-import parse from 'html-react-parser';
 import Link from 'next/link';
 
 const MONTHS = [
@@ -27,11 +26,10 @@ export const Meditation: FC = () => {
 
   const item = useMemo(() => data && {
     date: `${data.day} ${MONTHS[data.month - 1]}`,
-    title: <>{parse(data.title)}</>,
-    quote: <>{parse(data.quote)}</>,
-    source: <>{parse(data.quote_from)}</>,
-    text: <>{parse(data.body)}</>,
-    just4today: <>ТОЛЬКО СЕГОДНЯ: {parse(data.jft)}</>,
+    title: data.title,
+    quote: data.quote,
+    source: data.quote_from,
+    text: `${data.body}<br/><br/>ТОЛЬКО СЕГОДНЯ: ${data.jft}`,
   }, [data]);
 
   const [expanded, setExpanded] = useState(false);
@@ -46,27 +44,19 @@ export const Meditation: FC = () => {
           {item.date}
         </div>
 
-        <div className='text-lg font-bold'>
-          {item.title}
-        </div>
+        <div className='text-lg font-bold' dangerouslySetInnerHTML={{__html: item.title}} />
 
         <div className="mt-4 flex flex-row items-end gap-10 lg:gap-20">
-          <div className='w-full'>
-            <div className='text-md'>
-              {item.quote}
-            </div>
-            <div className='text-md text-right whitespace-nowrap text-secondary-blue'>
-              {item.source}
-            </div>
+          <div className='flex w-full'>
+            <div className='text-md' dangerouslySetInnerHTML={{__html: item.quote}} />
+          </div>
+
+          <div className=''>
+            <div className='text-md whitespace-nowrap text-secondary-blue' dangerouslySetInnerHTML={{__html: item.source}} />
           </div>
         </div>
 
-        <div className={`mt-4 text-md ${expanded ? '' : 'line-clamp-4'} lg:line-clamp-none`}>
-          {item.text}
-          <br />
-          <br />
-          {item.just4today}
-        </div>
+        <div className={`mt-4 text-md ${expanded ? '' : 'line-clamp-4'} lg:line-clamp-none`} dangerouslySetInnerHTML={{__html: item.text}} />
 
         {!expanded && (
           <div className='block lg:hidden border-t mt-5 pt-5 border-secondary-blue'>
