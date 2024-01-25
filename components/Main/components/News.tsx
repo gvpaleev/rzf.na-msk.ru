@@ -13,12 +13,6 @@ export const News: FC = () => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.filter((i: any) => i.is_global || !i.geographic_region || i.geographic_region === town?.geographic_region ).slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
   }, [town]);
 
-  const news = new Array(4).fill(true).map((i, j) => ({
-    id: j,
-    date: new Date().toISOString(),
-    title: "5 сентября собрание группы «ЖечужиNA» проводиться не будет."
-  }));
-
   return (
     <div className='flex flex-col col-span-1 p-10 lg:p-0 lg:order-last'>
       <h1 className="text-[20px] lg:text-[36px] font-bold">Новости сообщества</h1>
@@ -30,7 +24,7 @@ export const News: FC = () => {
           </div>
 
           <div className='text-md text-primary-blue'>
-            <Link href={`/news/${i.id}`}>{i.title}</Link>
+            <Link href={`/news/${i.id}/`}>{i.title}</Link>
           </div>
         </div>
       ))}
