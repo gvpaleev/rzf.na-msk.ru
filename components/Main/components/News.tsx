@@ -10,10 +10,10 @@ export const News: FC = () => {
   const town = useStore($currentTown);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.filter((i: any) => i.is_global || !i.geographic_region || i.geographic_region === town?.geographic_region ).slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`).then(async resp => (await resp.json()).results.filter((i: any) => i.is_global || i.geographic_region === town?.geographic_region ).slice(0, 4).map((i: any) => ({ ...i, date: i.pub_date }))).then(setItems);
   }, [town]);
 
-  return (
+  return town && (
     <div className='flex flex-col col-span-1 p-10 lg:p-0 lg:order-last'>
       <h1 className="text-[20px] lg:text-[36px] font-bold">Новости сообщества</h1>
 
