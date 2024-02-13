@@ -11,8 +11,11 @@ import {
 
 import { loadTowns } from '@api/loadTowns'
 
-export const $towns = createStore<TownType[]>([])
+const $towns = createStore<TownType[]>([])
+
 export const loadTownsEvent = createEvent()
+export const filterTownEvent = createEvent<string>()
+export const clearTownFilterEvent = createEvent()
 
 const $currentTownId = createStore<number | null>(null)
 
@@ -35,9 +38,30 @@ $towns.on(
   (_, towns) => towns,
 )
 
+export const $filteredTowns = createStore<TownType[]>([])
+
 sample({
   clock: [setCurrentTownIdEvent, loadTownsEvent],
   source: $towns,
   filter: (towns) => towns.length === 0,
   target: loadTownsFx,
+})
+
+sample({
+  clock: $towns,
+  target: $filteredTowns,
+})
+
+sample({
+  clock: filterTownEvent,
+  source: $towns,
+  fn: (towns, searchStr) =>
+    towns.filter((town) => town.name.toLowerCase().includes(searchStr.toLowerCase())),
+  target: $filteredTowns,
+})
+
+sample({
+  clock: clearTownFilterEvent,
+  source: $towns,
+  target: $filteredTowns,
 })

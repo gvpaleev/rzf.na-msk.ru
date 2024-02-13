@@ -1,7 +1,6 @@
 'use client'
 
-import { useScope } from '@/hooks/useScope'
-import { Provider } from 'effector-react'
+import { EffectorNext } from '@effector/next'
 import React from 'react'
 
 import { MainLayout } from '@components/Layout/Layout'
@@ -13,14 +12,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const scope = useScope()
-
   return (
-    <html lang='en'>
+    <html lang='en' data-theme='light'>
       <body>
-        <Provider key='0' value={scope}>
+        <EffectorNext>
           <MainLayout>{children}</MainLayout>
-        </Provider>
+        </EffectorNext>
       </body>
     </html>
   )

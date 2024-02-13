@@ -1,20 +1,65 @@
-import { TownId, TownType } from '@/utils/types/town'
-import { useEvent, useStore, useUnit } from 'effector-react'
-import { Modal } from 'flowbite-react'
-import { FC, useEffect } from 'react'
+import { TownType } from '@/utils/types/town'
+import { useUnit } from 'effector-react'
+import { debug } from 'patronum'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 
-import { $towns, loadTownsEvent } from '../SelectTownModal/store/currentTown'
-import { setCurrentTownIdEvent } from '../SelectTownModal/store/currentTown'
+import { Modal } from '@components/Modal'
+
+import {
+  $filteredTowns,
+  clearTownFilterEvent,
+  filterTownEvent,
+  loadTownsEvent,
+  setCurrentTownIdEvent,
+} from '../SelectTownModal/store/currentTown'
 import { townListModal } from './store/townListModal'
 
 const Town: FC<TownType & { onClick?: () => void }> = ({ name, onClick }) => (
-  <div className='mb-5 hover:cursor-pointer hover:text-blue-700' onClick={onClick}>{name}</div>
+  <div
+    className='mb-5 hover:cursor-pointer hover:text-blue-700'
+    onClick={onClick}
+  >
+    {name}
+  </div>
 )
 
+const FilterTown: FC = () => {
+  const [value, setValue] = useState('')
+  const filterTown = useUnit(filterTownEvent)
+
+  const [clearFilter, isModalOpen] = useUnit([
+    clearTownFilterEvent,
+    townListModal.$isModalOpen,
+  ])
+
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    filterTown(value)
+    setValue(value)
+  }
+
+  useEffect(() => {
+    if (!isModalOpen) {
+      clearFilter()
+      setValue('')
+    }
+  }, [isModalOpen])
+
+  return (
+    <input
+      type='text'
+      className='input input-bordered w-full'
+      placeholder='Введите город...'
+      value={value}
+      onChange={onChange}
+    />
+  )
+}
+
 const TownsListModal: FC = () => {
-  const isOpen = useStore(townListModal.$isModalOpen)
-  const closeModal = useEvent(townListModal.closeModalEvent)
-  const towns = useStore($towns)
+  const isOpen = useUnit(townListModal.$isModalOpen)
+  const closeModal = useUnit(townListModal.closeModalEvent)
+  const towns = useUnit($filteredTowns)
   const setTown = useUnit(setCurrentTownIdEvent)
   const loadTowns = useUnit(loadTownsEvent)
 
@@ -23,9 +68,9 @@ const TownsListModal: FC = () => {
   }, [])
 
   return (
-    <Modal dismissible size='md' show={isOpen} onClose={closeModal} popup>
-      <Modal.Header />
-      <Modal.Body>
+    <Modal isOpen={isOpen} onClose={closeModal}>
+      <FilterTown />
+      <div className='overflow-x-auto h-80'>
         {towns.map((town) => (
           <Town
             key={town.id}
@@ -36,7 +81,7 @@ const TownsListModal: FC = () => {
             }}
           />
         ))}
-      </Modal.Body>
+      </div>
     </Modal>
   )
 }
