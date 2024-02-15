@@ -4,7 +4,6 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
     extend: {
@@ -28,5 +27,8 @@ module.exports = {
       'secondary-blue': '#94afd7',
     },
   },
-  plugins: [require('flowbite/plugin')],
+  plugins: [require('daisyui')],
+  daisyui: {
+    themes: ['light', 'dark', 'cupcake'],
+  },
 }

@@ -1,16 +1,17 @@
 'use client'
 
+import { HeaderTitle } from '@/components/Layout/HeaderTitle'
+import { useUnit } from 'effector-react'
 import { FC } from 'react'
 
-import { HeaderTitle } from '@/components/Layout/HeaderTitle'
 import { RegionButton } from '@components/Layout/RegionButton'
 import { NaLogo } from '@components/NaLogo'
 import { PhoneBlock } from '@components/PhoneBlock'
-import { useEvent } from 'effector-react'
+
 import { selectTownModal } from '../SelectTownModal/store'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
-  const openModal = useEvent(selectTownModal.openModalEvent)
+  const openModal = useUnit(selectTownModal.openModalEvent)
   return (
     <header>
       <div className='flex flex-col lg:flex-row lg:justify-around lg:-mt-5 content-end lg:items-end'>
@@ -21,10 +22,10 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
           </div>
         </div>
         <RegionButton
-            className='lg:hidden flex justify-center m-4'
-            currentTown={currentTown}
-            onClick={openModal}
-          />
+          className='lg:hidden flex justify-center m-4'
+          currentTown={currentTown}
+          onClick={openModal}
+        />
         <div className='flex flex-col items-end hidden lg:block'>
           <RegionButton
             className=''

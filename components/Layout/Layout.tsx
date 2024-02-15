@@ -1,13 +1,12 @@
 'use client'
 
-import { useEvent, useStore } from 'effector-react'
+import { useUnit } from 'effector-react'
 import { FC, ReactNode, useEffect } from 'react'
 
 import { MainHeader } from '@components/Layout/MainHeader'
-import { MobileMenu } from '@components/Layout/MobileMenu'
 import { TopBanner } from '@components/Layout/TopBanner'
 import { MainFooter } from '@components/MainFooter'
-import SelectTownModal from '@components/SelectTownModal'
+import { SelectTownModal } from '@components/SelectTownModal'
 
 import { $currentTown } from '../SelectTownModal/store/currentTown'
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
@@ -15,9 +14,9 @@ import TownsListModal from '../TownsListModal'
 import './styles.css'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
-  const currentTown = useStore($currentTown)
+  const currentTown = useUnit($currentTown)
 
-  const checkTownSelected = useEvent(checkTownIsSelectedEvent)
+  const checkTownSelected = useUnit(checkTownIsSelectedEvent)
 
   useEffect(() => {
     if (currentTown) return

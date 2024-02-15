@@ -1,41 +1,49 @@
-import { useState } from "react";
+import { FC, useEffect, useState } from 'react'
 
-export interface HamburgerProps {
-    onClick: () => void;
-  
-    isInitiallyOpen?: boolean;
+export type HamburgerProps = {
+  onChange?: (value: boolean) => void
+  isInitiallyOpen?: boolean
+}
+
+export const Hamburger: FC<HamburgerProps> = ({
+  onChange,
+  isInitiallyOpen,
+}) => {
+  const [isOpen, setIsOpen] = useState<boolean>(isInitiallyOpen ?? false)
+
+  const handleClick = () => {
+    setIsOpen((prev) => !prev)
   }
-  
-  export function Hamburger(props: HamburgerProps) {
-    const { onClick, isInitiallyOpen } = props;
-    const [isOpen, setIsOpen] = useState<boolean>(isInitiallyOpen ?? false);
-  
-    const handleClick = () => {
-        setIsOpen((prev) => !prev);
-        onClick();
-    };
-  
-    return (
-        <button
-            onClick={handleClick}
-            type="button"
-            className={`w-8 h-8 flex justify-around flex-col flex-wrap z-10 cursor-pointer`}
-        >
-            <div
-                className={`bg-white block w-8 h-[0.35rem] rounded transition-all origin-[1px] ${
-                    isOpen ? 'rotate-45' : 'rotate-0'
-                }`}
-            />
-            <div
-                className={`bg-white block w-8 h-[0.35rem] rounded transition-all origin-[1px] ${
-                    isOpen ? 'opacity-0' : 'opacity-1'
-                }`}
-            />
-            <div
-                className={`bg-white block w-8 h-[0.35rem] rounded transition-all origin-[1px] ${
-                    isOpen ? 'rotate-[-45deg]' : 'rotate-0'
-                }`}
-            />
-        </button>
-    );
-  }
+
+  useEffect(() => {
+    onChange?.(isOpen)
+  }, [isOpen])
+  return (
+    <label className='btn btn-circle swap swap-rotate'>
+      {/* this hidden checkbox controls the state */}
+      <input type='checkbox' checked={isOpen} onChange={handleClick} />
+
+      {/* hamburger icon */}
+      <svg
+        className='swap-off fill-current'
+        xmlns='http://www.w3.org/2000/svg'
+        width='32'
+        height='32'
+        viewBox='0 0 512 512'
+      >
+        <path d='M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z' />
+      </svg>
+
+      {/* close icon */}
+      <svg
+        className='swap-on fill-current'
+        xmlns='http://www.w3.org/2000/svg'
+        width='32'
+        height='32'
+        viewBox='0 0 512 512'
+      >
+        <polygon points='400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49' />
+      </svg>
+    </label>
+  )
+}
