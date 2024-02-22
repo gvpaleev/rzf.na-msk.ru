@@ -1,20 +1,19 @@
-import { FC } from 'react'
+import { OrganizationCard } from '@/components/Main/components/OrganizationCard'
 
-import { Colors } from '../types'
-import { MainBlock } from './MainBlock'
-import { OrganizationCard } from './OrganizationCard'
+import { communityLinks } from '../../config'
+import { CardBase } from '../CardBase'
 
-export const ANInComunity: FC = () => (
-  <MainBlock title='АН в обществе' color={Colors.RED}>
+export const ANInCommunity = () => (
+  <CardBase title='АН в обществе' color='red' links={communityLinks}>
     <div className='flex flex-col gap-5'>
-      <div className='flex gap-5 itemc-center'>
+      <div className='flex gap-5 items-center'>
         <p className='text-6xl font-bold text-error'>503</p>
         <p className='text-xl font-bold'>
           Собрания
           <br /> проводится ежедневно
         </p>
       </div>
-      <div className='flex gap-5 itemc-center'>
+      <div className='flex gap-5 items-center'>
         <p className='text-6xl font-bold text-error'>185</p>
         <p className='text-xl font-bold'>
           Групп АН в регионе
@@ -34,7 +33,7 @@ export const ANInComunity: FC = () => (
     <div className='flex flex-col gap-5'>
       <OrganizationCard
         link='#'
-        header='Медецинские учереждения'
+        header='Медицинские учреждения'
         alt='medical organization'
         text='Размещаем информационные стенды, проводим презентации врачам в наркологических клиниках. Еще какой-то текст о взаимодействии.Еще какой-то текст о взаимодействии.'
         imgSrc='/med.svg'
@@ -61,5 +60,5 @@ export const ANInComunity: FC = () => (
         imgSrc='/smm.svg'
       />
     </div>
-  </MainBlock>
+  </CardBase>
 )

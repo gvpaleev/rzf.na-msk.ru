@@ -25,6 +25,23 @@ module.exports = {
       'primary-grey': '#F1F2F6',
       'secondary-grey': '#939496',
       'secondary-blue': '#94afd7',
+      'white': '#FFFFFF',
+
+      /**
+       * Цвета раскрывающихся карточек на главной
+       */
+
+      /** Новичку */
+      'card-green': '#55B959',
+      'card-light-green': '#F2FFEE',
+
+      /** Участнику */
+      'card-blue': '#204EE9',
+      'card-light-blue': '#E9F3FF',
+
+      /** АН в обществе */
+      'card-red': '#BE3C4C',
+      'card-light-red': '#FFF3F3',
     },
   },
   plugins: [require('daisyui')],
