@@ -1,11 +1,10 @@
-import { FC } from 'react'
+import { ListItem } from '@/components/Main/components/ListItem'
 
-import { Colors } from '../types'
-import { ListItem } from './ListItem'
-import { MainBlock } from './MainBlock'
+import { newcomerLinks } from '../../config'
+import { CardBase } from '../CardBase'
 
-export const ForNewcomer: FC = () => (
-  <MainBlock title='Новичку' color={Colors.GREEN}>
+export const ForNewcomer = () => (
+  <CardBase title='Новичку' color='green' links={newcomerLinks}>
     <div className='flex flex-col gap-5 sm:gap-10'>
       <ul className='flex flex-col gap-1 sm:gap-5'>
         <ListItem>
@@ -14,16 +13,16 @@ export const ForNewcomer: FC = () => (
         </ListItem>
         <ListItem>
           Собрания проходят по всему миру круглосуточно. Не нужно никаких
-          документов, можно назваться своим или вымышленным именем, прийти и уйти
-          в любой момент.
+          документов, можно назваться своим или вымышленным именем, прийти и
+          уйти в любой момент.
         </ListItem>
         <ListItem>
           Все, что нужно, чтобы стать членом Анонимных Наркоманов — желание
           бросить употреблять наркотики.
         </ListItem>
         <ListItem>
-          Тебя никто не осудит, если на первые собрания ты придёшь, ещё употребляя
-          наркотики. Многие из нас начинали именно так.
+          Тебя никто не осудит, если на первые собрания ты придёшь, ещё
+          употребляя наркотики. Многие из нас начинали именно так.
         </ListItem>
         <ListItem>
           Не важно, какие именно наркотики ты предпочитаешь. Анонимные Наркоманы
@@ -33,7 +32,8 @@ export const ForNewcomer: FC = () => (
           Анонимные Наркоманы не имеют отношения к религии, политике, медицине.
         </ListItem>
         <ListItem>
-          В нашем сообществе нет никаких взносов или других платежей «за участие».
+          В нашем сообществе нет никаких взносов или других платежей «за
+          участие».
         </ListItem>
         <ListItem>
           Для нас очень важно сохранять анонимность, поэтому мы просим не
@@ -44,12 +44,23 @@ export const ForNewcomer: FC = () => (
           зависимым. Возможно, помогут и тебе. Попробуй!
         </ListItem>
       </ul>
-      <a href="/schedule-new/" className="w-full py-4 text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Найти ближайшее собрание</a>
+      <a href='/schedule-new/' className='text-xl font-bold hover:underline'>
+        Найти ближайшее собрание
+      </a>
       <div className='flex flex-col'>
         <p>Просто позвони на горячую линию по телефону:</p>
-        <a href="tel:+74951111111" className='my-2.5 text-xl font-bold text-blue-700 my-8 hover:underline'>+7(495)505-33-96</a>
-        <p>и тебе помогут попасть на твое первое<br /> собрание. Встретят, проведут, все<br /> расскажут и покажут.</p>
+        <a
+          href='tel:+74951111111'
+          className='text-xl font-bold text-blue-700 my-8 hover:underline'
+        >
+          +7(495)505-33-96
+        </a>
+        <p>
+          и тебе помогут попасть на твое первое
+          <br /> собрание. Встретят, проведут, все
+          <br /> расскажут и покажут.
+        </p>
       </div>
     </div>
-  </MainBlock>
+  </CardBase>
 )

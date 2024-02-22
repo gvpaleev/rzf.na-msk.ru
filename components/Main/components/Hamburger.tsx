@@ -1,27 +1,19 @@
-import { FC, useEffect, useState } from 'react'
+import { Dispatch, FC, SetStateAction } from 'react'
 
 export type HamburgerProps = {
-  onChange?: (value: boolean) => void
-  isInitiallyOpen?: boolean
+  isOpen: boolean
+  toggleIsOpen: VoidFunction
 }
 
-export const Hamburger: FC<HamburgerProps> = ({
-  onChange,
-  isInitiallyOpen,
-}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(isInitiallyOpen ?? false)
-
-  const handleClick = () => {
-    setIsOpen((prev) => !prev)
-  }
-
-  useEffect(() => {
-    onChange?.(isOpen)
-  }, [isOpen])
+export const Hamburger: FC<HamburgerProps> = ({ isOpen, toggleIsOpen }) => {
   return (
-    <label className='btn btn-circle swap swap-rotate'>
+    <label className='btn btn-ghost btn-circle swap swap-rotate text-current'>
       {/* this hidden checkbox controls the state */}
-      <input type='checkbox' checked={isOpen} onChange={handleClick} />
+      <input
+        type='checkbox'
+        checked={isOpen}
+        onChange={toggleIsOpen}
+      />
 
       {/* hamburger icon */}
       <svg

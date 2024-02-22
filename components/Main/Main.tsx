@@ -1,17 +1,13 @@
 import React, { FC } from 'react'
 
-import { ANInComunity, ForNewcomer, ForParticipant, Newspaper, Radio, SocialLink } from './components'
+import { Newspaper, Radio, SocialLink, ExpandableCards } from './components'
 import { Meditation } from './components/Meditation'
 import { News } from './components/News'
 
 export const Main: FC = () => {
   return (
     <div className="flex flex-col lg:gap-10">
-      <div className='flex flex-col lg:flex-row lg:justify-around w-full lg:gap-10'>
-        <ForNewcomer />
-        <ForParticipant />
-        <ANInComunity />
-      </div>
+      <ExpandableCards />
       <div className='w-full lg:gap-10 grid grid-cols-1 lg:grid-cols-3'>
         <News />
         <Meditation />
