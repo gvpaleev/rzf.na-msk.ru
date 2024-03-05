@@ -19,6 +19,11 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const checkTownSelected = useUnit(checkTownIsSelectedEvent)
 
   useEffect(() => {
+    /**
+     * @todo: сейчас модалка вызывается всегда-всегда,
+     * хотя, например, на 404 ей не следует появляться.
+     * Вероятно следует пересмотреть логику появления модалки
+     */
     if (currentTown) return
     checkTownSelected()
   }, [])
