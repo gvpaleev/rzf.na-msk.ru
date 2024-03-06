@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { RegionButton } from '../Layout/RegionButton'
 import { Menu } from '../Menu'
 import { PhoneBlock } from '../PhoneBlock'
-import { selectTownModal } from '../SelectTownModal/store'
 import { $currentTown } from '../SelectTownModal/store/currentTown'
+import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
 
 export const MainFooter = () => {
   const currentTown = useUnit($currentTown)

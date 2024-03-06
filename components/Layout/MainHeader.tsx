@@ -8,7 +8,7 @@ import { RegionButton } from '@components/Layout/RegionButton'
 import { NaLogo } from '@components/NaLogo'
 import { PhoneBlock } from '@components/PhoneBlock'
 
-import { selectTownModal } from '../SelectTownModal/store'
+import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   const openModal = useUnit(selectTownModal.openModalEvent)

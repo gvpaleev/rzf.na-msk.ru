@@ -7,7 +7,7 @@ import {
   openTownsListEvent,
   selectDefaultTownEvent,
   selectTownModal,
-} from './store'
+} from './store/selectDefaultTown'
 
 export const SelectTownModal: FC = () => {
   const [isOpen, closeModal, selectDefaultTown, openTownList] = useUnit([
