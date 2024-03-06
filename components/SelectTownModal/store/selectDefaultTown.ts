@@ -1,6 +1,5 @@
 import { createModalStore } from '@/utils/store'
 import { createEvent, sample } from 'effector'
-import { debug } from 'patronum'
 
 import { townListModal } from '@components/TownsListModal/store/townListModal'
 
