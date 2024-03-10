@@ -25,7 +25,7 @@ module.exports = {
       'primary-grey': '#F1F2F6',
       'secondary-grey': '#939496',
       'secondary-blue': '#94afd7',
-      'white': '#FFFFFF',
+      white: '#FFFFFF',
 
       /**
        * Цвета раскрывающихся карточек на главной
@@ -44,7 +44,7 @@ module.exports = {
       'card-light-red': '#FFF3F3',
     },
   },
-  plugins: [require('daisyui')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
     themes: ['light', 'dark', 'cupcake'],
   },

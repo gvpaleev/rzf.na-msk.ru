@@ -18,14 +18,11 @@ export const classNameByColor = {
 } as const
 
 export const newcomerLinks: Array<LinkEntryParams> = [
-  { url: '/dummy', title: 'Новичку 1', id: '1' },
-  { url: '/dummy', title: 'Новичку 2', id: '2' },
-  { url: '/dummy', title: 'Новичку 3', id: '3' },
-  { url: '/dummy', title: 'Новичку 4', id: '4' },
-  { url: '/dummy', title: 'Новичку 5', id: '5' },
-  { url: '/dummy', title: 'Новичку 6', id: '6' },
-  { url: '/dummy', title: 'Новичку 7', id: '7' },
-  { url: '/dummy', title: 'Новичку 8', id: '8' },
+  { url: '/about-new', title: 'О сообществе «Анонимные Наркоманы»', id: '1' },
+  { url: '/about-meetings', title: 'Что происходит на собраниях АН', id: '2' },
+  { url: '/questions', title: 'Вопросы и ответы', id: '3' },
+  { url: '/schedule-new', title: 'Собрания сегодня', id: '4' },
+  { url: '/info-adults', title: 'Информация для родственников', id: '5' },
 ]
 
 export const participantLinks: Array<LinkEntryParams> = [

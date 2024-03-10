@@ -11,7 +11,6 @@ import { SelectTownModal } from '@components/SelectTownModal'
 import { $currentTown } from '../SelectTownModal/store/currentTown'
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import TownsListModal from '../TownsListModal'
-import './styles.css'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const currentTown = useUnit($currentTown)
