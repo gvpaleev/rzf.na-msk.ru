@@ -7,6 +7,8 @@ import { PhoneBlock } from '../PhoneBlock'
 import { $currentTown } from '../SelectTownModal/store/currentTown'
 import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
 
+import './footer.css';
+
 export const MainFooter = () => {
   const currentTown = useUnit($currentTown)
   const openModal = useUnit(selectTownModal.openModalEvent)
@@ -37,6 +39,21 @@ export const MainFooter = () => {
             src='/play.svg'
             className='max-lg:p-5'
           />
+        </div>
+
+        <div className="mob-footer-icons lg:hidden mob-footer-icons-active">
+          <a href="tel:+7 (495) 505-33-96" className="footer-icon-block">
+            <img className="footer-icon-image" src="/footer-call.svg" alt="" />
+            <div className="footer-icon-text">позвонить</div>
+          </a>
+          <a href="https://wa.me/79255053396" className="footer-icon-block">
+            <img className="footer-icon-image" src="/footer-messenger.svg" alt="" />
+            <div className="footer-icon-text">Мессенджер</div>
+          </a>
+          <a href="/schedule-member/" className="footer-icon-block">
+            <img className="footer-icon-image" src="/footer-pin.svg" alt="" />
+            <div className="footer-icon-text">группы</div>
+          </a>
         </div>
       </div>
     </div>
