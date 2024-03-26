@@ -1,3 +1,3 @@
-import { createModalStore } from '@/utils/store'
+import { createModalStore } from '@/utils/store/createModalStore'
 
 export const townListModal = createModalStore()

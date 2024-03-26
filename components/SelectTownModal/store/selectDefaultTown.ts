@@ -1,4 +1,4 @@
-import { createModalStore } from '@/utils/store'
+import { createModalStore } from '@/utils/store/createModalStore'
 import { createEvent, sample } from 'effector'
 
 import { townListModal } from '@components/TownsListModal/store/townListModal'
