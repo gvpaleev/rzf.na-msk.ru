@@ -11,7 +11,7 @@ export const News: FC = () => {
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_BASE}/news/`)
       .then(async (resp) =>
-        (await resp.json()).results
+        (await resp.json())
           .filter(
             (i: any) =>
               i.is_global || i.geographic_region === town?.geographic_region,

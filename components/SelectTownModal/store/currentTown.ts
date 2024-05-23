@@ -56,7 +56,9 @@ sample({
   clock: filterTownEvent,
   source: $towns,
   fn: (towns, searchStr) =>
-    towns.filter((town) => town.name.toLowerCase().includes(searchStr.toLowerCase())),
+    towns.filter((town) =>
+      town.name.toLowerCase().includes(searchStr.toLowerCase()),
+    ),
   target: $filteredTowns,
 })
 
