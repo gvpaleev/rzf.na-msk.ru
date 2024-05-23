@@ -87,9 +87,8 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
         </a>
         <div className='divider'></div>
         {first.map((meeting, index) => (
-          <>
+          <div key={meeting.id}>
             <MeetingCard
-              key={meeting.id}
               time='18:00'
               linkGroup='/schedule-new/'
               groupTitle={meeting.name}
@@ -97,7 +96,7 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
               groupAddressTitleLink='#'
             />
             {index !== first.length - 1 && <div className='divider'></div>}
-          </>
+          </div>
         ))}
       </div>
       {rest.length > 0 ? (

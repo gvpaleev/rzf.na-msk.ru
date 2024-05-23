@@ -5,10 +5,10 @@ import { Response, requestWrapper } from '@api/helpers'
 import { requestService } from '@api/requestService'
 
 export const loadTowns = () => {
-  const limit = process.env.NEXT_PUBLIC_TOWNS_LIMIT
+  const all = 'true'
   return requestWrapper(
     requestService.get<void, AxiosResponse<Response<TownType[]>>>('/towns/', {
-      params: { limit },
+      params: { all },
     }),
   )
 }
