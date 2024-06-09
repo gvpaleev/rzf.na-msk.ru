@@ -8,10 +8,10 @@ interface MeetingLocation {
 }
 
 export type MeetingType = {
-  id: number
+  id?: number
   name: string
-  town: number
-  location: MeetingLocation
+  town?: number
+  location?: MeetingLocation
 }
 
 export const loadTownMeetings = (townId: number): Promise<MeetingType[]> => {

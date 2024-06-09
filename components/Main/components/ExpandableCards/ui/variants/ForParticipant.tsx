@@ -92,7 +92,7 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
               time='18:00'
               linkGroup='/schedule-new/'
               groupTitle={meeting.name}
-              groupAddressTitle={meeting.location.address}
+              groupAddressTitle={meeting.location?.address || ''}
               groupAddressTitleLink='#'
             />
             {index !== first.length - 1 && <div className='divider'></div>}
