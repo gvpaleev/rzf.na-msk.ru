@@ -92,7 +92,7 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
               time='18:00'
               linkGroup='/schedule-new/'
               groupTitle={meeting.name}
-              groupAddressTitle='г. Москва, м. Кутузовская Кутузовский пр 36с3'
+              groupAddressTitle={meeting.location.address}
               groupAddressTitleLink='#'
             />
             {index !== first.length - 1 && <div className='divider'></div>}
