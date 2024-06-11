@@ -1,0 +1,32 @@
+.item {
+  background-color: #939496;
+  display: flex;
+  /* grid-area: 1/1; */
+  justify-content: space-around;
+  align-items: center;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  /* width: 100%; */
+}
+
+.h4 {
+  display: inline-grid;
+  font-size: 2.25rem;
+  color: #fff
+    /* font-weight: 700; */
+    /* margin-block-start: 1.33em; */
+    /* margin-block-end: 1.33em; */
+    /* margin-inline-start: 0px; */
+    /* margin-inline-end: 0px; */
+    /* font-weight: bold; */
+    /* unicode-bidi: isolate; */
+}
+
+.button {
+  display: inline-grid;
+  /* justify-items: center; */
+  /* align-items: center; */
+  /* width: 3rem; */
+  /* height: 3rem; */
+  /* border-radius: 50%; */
+}

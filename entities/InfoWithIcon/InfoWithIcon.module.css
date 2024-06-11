@@ -1,0 +1,18 @@
+ .item {
+   display: grid;
+   grid-template: repeat(2, auto)/1 auto;
+ }
+
+ .header {
+   display: grid;
+   grid-template: auto / repeat(2, max-content);
+   justify-items: start;
+   align-items: center;
+   gap: 22px;
+ }
+
+ .a {
+   font-size: 16px;
+   color: #393895;
+   font-weight: 800;
+ }
