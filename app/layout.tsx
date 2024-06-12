@@ -16,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={classNames(styles['item'])}>
         <Header />
-        {children}
+        <div className={styles['body']}>
+          {children}
+        </div>
       </body>
     </html>
   )

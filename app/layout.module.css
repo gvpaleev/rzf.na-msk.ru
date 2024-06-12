@@ -3,3 +3,7 @@
   grid-template: 1fr / 1fr;
   margin: 0;
 }
+
+.body {
+  margin: 0px 7%;
+}
