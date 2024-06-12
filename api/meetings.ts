@@ -14,6 +14,11 @@ export type MeetingType = {
   location?: MeetingLocation
 }
 
+export type MeetingsCounter = {
+  group_count: number
+  meetings_count: number
+}
+
 export const loadTownMeetings = (townId: number): Promise<MeetingType[]> => {
   return requestWrapper(
     requestService.get<void, AxiosResponse<Response<MeetingType[]>>>(
@@ -33,6 +38,19 @@ export const loadRegionMeetings = (
       '/groups/',
       {
         params: { region: regionId },
+      },
+    ),
+  )
+}
+
+export const loadMeetingsCounter = (
+  townId: number,
+): Promise<MeetingsCounter> => {
+  return requestWrapper(
+    requestService.get<void, AxiosResponse<Response<MeetingsCounter>>>(
+      '/counter/',
+      {
+        params: { town: townId },
       },
     ),
   )
