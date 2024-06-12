@@ -1,40 +1,16 @@
 
-module.exports = {
+const withPlugins = require("next-compose-plugins");
+const withSvgr = require("next-svgr");
+
+const nextConfig = {
   images: {
     domains: ['courses-top.ru'],
   },
   webpack(config, options) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        and: [/\.[jt]sx?$/],
-      },
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            prettier: false,
-            svgo: true,
-            svgoConfig: {
-              plugins: [
-                {
-                  name: 'preset-default',
-                  params: {
-                    override: {
-                      removeViewBox: false,
-                    },
-                  },
-                },
-              ],
-            },
-            titleProp: true,
-          },
-        },
-        'url-loader',
-      ],
-    });
-
+    // Другие настройки Webpack, если они нужны
     return config;
   },
 };
+
+module.exports = withPlugins([withSvgr], nextConfig);
 
