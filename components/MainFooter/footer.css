@@ -1,0 +1,66 @@
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+.mob-footer-icons {
+	opacity: 1;
+    height: 90px;
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15%;
+    transition: .2s opacity;
+    z-index: 99;
+}
+
+.footer-icon-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mob-footer-icons-active {
+	opacity: 1;
+	transition: .2s opacity;
+}
+
+@media screen and (max-width: 700px) {
+	.mob-footer-icons {
+    	height: 60px;
+    	padding: 0 10%;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 99;
+	}
+}
+
+.footer-icon-image {
+	width: 29px;
+}
+
+@media screen and (max-width: 700px) {
+	.footer-icon-image {
+		width: 19px;
+	}
+}
+
+.footer-icon-text {
+	font-size: 18px;
+	margin-top: 5px;
+	color: #94AFD7;
+}
+
+@media screen and (max-width: 700px) {
+	.footer-icon-text {
+		font-size: 12px;
+	}
+}
