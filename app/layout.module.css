@@ -1,0 +1,5 @@
+.item {
+  display: grid;
+  grid-template: 1fr / 1fr;
+  margin: 0;
+}
