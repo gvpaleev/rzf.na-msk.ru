@@ -1,0 +1,22 @@
+.item {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 10px;
+  padding: 25px;
+}
+
+.h5 {
+  font-weight: bolder;
+  /* font-size: 1.25rem; */
+  /* box-sizing: border-box; */
+  font-family: Roboto, sans-serif;
+  color: #051938;
+}
+
+.href {
+  color: #393895;
+  font-size: 80%;
+  font-weight: 400;
+  text-decoration: none;
+  /* background-color: transparent; */
+}

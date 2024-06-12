@@ -1,6 +1,6 @@
 .item {
   display: grid;
-  grid-template: 1fr / 1fr;
+  grid-template: repeat(3, auto) / 1fr;
   margin: 0;
 }
 

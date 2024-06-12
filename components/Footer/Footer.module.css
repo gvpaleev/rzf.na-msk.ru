@@ -1,0 +1,14 @@
+.item {
+  display: grid;
+  grid-template: repeat(2, auto) / repeat(3, auto);
+  ;
+  background: #F1F2F6;
+}
+
+/* .line-1 { */
+/*   display: grid; */
+/*   grid-template: 1fr / repeat(3, auto); */
+/*   justify-content: center; */
+/*   /* justify-items: center; */
+/* */
+/* } */

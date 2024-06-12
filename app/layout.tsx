@@ -3,6 +3,8 @@ import styles from './layout.module.css'
 import Header from '@/components/Header/Header'
 import Baner from '@/components/Baner/Baner'
 import { TopCarousel } from '@/entities/TopCarousel'
+import { MainFooter } from '@/subtree/components/MainFooter'
+import Footer from '@/components/Footer/Footer'
 
 export const metadata = {
   title: 'Next.js',
@@ -22,7 +24,9 @@ export default function RootLayout({
         <div className={styles['body']}>
           <Baner />
           {children}
+
         </div>
+        <Footer />
       </body>
     </html>
   )
