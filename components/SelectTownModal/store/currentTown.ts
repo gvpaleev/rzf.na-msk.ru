@@ -41,7 +41,7 @@ $towns.on(
 export const $filteredTowns = createStore<TownType[]>([])
 
 sample({
-  clock: [setCurrentTownIdEvent, loadTownsEvent],
+  clock: [loadTownsEvent],
   source: $towns,
   filter: (towns) => towns.length === 0,
   target: loadTownsFx,
