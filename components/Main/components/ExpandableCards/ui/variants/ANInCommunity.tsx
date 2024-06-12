@@ -22,7 +22,7 @@ export const ANInCommunity: FC<PropsWithChildren> = () => {
             <p className='text-6xl font-bold text-error'>{counterContainer.meetings_count}</p>
             <p className='text-xl font-bold'>
               Групп АН в городе
-              <br /> <span>{props.currentTown}</span>
+              <br /> {props.currentTown}
             </p>
           </div>
         </div>
