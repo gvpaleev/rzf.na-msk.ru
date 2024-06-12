@@ -1,7 +1,3 @@
-'use client'
-
-import { Main } from '@components/Main/Main'
-
-export default async function Home() {
-  return <Main />
+export default function Page() {
+  return (<div>Hello word!</div>)
 }
