@@ -50,7 +50,7 @@ export const loadMeetingsCounter = (
     requestService.get<void, AxiosResponse<Response<MeetingsCounter>>>(
       '/counter/',
       {
-        params: { town: townId },
+        params: { town_id: townId },
       },
     ),
   )
