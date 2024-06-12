@@ -14,15 +14,15 @@ export const ANInCommunity: FC<PropsWithChildren> = () => {
           <div className='flex gap-5 items-center'>
             <p className='text-6xl font-bold text-error'>{counterContainer.group_count}</p>
             <p className='text-xl font-bold'>
-              Собрания
+              Собраний
               <br /> проводится ежедневно
             </p>
           </div>
           <div className='flex gap-5 items-center'>
             <p className='text-6xl font-bold text-error'>{counterContainer.meetings_count}</p>
             <p className='text-xl font-bold'>
-              Групп АН в регионе
-              <br /> Большая Москва
+              Групп АН в городе
+              <br /> <span>{props.currentTown}</span>
             </p>
           </div>
         </div>
