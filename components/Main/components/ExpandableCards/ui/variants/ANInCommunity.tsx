@@ -1,5 +1,6 @@
 import { OrganizationCard } from '@/components/Main/components/OrganizationCard'
 import { $meetingsCounter } from '@/components/Main/store/meetings'
+import { $currentTown } from '@/components/SelectTownModal/store/currentTown'
 import { communityLinks } from '../../config'
 import { CardBase } from '../CardBase'
 import { FC, PropsWithChildren } from 'react'
@@ -22,7 +23,7 @@ export const ANInCommunity: FC<PropsWithChildren> = () => {
             <p className='text-6xl font-bold text-error'>{counterContainer.meetings_count}</p>
             <p className='text-xl font-bold'>
               Групп АН в городе
-              <br /> {props.currentTown}
+              <br /> {$currentTown}
             </p>
           </div>
         </div>
