@@ -1,3 +1,4 @@
+import { Group, Meeting } from '@/api/meetings'
 import Image from 'next/image'
 import { FC } from 'react'
 
@@ -20,32 +21,22 @@ const Time: FC<{ time: string }> = ({ time }) => {
   )
 }
 
-export const MeetingCard: FC<{
-  // пример 09:00
-  time: string
-  linkGroup: string
-  groupTitle: string
-  groupAddressTitle: string
-  groupAddressTitleLink: string
-}> = ({
-  time,
-  linkGroup,
-  groupTitle,
-  groupAddressTitle,
-  groupAddressTitleLink,
-}) => {
+export const GroupCard: FC<{
+  group: Group,
+  time: string,
+}> = ({group, time}) => {
   return (
     <div className='p-4 flex flex-col items-center justify-center bg-white border-2 border-slate-500'>
       <Time time={time} />
       <a
-        href={linkGroup}
+        href={'/schedule-new/'}
         className='text-base font-bold text-blue-700 my-2 hover:underline'
       >
-        {groupTitle}
+        {group.name}
       </a>
-      <p className='text-center'>{groupAddressTitle}</p>
+      {group.location?.address ? <p className='text-center'>{group.location?.address}</p> : null}
       <a
-        href={groupAddressTitleLink}
+        href={'/map-link/'}
         className='text-base text-blue-700 hover:underline'
       >
         Показать на карте
