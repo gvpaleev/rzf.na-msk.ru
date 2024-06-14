@@ -1,4 +1,4 @@
-import { MeetingCard } from '@/components/Main/components/MeetingCard'
+import { GroupCard } from '@/components/Main/components/GroupCard'
 import { $meetings } from '@/components/Main/store/meetings'
 import { useUnit } from 'effector-react'
 import Image from 'next/image'
@@ -60,10 +60,12 @@ const NUMBER_OF_MEETINGS = 3
 
 export const ForParticipant: FC<PropsWithChildren> = () => {
   const [first, rest] = useUnit(
-    $meetings.map((meetings) => [
-      meetings.slice(0, NUMBER_OF_MEETINGS),
-      meetings.slice(NUMBER_OF_MEETINGS),
-    ]),
+    $meetings.map((meetings) => {
+      const groupMeetings = meetings.filter((meeting) => meeting.group);
+      return [
+        groupMeetings.slice(0, NUMBER_OF_MEETINGS),
+        groupMeetings.slice(NUMBER_OF_MEETINGS),
+    ]}),
   )
 
   return (
@@ -87,13 +89,10 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
         </a>
         <div className='divider'></div>
         {first.map((meeting, index) => (
-          <div key={meeting.id}>
-            <MeetingCard
-              time='18:00'
-              linkGroup='/schedule-new/'
-              groupTitle={meeting.name}
-              groupAddressTitle={meeting.location?.address || ''}
-              groupAddressTitleLink='#'
+          <div key={meeting!.id}>
+            <GroupCard
+              group={meeting.group!}
+              time={meeting.time}
             />
             {index !== first.length - 1 && <div className='divider'></div>}
           </div>

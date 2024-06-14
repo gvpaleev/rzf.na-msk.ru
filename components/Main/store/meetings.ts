@@ -1,30 +1,27 @@
 import {
-  MeetingType,
+  Meeting,
   MeetingsCounter,
   loadMeetingsCounter,
-  loadRegionMeetings,
-  loadTownMeetings,
+  loadMeetingsToday,
 } from '@/api/meetings'
 import { $currentTown } from '@/components/SelectTownModal/store/currentTown'
 import { TownType } from '@/utils/types/town'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 
-export const $meetings = createStore<MeetingType[]>([])
+export const $meetings = createStore<Meeting[]>([])
 export const $meetingsCounter = createStore<MeetingsCounter>({
   group_count: 0,
   meetings_count: 0,
 })
 
-const loadMeetingsEvent = createEvent<TownType | null>()
+const loadMeetingsTodayEvent = createEvent<TownType | null>()
 
-const loadTownMeetingsFx = createEffect<TownType | null, MeetingType[]>(
-  (town) => {
-    if (!town) {
-      throw new Error('Не выбран город')
-    }
-    return loadTownMeetings(town.id)
-  },
-)
+const loadMeetingsTodayFx = createEffect<TownType | null, Meeting[]>((town) => {
+  if (!town) {
+    throw new Error('Не выбран город')
+  }
+  return loadMeetingsToday(town.id)
+})
 
 const loadMeetingsCounterFx = createEffect<TownType | null, MeetingsCounter>(
   (town) => {
@@ -35,30 +32,18 @@ const loadMeetingsCounterFx = createEffect<TownType | null, MeetingsCounter>(
   },
 )
 
-const loadRegionMeetingsFx = createEffect<TownType, MeetingType[]>((town) =>
-  loadRegionMeetings(town.geographic_region),
-)
-
 sample({
   clock: $currentTown,
-  target: [loadMeetingsEvent, loadMeetingsCounterFx],
+  target: [loadMeetingsTodayEvent, loadMeetingsCounterFx],
 })
 
 sample({
-  clock: loadMeetingsEvent,
-  target: loadTownMeetingsFx,
+  clock: loadMeetingsTodayEvent,
+  target: loadMeetingsTodayFx,
 })
 
 sample({
-  clock: loadRegionMeetingsFx.doneData,
-  source: loadRegionMeetingsFx.done,
-  filter: (_, meetings) => meetings.length > 0,
-  fn: ({ params }) => params,
-  target: loadRegionMeetingsFx,
-})
-
-sample({
-  clock: [loadTownMeetingsFx.doneData, loadRegionMeetingsFx.doneData],
+  clock: loadMeetingsTodayFx.doneData,
   target: $meetings,
 })
 
