@@ -1,0 +1,3 @@
+[submodule "na-rzf-front-react"]
+	path = na-rzf-front-react
+	url = git@git.na-msk.ru:dev-na/na-rzf-front-react.git
