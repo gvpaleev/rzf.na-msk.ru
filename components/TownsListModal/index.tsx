@@ -11,8 +11,6 @@ import {
 } from '../SelectTownModal/store/currentTown'
 import { townListModal } from './store/townListModal'
 
-import './TownsListModal.css';
-
 const TownListItem: FC<Town & { onClick?: () => void }> = ({ name, onClick }) => (
   <div
     className='mb-5 hover:cursor-pointer hover:text-blue-700'
