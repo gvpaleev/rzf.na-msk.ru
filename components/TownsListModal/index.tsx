@@ -1,20 +1,19 @@
-import { TownType } from '@/utils/types/town'
+import { Town } from '@/utils/types/town'
 import { useUnit } from 'effector-react'
-import { debug } from 'patronum'
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
-
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { Modal } from '@components/Modal'
 
 import {
   $filteredTowns,
   clearTownFilterEvent,
   filterTownEvent,
-  loadTownsEvent,
   setCurrentTownIdEvent,
 } from '../SelectTownModal/store/currentTown'
 import { townListModal } from './store/townListModal'
 
-const Town: FC<TownType & { onClick?: () => void }> = ({ name, onClick }) => (
+import './TownsListModal.css';
+
+const TownListItem: FC<Town & { onClick?: () => void }> = ({ name, onClick }) => (
   <div
     className='mb-5 hover:cursor-pointer hover:text-blue-700'
     onClick={onClick}
@@ -61,18 +60,13 @@ const TownsListModal: FC = () => {
   const closeModal = useUnit(townListModal.closeModalEvent)
   const towns = useUnit($filteredTowns)
   const setTown = useUnit(setCurrentTownIdEvent)
-  const loadTowns = useUnit(loadTownsEvent)
-
-  useEffect(() => {
-    loadTowns()
-  }, [])
 
   return (
     <Modal isOpen={isOpen} onClose={closeModal}>
       <FilterTown />
-      <div className='overflow-x-auto h-80'>
-        {towns.map((town) => (
-          <Town
+      <div className='mt-5 overflow-x-auto h-80'>
+        {towns.length ? towns.map((town) => (
+          <TownListItem
             key={town.id}
             {...town}
             onClick={() => {
@@ -80,7 +74,7 @@ const TownsListModal: FC = () => {
               closeModal()
             }}
           />
-        ))}
+        )) : 'По заданному фильтру не найдено городов'}
       </div>
     </Modal>
   )
