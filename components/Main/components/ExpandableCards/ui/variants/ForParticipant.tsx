@@ -6,55 +6,62 @@ import { FC, PropsWithChildren } from 'react'
 
 import { participantLinks } from '../../config'
 import { CardBase } from '../CardBase'
+import { $currentTown, $towns, setCurrentTownIdEvent } from '@/components/SelectTownModal/store/currentTown'
+import { $currentMetroStation, $metroStations, setCurrentMetroStationIdEvent } from '@/components/Main/store/metroStations'
 
-type Selection = { name: string; value: string }
+const MetroStationSelect: FC<{}> = () => {
+  const metroStations = useUnit($metroStations);
+  const currentMetroStation = useUnit($currentMetroStation);
+  const setCurrentMetroStation = useUnit(setCurrentMetroStationIdEvent)
 
-const MetroStations: FC<{
-  stations: Selection[]
-}> = () => {
+  if (metroStations.length === 0) {
+    return null;
+  }
+
   return (
     <div>
       <label htmlFor='metro' className='label'></label>
       <select
         id='metro'
-        defaultValue='default'
+        value={currentMetroStation?.id || 'default'}
         className='select select-bordered w-full'
+        onChange={(e) => {
+          setCurrentMetroStation(Number(e.target.value));
+        }}
       >
         <option value='default' disabled>
           Выберите метро
         </option>
-        <option value='SELIGERSKAYA'>Селигерская</option>
-        <option value='AVIAMOTORNAYA'>Авиамоторная</option>
-        <option value='AVTOZAVODSKAYA'>Автозаводская</option>
-        <option value='AKADEMICHESKAYA'>Академическая</option>
+        {metroStations.map((station) => <option value={station.id} key={station.id}>{station.name}</option>)}
       </select>
     </div>
   )
 }
 
-const TownRegions: FC<{ regions: Selection[] }> = () => (
-  <div>
-    <label htmlFor='region' className='label'></label>
-    <select
-      id='region'
-      defaultValue='default'
-      className='select select-bordered w-full'
-    >
-      <option value='default' disabled>
-        Выберете район
-      </option>
-      <option value='VAO'>ВАО</option>
-      <option value='VLADIMIRSKAYA OBLAST'>Владимирская область</option>
-      <option value='ZAO'>ЗАО</option>
-      <option value='ZELENOGRADSKY ADMIN OKRUG'>
-        Зеленоградский административный округ
-      </option>
-      <option value='KALUGA OBLAST'>Калужская область</option>
-      <option value='MOSKVA OBLAST'>Московская область</option>
-      <option value='NAO'>НАО</option>
-    </select>
-  </div>
-)
+const TownSelect: FC<{}> = () => {
+  const towns = useUnit($towns);
+  const currentTown = useUnit($currentTown)
+  const setTown = useUnit(setCurrentTownIdEvent)
+
+  return (
+      <div>
+        <label htmlFor='region' className='label'></label>
+        <select
+          id='region'
+          value={currentTown?.id || 'default'}
+          className='select select-bordered w-full'
+          onChange={(e) => {
+            setTown(Number(e.target.value));
+          }}
+        >
+          <option value='default' disabled>
+            Выберите город
+          </option>
+          {towns.map((town) => <option key={town.id} value={town.id}>{town.name}</option>)}
+        </select>
+      </div>
+  );
+  }
 
 const NUMBER_OF_MEETINGS = 3
 
@@ -73,8 +80,8 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
       <form action='#' method='GET' autoComplete='off'>
         <div className='flex flex-col gap-y-5'>
           <h6 className='text-xl font-bold'>Найти ближайшее собрание:</h6>
-          <TownRegions regions={[]} />
-          <MetroStations stations={[]} />
+          <TownSelect />
+          <MetroStationSelect />
           <button type='button' className='btn btn-primary'>
             Искать
           </button>

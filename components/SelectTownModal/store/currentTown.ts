@@ -1,5 +1,6 @@
+import { loadTowns } from '@/api/towns'
 import { setItemToLocalStorage } from '@utils/getItemFromLocalStorage'
-import { TownType } from '@utils/types/town'
+import { Town } from '@utils/types/town'
 import { LocalStorageKeys } from '@utils/types/utils'
 import {
   combine,
@@ -9,9 +10,7 @@ import {
   sample,
 } from 'effector'
 
-import { loadTowns } from '@api/loadTowns'
-
-const $towns = createStore<TownType[]>([])
+export const $towns = createStore<Town[]>([])
 
 export const loadTownsEvent = createEvent()
 export const filterTownEvent = createEvent<string>()
@@ -38,7 +37,7 @@ $towns.on(
   (_, towns) => towns,
 )
 
-export const $filteredTowns = createStore<TownType[]>([])
+export const $filteredTowns = createStore<Town[]>([])
 
 sample({
   clock: [loadTownsEvent],

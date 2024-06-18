@@ -69,11 +69,8 @@ export const loadMeetingsCounter = (
   townId: number,
 ): Promise<MeetingsCounter> => {
   return requestWrapper(
-    requestService.get<void, AxiosResponse<Response<MeetingsCounter>>>(
-      '/counter/',
-      {
-        params: { town_id: townId },
-      },
-    ),
+    requestService.get<MeetingsCounter>('/counter/', {
+      params: { town_id: townId },
+    }),
   )
 }
