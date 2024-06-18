@@ -1,5 +1,5 @@
 import { RegionType } from '@/utils/types/region'
-import { TownType } from '@/utils/types/town'
+import { Town } from '@/utils/types/town'
 import { AxiosResponse } from 'axios'
 
 import { Response, requestWrapper } from '@api/helpers'
@@ -11,7 +11,7 @@ export type GetCityListResponseType = {
    */
   big_towns: Array<unknown>
   regions: Array<RegionType>
-  towns: Array<TownType>
+  towns: Array<Town>
 }
 
 export const getCityList = () => {
