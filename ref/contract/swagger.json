@@ -1,0 +1,2857 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "NA RZF API",
+    "version": "v0.0.1"
+  },
+  "host": "0.0.0.0",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
+    {
+      "Basic": []
+    }
+  ],
+  "paths": {
+    "/auth/token/login/": {
+      "post": {
+        "operationId": "auth_token_login_create",
+        "description": "Use this endpoint to obtain user authentication token.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenCreate"
+            }
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/auth/token/logout/": {
+      "post": {
+        "operationId": "auth_token_logout_create",
+        "description": "Use this endpoint to logout user (remove user authentication token).",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "auth"
+        ]
+      },
+      "parameters": []
+    },
+    "/banners/": {
+      "get": {
+        "operationId": "banners_list",
+        "description": "Представление для баннеров главной.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ContentBanners"
+              }
+            }
+          }
+        },
+        "tags": [
+          "banners"
+        ]
+      },
+      "parameters": []
+    },
+    "/committee-meetings/": {
+      "get": {
+        "operationId": "committee-meetings_list",
+        "description": "Представление получения списка собраний по ID региона",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScheduledMeeting"
+              }
+            }
+          }
+        },
+        "tags": [
+          "committee-meetings"
+        ]
+      },
+      "parameters": []
+    },
+    "/committees/": {
+      "get": {
+        "operationId": "committees_list",
+        "description": "Представление для списка комитетов по запросу с параметром id региона РЗФ и id метсности.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "A search term.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Committee"
+              }
+            }
+          }
+        },
+        "tags": [
+          "committees"
+        ]
+      },
+      "parameters": []
+    },
+    "/committees/{id}/": {
+      "get": {
+        "operationId": "committees_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Committee"
+            }
+          }
+        },
+        "tags": [
+          "committees"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Комитет.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/counter/": {
+      "get": {
+        "operationId": "counter_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "counter"
+        ]
+      },
+      "parameters": []
+    },
+    "/daily-meditation/": {
+      "get": {
+        "operationId": "daily-meditation_list",
+        "description": "Представление для ежедневных размышлений.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DailyMeditation"
+              }
+            }
+          }
+        },
+        "tags": [
+          "daily-meditation"
+        ]
+      },
+      "parameters": []
+    },
+    "/events/": {
+      "get": {
+        "operationId": "events_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "group",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "committee",
+            "in": "query",
+            "description": "committee",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "description": "locality",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service_region",
+            "in": "query",
+            "description": "service_region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "is_global",
+            "in": "query",
+            "description": "is_global",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Event"
+              }
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "post": {
+        "operationId": "events_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "parameters": []
+    },
+    "/events/{id}/": {
+      "get": {
+        "operationId": "events_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "post": {
+        "operationId": "events_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "patch": {
+        "operationId": "events_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "delete": {
+        "operationId": "events_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "events"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Мероприятие.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/get-city-list/": {
+      "get": {
+        "operationId": "get-city-list_list",
+        "description": "Представление для вывода списка городов и регионов в модальное окно",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "A search term.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "get-city-list"
+        ]
+      },
+      "parameters": []
+    },
+    "/groups/": {
+      "get": {
+        "operationId": "groups_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "town",
+            "in": "query",
+            "description": "town",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "metro",
+            "in": "query",
+            "description": "metro",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "servant",
+            "in": "query",
+            "description": "servant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Group"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "groups"
+        ]
+      },
+      "post": {
+        "operationId": "groups_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "tags": [
+          "groups"
+        ]
+      },
+      "parameters": []
+    },
+    "/groups/{id}/": {
+      "get": {
+        "operationId": "groups_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "tags": [
+          "groups"
+        ]
+      },
+      "post": {
+        "operationId": "groups_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "tags": [
+          "groups"
+        ]
+      },
+      "patch": {
+        "operationId": "groups_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        },
+        "tags": [
+          "groups"
+        ]
+      },
+      "delete": {
+        "operationId": "groups_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "groups"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Группа.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/jwt/create/": {
+      "post": {
+        "operationId": "jwt_create_create",
+        "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
+            }
+          }
+        },
+        "tags": [
+          "jwt"
+        ]
+      },
+      "parameters": []
+    },
+    "/jwt/refresh/": {
+      "post": {
+        "operationId": "jwt_refresh_create",
+        "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        },
+        "tags": [
+          "jwt"
+        ]
+      },
+      "parameters": []
+    },
+    "/jwt/verify/": {
+      "post": {
+        "operationId": "jwt_verify_create",
+        "description": "Takes a token and indicates if it is valid.  This view provides no\ninformation about a token's fitness for a particular use.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenVerify"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenVerify"
+            }
+          }
+        },
+        "tags": [
+          "jwt"
+        ]
+      },
+      "parameters": []
+    },
+    "/localities/": {
+      "get": {
+        "operationId": "localities_list",
+        "description": "Представление для списка местностей по запросу с параметром id региона РЗФ",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "A search term.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Locality"
+              }
+            }
+          }
+        },
+        "tags": [
+          "localities"
+        ]
+      },
+      "parameters": []
+    },
+    "/localities/{id}/": {
+      "get": {
+        "operationId": "localities_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Locality"
+            }
+          }
+        },
+        "tags": [
+          "localities"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Местность.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/meetings-today/": {
+      "get": {
+        "operationId": "meetings-today_list",
+        "description": "Представление возвращает ближайшие собрания сегодня в городе или регионе",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ScheduledMeeting"
+              }
+            }
+          }
+        },
+        "tags": [
+          "meetings-today"
+        ]
+      },
+      "parameters": []
+    },
+    "/metro-stations/": {
+      "get": {
+        "operationId": "metro-stations_list",
+        "description": "Представление для станций метро по запросу с параметром id города или региона",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/MetroStation"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "metro-stations"
+        ]
+      },
+      "parameters": []
+    },
+    "/news/": {
+      "get": {
+        "operationId": "news_list",
+        "description": "",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "group",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "committee",
+            "in": "query",
+            "description": "committee",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "description": "locality",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service_region",
+            "in": "query",
+            "description": "service_region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "is_global",
+            "in": "query",
+            "description": "is_global",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/News"
+              }
+            }
+          }
+        },
+        "tags": [
+          "news"
+        ]
+      },
+      "post": {
+        "operationId": "news_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        },
+        "tags": [
+          "news"
+        ]
+      },
+      "parameters": []
+    },
+    "/news/{id}/": {
+      "get": {
+        "operationId": "news_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        },
+        "tags": [
+          "news"
+        ]
+      },
+      "post": {
+        "operationId": "news_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        },
+        "tags": [
+          "news"
+        ]
+      },
+      "patch": {
+        "operationId": "news_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/News"
+            }
+          }
+        },
+        "tags": [
+          "news"
+        ]
+      },
+      "delete": {
+        "operationId": "news_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "news"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Новость.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/scheduled-meetings/": {
+      "get": {
+        "operationId": "scheduled-meetings_list",
+        "description": "Получение собраний",
+        "parameters": [
+          {
+            "name": "group",
+            "in": "query",
+            "description": "group",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "committee",
+            "in": "query",
+            "description": "committee",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "description": "locality",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "service_region",
+            "in": "query",
+            "description": "service_region",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "responsible_servant",
+            "in": "query",
+            "description": "Параметр для фильтрации по текущему служащему",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ScheduledMeeting"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "scheduled-meetings"
+        ]
+      },
+      "parameters": []
+    },
+    "/scheduled-meetings/{id}/": {
+      "get": {
+        "operationId": "scheduled-meetings_read",
+        "description": "Получение и обновление расписания собрания по его ID",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ScheduledMeeting"
+            }
+          }
+        },
+        "tags": [
+          "scheduled-meetings"
+        ]
+      },
+      "post": {
+        "operationId": "scheduled-meetings_create",
+        "description": "Получение и обновление расписания собрания по его ID",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScheduledMeeting"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ScheduledMeeting"
+            }
+          }
+        },
+        "tags": [
+          "scheduled-meetings"
+        ]
+      },
+      "delete": {
+        "operationId": "scheduled-meetings_delete",
+        "description": "Получение и обновление расписания собрания по его ID",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "scheduled-meetings"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/service-regions/": {
+      "get": {
+        "operationId": "service-regions_list",
+        "description": "Представление для вывода списка регионов обслуживания",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "A search term.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ServiceRegion"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "service-regions"
+        ]
+      },
+      "parameters": []
+    },
+    "/service-regions/{id}/": {
+      "get": {
+        "operationId": "service-regions_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ServiceRegion"
+            }
+          }
+        },
+        "tags": [
+          "service-regions"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Регион РЗФ.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    },
+    "/token/": {
+      "post": {
+        "operationId": "token_create",
+        "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
+            }
+          }
+        },
+        "tags": [
+          "token"
+        ]
+      },
+      "parameters": []
+    },
+    "/token/refresh/": {
+      "post": {
+        "operationId": "token_refresh_create",
+        "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
+            }
+          }
+        },
+        "tags": [
+          "token"
+        ]
+      },
+      "parameters": []
+    },
+    "/towns/": {
+      "get": {
+        "operationId": "towns_list",
+        "description": "Представление для вывода списка городов",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "A search term.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "all",
+            "in": "query",
+            "description": "Параметр для олучения всех доступных значений",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "required": [
+                "count",
+                "results"
+              ],
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer"
+                },
+                "next": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "previous": {
+                  "type": "string",
+                  "format": "uri",
+                  "x-nullable": true
+                },
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Town"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "towns"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/": {
+      "get": {
+        "operationId": "users_list",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CurrentUser"
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "post": {
+        "operationId": "users_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CustomUserCreate"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CustomUserCreate"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/activation/": {
+      "post": {
+        "operationId": "users_activation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Activation"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Activation"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/me/": {
+      "get": {
+        "operationId": "users_me_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CurrentUser"
+              }
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "put": {
+        "operationId": "users_me_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "patch": {
+        "operationId": "users_me_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "delete": {
+        "operationId": "users_me_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/resend_activation/": {
+      "post": {
+        "operationId": "users_resend_activation",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/reset_password/": {
+      "post": {
+        "operationId": "users_reset_password",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/reset_password_confirm/": {
+      "post": {
+        "operationId": "users_reset_password_confirm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PasswordResetConfirm"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/PasswordResetConfirm"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/reset_username/": {
+      "post": {
+        "operationId": "users_reset_username",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SendEmailReset"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/reset_username_confirm/": {
+      "post": {
+        "operationId": "users_reset_username_confirm",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UsernameResetConfirm"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UsernameResetConfirm"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/set_password/": {
+      "post": {
+        "operationId": "users_set_password",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SetPassword"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/set_username/": {
+      "post": {
+        "operationId": "users_set_username",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetUsername"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/SetUsername"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": []
+    },
+    "/users/{id}/": {
+      "get": {
+        "operationId": "users_read",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "put": {
+        "operationId": "users_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "patch": {
+        "operationId": "users_partial_update",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CurrentUser"
+            }
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "delete": {
+        "operationId": "users_delete",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "users"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "A unique integer value identifying this Служащий.",
+          "required": true,
+          "type": "integer"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "TokenCreate": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ContentBanners": {
+      "required": [
+        "image"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "image": {
+          "title": "Картинка",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200,
+          "minLength": 1
+        },
+        "link": {
+          "title": "Кликабельная ссылка",
+          "type": "string",
+          "format": "uri",
+          "maxLength": 200
+        },
+        "active": {
+          "title": "Активный",
+          "type": "boolean"
+        }
+      }
+    },
+    "GroupLocation": {
+      "required": [
+        "title",
+        "map",
+        "address"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Короткое название",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "latitude_longitude": {
+          "title": "Широта и долгота",
+          "type": "string",
+          "maxLength": 30,
+          "minLength": 1
+        },
+        "ya_company_id": {
+          "title": "Yandex company ID",
+          "type": "string",
+          "maxLength": 100
+        },
+        "map": {
+          "title": "Фрэйм карт",
+          "type": "string",
+          "maxLength": 5000,
+          "minLength": 1
+        },
+        "address": {
+          "title": "Адрес",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "place_description": {
+          "title": "Описание локации",
+          "type": "string"
+        },
+        "accessibility_for_disabled": {
+          "title": "Доступность для инвалидов",
+          "type": "boolean"
+        },
+        "step_availability": {
+          "title": "Шаговая доступность",
+          "type": "boolean"
+        },
+        "edit_date_information": {
+          "title": "Дата изменения информации",
+          "type": "string",
+          "format": "date",
+          "x-nullable": true
+        },
+        "images": {
+          "title": "Изображения",
+          "type": "string"
+        },
+        "town": {
+          "title": "Город локации",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "metro_stations": {
+          "type": "array",
+          "items": {
+            "title": "Станция метро",
+            "type": "integer"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "Group": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "location": {
+          "$ref": "#/definitions/GroupLocation"
+        },
+        "name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Ссылка",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 255
+        },
+        "description": {
+          "title": "Описание",
+          "type": "string"
+        },
+        "show_map": {
+          "title": "Показывать карту",
+          "type": "boolean"
+        },
+        "free_services": {
+          "title": "Свободные служения",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "active": {
+          "title": "Активна",
+          "type": "boolean"
+        },
+        "town": {
+          "title": "Город",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "locality": {
+          "title": "Местность группы",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "servant": {
+          "title": "Служащий группы",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "ScheduledMeeting": {
+      "required": [
+        "time",
+        "day_of_week",
+        "schedule",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "group": {
+          "$ref": "#/definitions/Group"
+        },
+        "duration": {
+          "title": "Продолжительность",
+          "type": "string"
+        },
+        "time": {
+          "title": "Время начала",
+          "type": "string"
+        },
+        "day_of_week": {
+          "title": "День недели",
+          "type": "string",
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "0"
+          ]
+        },
+        "schedule": {
+          "title": "Какой по счёту в месяце",
+          "type": "string",
+          "enum": [
+            "12345",
+            "1",
+            "2",
+            "3",
+            "4",
+            "12",
+            "34",
+            "13",
+            "24",
+            "last",
+            "exclast",
+            "5"
+          ]
+        },
+        "online": {
+          "title": "Онлайн",
+          "type": "boolean"
+        },
+        "online_description": {
+          "title": "Описание для онлайн",
+          "type": "string"
+        },
+        "committee": {
+          "title": "Собрание какого подкомитета",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "locality": {
+          "title": "Собрание какой местности",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "location": {
+          "title": "Локация",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "type": {
+          "title": "Тип собрания",
+          "type": "integer"
+        }
+      }
+    },
+    "Committee": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Ссылка",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Описание",
+          "type": "string"
+        },
+        "free_services": {
+          "title": "Свободные служения",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "active": {
+          "title": "Активна",
+          "type": "boolean"
+        },
+        "service_region": {
+          "title": "Регион РЗФ",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "locality": {
+          "title": "Местность комитета",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "location": {
+          "title": "Локация комитета",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "servant": {
+          "title": "Служащий комитета",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "DailyMeditation": {
+      "required": [
+        "day",
+        "month",
+        "title",
+        "quote",
+        "quote_from",
+        "body",
+        "jft"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "integer",
+          "readOnly": true
+        },
+        "day": {
+          "title": "День",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "month": {
+          "title": "Месяц",
+          "type": "integer",
+          "maximum": 2147483647,
+          "minimum": -2147483648
+        },
+        "title": {
+          "title": "Заголовок",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "quote": {
+          "title": "Цитата",
+          "type": "string",
+          "maxLength": 1000,
+          "minLength": 1
+        },
+        "quote_from": {
+          "title": "Источник цитаты",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "body": {
+          "title": "Текст",
+          "type": "string",
+          "minLength": 1
+        },
+        "jft": {
+          "title": "Только сегодня",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Event": {
+      "required": [
+        "time",
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "flyer": {
+          "title": "Flyer",
+          "type": "string",
+          "readOnly": true,
+          "format": "uri"
+        },
+        "duration": {
+          "title": "Duration",
+          "type": "string",
+          "readOnly": true
+        },
+        "time": {
+          "title": "Время начала",
+          "type": "string",
+          "format": "date-time"
+        },
+        "title": {
+          "title": "Заголовок (генерируется из типа если пустое)",
+          "type": "string",
+          "maxLength": 100
+        },
+        "description": {
+          "title": "Описание",
+          "type": "string"
+        },
+        "online": {
+          "title": "Онлайн",
+          "type": "boolean"
+        },
+        "is_global": {
+          "title": "Глобальное",
+          "type": "boolean"
+        },
+        "online_description": {
+          "title": "Описание для онлайн",
+          "type": "string"
+        },
+        "group": {
+          "title": "Мероприятие какой группы",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "committee": {
+          "title": "Мероприятие какого подкомитета",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "locality": {
+          "title": "Мероприятие какой местности",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "service_region": {
+          "title": "Мероприятие какого Региона РЗФ",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "geographic_region": {
+          "title": "Географический регион мероприятия",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "type": {
+          "title": "Тип мероприятия",
+          "type": "integer"
+        }
+      }
+    },
+    "TokenObtainPair": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "TokenRefresh": {
+      "required": [
+        "refresh"
+      ],
+      "type": "object",
+      "properties": {
+        "refresh": {
+          "title": "Refresh",
+          "type": "string",
+          "minLength": 1
+        },
+        "access": {
+          "title": "Access",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
+        }
+      }
+    },
+    "TokenVerify": {
+      "required": [
+        "token"
+      ],
+      "type": "object",
+      "properties": {
+        "token": {
+          "title": "Token",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Locality": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Ссылка",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Описание",
+          "type": "string"
+        },
+        "free_services": {
+          "title": "Свободные служения",
+          "type": "string"
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "active": {
+          "title": "Активна",
+          "type": "boolean"
+        },
+        "logo": {
+          "title": "Логотип",
+          "description": "Загрузите логотип",
+          "type": "string",
+          "readOnly": true,
+          "x-nullable": true,
+          "format": "uri"
+        },
+        "service_region": {
+          "title": "Регион РЗФ местности",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "servant": {
+          "title": "Служащий местности",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "MetroStation": {
+      "required": [
+        "name",
+        "html_color"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "html_color": {
+          "title": "HTML цвет",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "town": {
+          "title": "Город станции метро",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "News": {
+      "required": [
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "image": {
+          "title": "Image",
+          "type": "string",
+          "readOnly": true,
+          "format": "uri"
+        },
+        "is_global": {
+          "title": "Глобальная",
+          "type": "boolean"
+        },
+        "pub_date": {
+          "title": "Pub date",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Заголовок",
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "title": "Новость",
+          "type": "string"
+        },
+        "group": {
+          "title": "Новость какой группы",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "committee": {
+          "title": "Новость какого подкомитета",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "locality": {
+          "title": "Новость какой местности",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "service_region": {
+          "title": "Новость какого Региона РЗФ",
+          "type": "integer",
+          "x-nullable": true
+        },
+        "geographic_region": {
+          "title": "Географический регион новости",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "ServiceRegion": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "description": {
+          "title": "Описание",
+          "type": "string"
+        },
+        "slug": {
+          "title": "Ссылка",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "maxLength": 100
+        },
+        "free_services": {
+          "title": "Свободные служения региона",
+          "type": "string"
+        },
+        "logo": {
+          "title": "Логотип",
+          "description": "Загрузите логотип",
+          "type": "string",
+          "readOnly": true,
+          "x-nullable": true,
+          "format": "uri"
+        },
+        "servant": {
+          "title": "Служащий региона",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "Town": {
+      "required": [
+        "name",
+        "slug"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "slug": {
+          "title": "Ссылка",
+          "type": "string",
+          "format": "slug",
+          "pattern": "^[-a-zA-Z0-9_]+$",
+          "maxLength": 255,
+          "minLength": 1
+        },
+        "is_big": {
+          "title": "Is big",
+          "type": "boolean"
+        },
+        "geographic_region": {
+          "title": "Географический регион города",
+          "type": "integer",
+          "x-nullable": true
+        }
+      }
+    },
+    "CurrentUser": {
+      "required": [
+        "email",
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "email": {
+          "title": "Адрес электронной почты",
+          "description": "Введите адрес электронной почты",
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 1
+        },
+        "username": {
+          "title": "Имя пользователя",
+          "description": "Введите имя пользователя",
+          "type": "string",
+          "maxLength": 24,
+          "minLength": 1
+        },
+        "first_name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 150
+        },
+        "last_name": {
+          "title": "Фамилия",
+          "type": "string",
+          "maxLength": 150
+        },
+        "password": {
+          "title": "Пароль",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
+        }
+      }
+    },
+    "CustomUserCreate": {
+      "required": [
+        "email",
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Адрес электронной почты",
+          "description": "Введите адрес электронной почты",
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 1
+        },
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "username": {
+          "title": "Имя пользователя",
+          "description": "Введите имя пользователя",
+          "type": "string",
+          "maxLength": 24,
+          "minLength": 1
+        },
+        "first_name": {
+          "title": "Имя",
+          "type": "string",
+          "maxLength": 150
+        },
+        "last_name": {
+          "title": "Фамилия",
+          "type": "string",
+          "maxLength": 150
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "Activation": {
+      "required": [
+        "uid",
+        "token"
+      ],
+      "type": "object",
+      "properties": {
+        "uid": {
+          "title": "Uid",
+          "type": "string",
+          "minLength": 1
+        },
+        "token": {
+          "title": "Token",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "SendEmailReset": {
+      "required": [
+        "email"
+      ],
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string",
+          "format": "email",
+          "minLength": 1
+        }
+      }
+    },
+    "PasswordResetConfirm": {
+      "required": [
+        "uid",
+        "token",
+        "new_password"
+      ],
+      "type": "object",
+      "properties": {
+        "uid": {
+          "title": "Uid",
+          "type": "string",
+          "minLength": 1
+        },
+        "token": {
+          "title": "Token",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_password": {
+          "title": "New password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "UsernameResetConfirm": {
+      "required": [
+        "new_email"
+      ],
+      "type": "object",
+      "properties": {
+        "new_email": {
+          "title": "Адрес электронной почты",
+          "description": "Введите адрес электронной почты",
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 1
+        }
+      }
+    },
+    "SetPassword": {
+      "required": [
+        "new_password",
+        "current_password"
+      ],
+      "type": "object",
+      "properties": {
+        "new_password": {
+          "title": "New password",
+          "type": "string",
+          "minLength": 1
+        },
+        "current_password": {
+          "title": "Current password",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "SetUsername": {
+      "required": [
+        "current_password",
+        "new_email"
+      ],
+      "type": "object",
+      "properties": {
+        "current_password": {
+          "title": "Current password",
+          "type": "string",
+          "minLength": 1
+        },
+        "new_email": {
+          "title": "Адрес электронной почты",
+          "description": "Введите адрес электронной почты",
+          "type": "string",
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

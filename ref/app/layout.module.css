@@ -1,0 +1,9 @@
+.item {
+  display: grid;
+  grid-template: repeat(3, auto) / 1fr;
+  margin: 0;
+}
+
+.body {
+  margin: 0px 7%;
+}
