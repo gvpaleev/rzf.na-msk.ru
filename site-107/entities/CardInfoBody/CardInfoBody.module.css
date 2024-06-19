@@ -1,0 +1,55 @@
+.item {
+  background-color: rgb(245, 245, 245);
+  position: relative;
+
+  display: grid;
+  grid-template: auto-fill / 1fr;
+  align-content: start;
+  padding: 0 20px;
+}
+
+.dropdownContent {
+  padding: 0 40px;
+  background-color: #939496;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  transition: max-height 0.45s ease-out;
+}
+
+.a {
+  display: block;
+  color: white;
+  /* text-align: center;*/
+}
+
+.dropdownContent.expanded {
+  height: 100%;
+  max-height: 100%;
+}
+
+.link {
+  position: relative;
+
+  padding: 16px 16px 16px 40px;
+  border-radius: 0.375rem;
+  border-top: 2px solid #fff;
+
+  border-right: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -2px;
+  width: 5%;
+  /* Отрезаем левый бордер на половину */
+  height: 50%;
+  background-color: #939496;
+  /* Цвет фона, чтобы скрыть левый бордер */
+}

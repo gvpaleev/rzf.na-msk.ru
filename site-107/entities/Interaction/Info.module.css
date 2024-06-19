@@ -1,0 +1,9 @@
+.item {
+  display: grid;
+  grid-template: repeat(2, auto) / 1fr;
+}
+
+.h6 {
+  font-size: 20px;
+  font-weight: 800;
+}

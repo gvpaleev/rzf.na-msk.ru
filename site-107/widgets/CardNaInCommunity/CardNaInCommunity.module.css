@@ -1,0 +1,6 @@
+.item {
+  display: grid;
+  grid-template-columns: minmax(480px, 1fr);
+  grid-template-rows: 146px 1fr;
+
+}
