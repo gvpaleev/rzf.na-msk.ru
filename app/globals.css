@@ -1,1 +1,5 @@
-:root {}
+:root {
+  --width-full-body: 1440px;
+  --width-middle-body: 960px;
+  --width-mobile-body: 100%;
+}

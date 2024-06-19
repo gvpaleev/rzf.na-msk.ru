@@ -1,0 +1,22 @@
+.item {
+  display: grid;
+  grid-template: repeat(3, auto) / auto var(--width-full-body) auto;
+  margin: 0;
+}
+
+.banner {
+  grid-column: 1 / span 3;
+}
+
+.main {
+  grid-column: 2
+}
+
+.footer {
+
+  grid-column: 1 / span 3;
+}
+
+/* .body { */
+/*   margin: 0px 7%; */
+/* } */

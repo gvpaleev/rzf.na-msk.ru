@@ -1,0 +1,31 @@
+.item {
+  display: grid;
+  position: relative;
+  grid-template-areas: "logo h1   contacts"
+    "logo h4   contacts"
+    "info info info";
+}
+
+.logo {
+  height: 185px;
+  width: 185px;
+  margin-top: -47px;
+  z-index: 1;
+  grid-area: logo;
+}
+
+.h1 {
+  grid-area: h1;
+}
+
+.h4 {
+  grid-area: h4;
+}
+
+.contacts {
+  grid-area: contacts;
+}
+
+.info {
+  grid-area: info;
+}
