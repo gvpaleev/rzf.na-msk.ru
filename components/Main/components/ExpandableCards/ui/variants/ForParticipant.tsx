@@ -96,7 +96,7 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
         </a>
         <div className='divider'></div>
         {first.map((meeting, index) => (
-          <div key={meeting!.id}>
+          <div key={meeting!.id} className='w-full'>
             <GroupCard
               group={meeting.group!}
               time={meeting.time}
