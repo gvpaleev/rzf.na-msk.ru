@@ -1,0 +1,30 @@
+.item {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 40px;
+}
+
+.header {
+  grid-column: span 2;
+  width: 100%;
+  /* justify-self: center; */
+  /* display: grid; */
+  display: grid;
+  background-color: #E9F3FF;
+  gap: 20px;
+}
+
+.firstLink {
+  grid-column: span 2;
+}
+
+.h4 {
+  font-size: 16px;
+  color: #94AFD7;
+}
+
+.h1 {
+  font-size: 40px;
+  font-weight: 700;
+}

@@ -1,0 +1,20 @@
+.item {
+  display: grid;
+
+}
+
+.header {
+  font-size: 35px;
+}
+
+.link {
+  font-size: 20px;
+  font-weight: 700;
+  color: #393895;
+  text-decoration: underline;
+}
+
+.link:hover {
+
+  color: #0056b3;
+}
