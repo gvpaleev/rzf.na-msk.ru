@@ -73,7 +73,7 @@ export async function getRegionIdByCity(townId: number): Promise<number> {
   )
   let { locality: localityId } = groups[0];
   let locality: Locality[] = await requestWrapper(
-    requestService.get<Locality[]>(`localities/${localityId}`, {})
+    requestService.get<Locality[]>(`/localities/${localityId}`, {})
   )
   debugger;
   return 12;
