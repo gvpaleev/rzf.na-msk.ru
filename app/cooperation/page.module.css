@@ -1,0 +1,36 @@
+.item {
+
+  display: grid;
+  grid-template-columns: auto;
+  font-size: 16px;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: auto;
+  gap: 20px;
+
+}
+
+.signature {
+  display: grid;
+  grid-template-columns: auto;
+
+  gap: 10px;
+
+}
+
+.header {
+  background-color: #F5F5F5;
+}
+
+.h4 {
+  font-size: 14px;
+  color: #94AFD7;
+  margin-bottom: 20px;
+}
+
+.h1 {
+  font-weight: 900;
+  font-size: 20px;
+}
