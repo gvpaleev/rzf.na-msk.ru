@@ -1,9 +1,15 @@
+'use client'
 import LinkLocaliies from "@/components/LinkLocalities/LinkLocalities";
 import styles from './page.module.css'
 import classNames from "classnames";
+import { useEffect } from "react";
+import { getRegionIdByCity } from "@/api/getRegionIdByCity";
 const data = ['РКО Большая Москва', 'МКО Центр', 'МКО М7', 'МКО М7'];
 export default function Page() {
 
+  useEffect(() => {
+    getRegionIdByCity(187);
+  }, [])
   return (
     <div className={classNames(styles['item'])}>
       <div className={classNames(styles['header'])}>

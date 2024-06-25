@@ -17,7 +17,7 @@ export const filterTownEvent = createEvent<string>()
 export const clearTownFilterEvent = createEvent()
 
 const $currentTownId = createStore<number | null>(null)
-
+$currentTownId.watch((state) => { console.log(state) });
 export const setCurrentTownIdEvent = createEvent<number>()
 $currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
