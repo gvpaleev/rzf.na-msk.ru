@@ -2,7 +2,7 @@ import { requestWrapper } from '@api/helpers'
 import { requestService } from '@api/requestService'
 
 
-interface Locality {
+export interface Locality {
   /** ID */
   id?: number;
   /** Имя */

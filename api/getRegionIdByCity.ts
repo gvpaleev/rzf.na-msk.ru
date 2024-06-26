@@ -66,7 +66,7 @@ interface Locality {
 };
 
 
-interface ServiceRegion {
+export interface ServiceRegion {
   /** ID */
   id?: number;
   /** Имя */

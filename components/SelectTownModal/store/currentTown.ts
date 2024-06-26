@@ -11,7 +11,7 @@ import {
   sample,
 } from 'effector'
 
-const $currentRegionId = createStore<number | null>(null)
+export const $currentRegionId = createStore<number | null>(null)
 $currentRegionId.watch(console.log)
 const setCurrentRegionIdEvent = createEvent<number | undefined>();
 $currentRegionId.on(setCurrentRegionIdEvent, (_, currentRegionId) => currentRegionId)
