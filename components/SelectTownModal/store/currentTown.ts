@@ -1,3 +1,4 @@
+import { getRegionIdByCity } from '@/api/getRegionIdByCity'
 import { loadTowns } from '@/api/towns'
 import { setItemToLocalStorage } from '@utils/getItemFromLocalStorage'
 import { Town } from '@utils/types/town'
@@ -10,6 +11,11 @@ import {
   sample,
 } from 'effector'
 
+const $currentRegionId = createStore<number | null>(null)
+$currentRegionId.watch(console.log)
+const setCurrentRegionIdEvent = createEvent<number | undefined>();
+$currentRegionId.on(setCurrentRegionIdEvent, (_, currentRegionId) => currentRegionId)
+
 export const $towns = createStore<Town[]>([])
 
 export const loadTownsEvent = createEvent()
@@ -17,7 +23,13 @@ export const filterTownEvent = createEvent<string>()
 export const clearTownFilterEvent = createEvent()
 
 const $currentTownId = createStore<number | null>(null)
-$currentTownId.watch((state) => { console.log(state) });
+$currentTownId.watch(async (state) => {
+  if (!!state) {
+    let regId: number | undefined = await getRegionIdByCity(state)
+    // debugger;
+    setCurrentRegionIdEvent(regId)
+  }
+});
 export const setCurrentTownIdEvent = createEvent<number>()
 $currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 

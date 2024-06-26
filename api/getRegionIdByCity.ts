@@ -64,7 +64,39 @@ interface Locality {
   /** Служащий местности */
   servant?: number;
 };
-export async function getRegionIdByCity(townId: number): Promise<number> {
+
+
+interface ServiceRegion {
+  /** ID */
+  id?: number;
+  /** Имя */
+  name: string;
+  /** Описание */
+  description?: string;
+  /**
+   * Ссылка
+   * Format: slug
+   */
+  slug: string;
+  /**
+   * Email
+   * Format: email
+   */
+  email?: string;
+  /** Свободные служения региона */
+  free_services?: string;
+  /**
+   * Логотип
+   * Format: uri
+   * @description Загрузите логотип
+   */
+  logo?: string;
+  /** Служащий региона */
+  servant?: number;
+};
+
+export async function getRegionIdByCity(townId: number): Promise<number | undefined> {
+
   let groups: Group[] = await requestWrapper(
     requestService.get<Group[]>('/groups/', {
       params: { town: townId },
@@ -72,9 +104,14 @@ export async function getRegionIdByCity(townId: number): Promise<number> {
 
   )
   let { locality: localityId } = groups[0];
-  let locality: Locality[] = await requestWrapper(
-    requestService.get<Locality[]>(`/localities/${localityId}`, {})
+  let locality: Locality = await requestWrapper(
+    requestService.get<Locality>(`/localities/${localityId}/`, {})
   )
-  debugger;
-  return 12;
+  let { service_region: serviceId } = locality;
+  let service: ServiceRegion = await requestWrapper(
+    requestService.get<ServiceRegion>(`/service-regions/${serviceId}/`, {})
+  )
+  // debugger;
+  return service.id;
 }
+
