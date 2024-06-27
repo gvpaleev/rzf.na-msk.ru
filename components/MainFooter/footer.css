@@ -7,7 +7,6 @@
 }
 
 .mob-footer-icons {
-	opacity: 1;
     height: 90px;
     background: #fff;
     position: fixed;
@@ -17,7 +16,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 15%;
-    transition: .2s opacity;
     z-index: 99;
 }
 
@@ -27,9 +25,10 @@
     align-items: center;
 }
 
-.mob-footer-icons-active {
-	opacity: 1;
-	transition: .2s opacity;
+@media screen and (min-width: 1024px) {
+	.mob-footer-icons {
+    	display: none;
+	}
 }
 
 @media screen and (max-width: 700px) {
