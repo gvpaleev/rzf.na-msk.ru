@@ -5,7 +5,7 @@ import React from 'react'
 
 import { MainLayout } from '@components/Layout/Layout'
 
-import './globals.css'
+import '../globals.css'
 
 export default function RootLayout({
   children,

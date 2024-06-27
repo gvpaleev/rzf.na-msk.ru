@@ -62,29 +62,29 @@ export const GroupCardDetailed: FC<{
   duration?: string
 }> = ({group, time, duration}) => {
   return (
-    <div className={`p-4 flex-[2] flex flex-row items-start justify-center bg-white border-2 border-slate-500 hover:cursor-pointer hover:outline`}>
+    <div className={`p-4 flex-[2] flex flex-col lg:flex-row items-center lg:items-start justify-center bg-white border-2 border-slate-500 hover:cursor-pointer hover:outline`}>
       <div className='flex flex-col items-center justify-center'>
         <Time time={time} />
         {duration ? <div className='mt-2 text-secondary-blue'>
           {durationToHumanReadable(duration)}
         </div> : null}
       </div>
-      <div className='flex-[2] ml-20 flex flex-col'>
+      <div className='flex-[2] lg:ml-20 mt-4 lg:mt-0 flex flex-col'>
         <a
           href={'/schedule-new/'}
-          className='text-base font-bold text-blue-700 hover:underline'
+          className='text-center lg:text-left font-bold text-blue-700 hover:underline'
         >
           {group.name}
         </a> 
-        {group.location?.address ? <p className='mt-4'>{group.location?.address}</p> : null}
+        {group.location?.address ? <p className='mt-4 text-center lg:text-left'>{group.location?.address}</p> : null}
         <a
           href={'/map-link/'}
-          className='text-base text-blue-700 hover:underline link link-primary mt-4'
+          className='text-base text-center lg:text-left text-blue-700 hover:underline link link-primary mt-4'
         >
           Показать на карте
         </a>
       </div>
-      <div className='flex-[1] ml-20'>
+      <div className='flex-[1] lg:ml-20'>
         <Image
           className='mx-auto my-2'
           src='special_tag_icon.svg'

@@ -41,7 +41,7 @@ export const MainFooter = () => {
           />
         </div>
 
-        <div className="mob-footer-icons lg:hidden mob-footer-icons-active">
+        <div className="mob-footer-icons">
           <a href="tel:+7 (495) 505-33-96" className="footer-icon-block">
             <img className="footer-icon-image" src="/footer-call.svg" alt="" />
             <div className="footer-icon-text">позвонить</div>
