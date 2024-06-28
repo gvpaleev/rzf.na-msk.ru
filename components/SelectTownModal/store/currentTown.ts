@@ -11,46 +11,55 @@ import {
   sample,
 } from 'effector'
 
+//Region
 export const $currentRegionId = createStore<number | null>(null)
-$currentRegionId.watch(console.log)
-const setCurrentRegionIdEvent = createEvent<number | undefined>();
-$currentRegionId.on(setCurrentRegionIdEvent, (_, currentRegionId) => currentRegionId)
 
+
+//Town
+const $currentTownId = createStore<number | null>(null)
 export const $towns = createStore<Town[]>([])
+export const $filteredTowns = createStore<Town[]>([])
 
 export const loadTownsEvent = createEvent()
 export const filterTownEvent = createEvent<string>()
 export const clearTownFilterEvent = createEvent()
-
-const $currentTownId = createStore<number | null>(null)
-$currentTownId.watch(async (state) => {
-  if (!!state) {
-    let regId: number | undefined = await getRegionIdByCity(state)
-    // debugger;
-    setCurrentRegionIdEvent(regId)
-  }
-});
 export const setCurrentTownIdEvent = createEvent<number>()
-$currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
 export const $currentTown = combine([$towns, $currentTownId]).map(
   ([towns, currentId]) => towns.find(({ id }) => id === currentId) ?? null,
 )
+
+const loadTownsFx = createEffect(async () => loadTowns())
+
+const loadRegionIdFx = createEffect(async (townId: number | null) => {
+  if (typeof townId !== 'number') return;
+  return await getRegionIdByCity(townId);
+
+})
+$currentRegionId.on(loadRegionIdFx.doneData, (_, regionId) => regionId)
+$currentRegionId.watch(console.log)
+$currentTownId.on(setCurrentTownIdEvent, (_, townId) => {
+  return townId
+})
 
 $currentTown.watch((currentTown) => {
   if (!currentTown) return
   setItemToLocalStorage(LocalStorageKeys.CURRENT_TOWN, currentTown)
 })
 
-const loadTownsFx = createEffect(async () => loadTowns())
+
 
 $towns.on(
   loadTownsFx.done.map(({ result }) => result),
   (_, towns) => towns,
 )
 
-export const $filteredTowns = createStore<Town[]>([])
-
+sample(
+  {
+    clock: $currentTownId,
+    target: loadRegionIdFx,
+  }
+)
 sample({
   clock: [loadTownsEvent],
   source: $towns,
