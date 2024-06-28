@@ -9,6 +9,7 @@ import { Town } from '@/utils/types/town'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 
 export const $meetings = createStore<Meeting[]>([])
+export const $meetingsLoading = createStore<boolean>(true)
 export const $meetingsCounter = createStore<MeetingsCounter>({
   group_count: 0,
   meetings_count: 0,
@@ -40,6 +41,11 @@ sample({
 sample({
   clock: loadMeetingsTodayEvent,
   target: loadMeetingsTodayFx,
+})
+
+sample({
+  clock: loadMeetingsTodayFx.pending,
+  target: $meetingsLoading,
 })
 
 sample({
