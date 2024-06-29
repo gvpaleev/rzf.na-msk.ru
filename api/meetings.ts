@@ -59,7 +59,7 @@ export const loadMeetingsToday = (townId: number): Promise<Meeting[]> => {
     requestService.get<void, AxiosResponse<Response<Meeting[]>>>(
       '/meetings-today/',
       {
-        params: { town_id: townId },
+        params: { town: townId },
       },
     ),
   )
@@ -70,7 +70,7 @@ export const loadMeetingsCounter = (
 ): Promise<MeetingsCounter> => {
   return requestWrapper(
     requestService.get<MeetingsCounter>('/counter/', {
-      params: { town_id: townId },
+      params: { town: townId },
     }),
   )
 }

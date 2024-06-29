@@ -1,4 +1,4 @@
-import { GroupCard } from '@/components/Main/components/GroupCard'
+import { GroupCardShort } from '@/components/GroupCard/GroupCard'
 import { $meetings } from '@/components/Main/store/meetings'
 import { useUnit } from 'effector-react'
 import Image from 'next/image'
@@ -96,10 +96,11 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
         </a>
         <div className='divider'></div>
         {first.map((meeting, index) => (
-          <div key={meeting!.id}>
-            <GroupCard
+          <div key={meeting!.id} className='w-full'>
+            <GroupCardShort
               group={meeting.group!}
               time={meeting.time}
+              duration={meeting.duration}
             />
             {index !== first.length - 1 && <div className='divider'></div>}
           </div>
@@ -116,7 +117,7 @@ export const ForParticipant: FC<PropsWithChildren> = () => {
           />
           <div className='text-center'>
             <a
-              href='/schedule-new/'
+              href='/meetings-today/'
               className='text-base font-bold text-blue-700 my-8 hover:underline'
             >
               Еще {rest.length} собраний пройдет сегодня
