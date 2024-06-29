@@ -1,5 +1,5 @@
 import { getItemFromLocalStorage } from '@/utils/getItemFromLocalStorage'
-import { TownType } from '@/utils/types/town'
+import { Town } from '@/utils/types/town'
 import { LocalStorageKeys } from '@/utils/types/utils'
 import { createEffect, createEvent, sample } from 'effector'
 
@@ -9,7 +9,7 @@ import { selectTownModal } from './selectDefaultTown'
 export const checkTownIsSelectedEvent = createEvent()
 
 const getTownFromLocalStorageFx = createEffect(() => {
-  const town = getItemFromLocalStorage<TownType>(LocalStorageKeys.CURRENT_TOWN)
+  const town = getItemFromLocalStorage<Town>(LocalStorageKeys.CURRENT_TOWN)
 
   if (town?.id) {
     return town

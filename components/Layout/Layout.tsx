@@ -8,16 +8,18 @@ import { TopBanner } from '@components/Layout/TopBanner'
 import { MainFooter } from '@components/MainFooter'
 import { SelectTownModal } from '@components/SelectTownModal'
 
-import { $currentTown } from '../SelectTownModal/store/currentTown'
+import { $currentTown, loadTownsEvent } from '../SelectTownModal/store/currentTown'
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import TownsListModal from '../TownsListModal'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
+  const loadTowns = useUnit(loadTownsEvent);
   const currentTown = useUnit($currentTown)
 
   const checkTownSelected = useUnit(checkTownIsSelectedEvent)
 
   useEffect(() => {
+    loadTowns();
     /**
      * @todo: сейчас модалка вызывается всегда-всегда,
      * хотя, например, на 404 ей не следует появляться.
