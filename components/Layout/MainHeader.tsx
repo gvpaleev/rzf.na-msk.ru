@@ -9,6 +9,8 @@ import { NaLogo } from '@components/NaLogo'
 import { PhoneBlock } from '@components/PhoneBlock'
 
 import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
+import { ModalWrapper } from '@/Features/ModelWrapper/ModalWrapper'
+import { opendModalEvent } from '@/Features/ModelWrapper'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   const openModal = useUnit(selectTownModal.openModalEvent)
@@ -21,6 +23,9 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
             <HeaderTitle currentTown={currentTown} />
           </div>
         </div>
+        <button onClick={useUnit(opendModalEvent)}>Open</button>
+
+        <ModalWrapper><h1>ss</h1></ModalWrapper>
         <RegionButton
           className='lg:hidden flex justify-center m-4'
           currentTown={currentTown}
