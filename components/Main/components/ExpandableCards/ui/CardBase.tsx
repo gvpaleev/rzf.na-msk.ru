@@ -15,7 +15,6 @@ export const CardBase: FC<
   }>
 > = ({ title, color, links, isSidebar, children }) => {
   const [isNavOpen, setIsNavOpen] = useState(false)
-  const [isAnimationEnd, setIsAnimationEnd] = useState(true)
 
   const { primary: primaryColor, secondary: secondaryColor } =
     classNameByColor[color]
@@ -23,33 +22,31 @@ export const CardBase: FC<
   return (
     <section className={`flex flex-col w-full ${isSidebar ? 'mt-2' : ''}`}>
       <header
-        className={`${primaryColor} py-8 w-full flex justify-between items-center px-10 ${!isAnimationEnd || isNavOpen ? 'lg:rounded-t-2xl' : 'lg:rounded-2xl'} text-white`}
+        className={`${primaryColor} py-8 w-full flex justify-between items-center px-10 ${isSidebar ? 'lg:rounded-2xl' : 'px-10 lg:rounded-t-2xl'} text-white`}
       >
-        <h1 className='p-5 text-4xl font-bold'>{title}</h1>
-        <Hamburger
-          isOpen={isNavOpen}
-          toggleIsOpen={() => {
-            setIsNavOpen((isOpen) => !isOpen);
-            setIsAnimationEnd(false);
-          }}
-        />
+        <div className='flex flex-col w-full'>
+          <div className='flex flex-row justify-between items-center'>
+            <h1 className={`p-5 text-4xl font-bold`}>{title}</h1>
+            <Hamburger
+              isOpen={isNavOpen}
+              toggleIsOpen={() => {
+                setIsNavOpen((isOpen) => !isOpen);
+              }}
+            />
+          </div>
+          {isSidebar ? <div className={`relative overflow-hidden w-full h-full transition-all duration-500 ease-in-out ${isNavOpen ? 'max-h-[500px]' : 'max-h-0'}`}>
+            <footer
+              className={clsx(`${primaryColor} inset-0 mt-8 lg:rounded-b-2xl`)}
+            >
+              {links.map(({ id, ...linkEntryProps }) => (
+                <LinkEntry key={id} {...linkEntryProps} />
+              ))}
+            </footer>
+          </div> : null}
+        </div>
       </header>
 
-      {isSidebar ? 
-      (
-        <div className='relative overflow-hidden w-full h-full'>
-          <footer
-            onTransitionEnd={() => setIsAnimationEnd(true)}
-            className={clsx(
-              `${primaryColor} inset-0 transition-all duration-500 ease-in-out ${isNavOpen ? 'max-h-[500px] p-10' : 'max-h-0 p-0'} lg:rounded-b-2xl pl-10 pr-10 pt-0`
-            )}
-          >
-            {links.map(({ id, ...linkEntryProps }) => (
-              <LinkEntry key={id} {...linkEntryProps} />
-            ))}
-          </footer>
-        </div>)
-      : (
+      {!isSidebar ? 
       <div className='relative overflow-hidden w-full h-full'>
         <div className={`${secondaryColor} sm:p-10 h-full`}>{children}</div>
         <footer
@@ -62,7 +59,7 @@ export const CardBase: FC<
             <LinkEntry key={id} {...linkEntryProps} />
           ))}
         </footer>
-      </div>)}
+      </div> : null}
     </section>
   )
 }
