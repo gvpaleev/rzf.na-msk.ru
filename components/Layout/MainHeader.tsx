@@ -9,8 +9,7 @@ import { NaLogo } from '@components/NaLogo'
 import { PhoneBlock } from '@components/PhoneBlock'
 
 import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
-import { ModalWrapper } from '@/Features/ModelWrapper/ModalWrapper'
-import { opendModalEvent } from '@/Features/ModelWrapper'
+import { SelectTwonModal2, opendModalEvent } from '@/Widgets/SelectTwonModal'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   const openModal = useUnit(selectTownModal.openModalEvent)
@@ -23,14 +22,13 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
             <HeaderTitle currentTown={currentTown} />
           </div>
         </div>
-        <button onClick={useUnit(opendModalEvent)}>Open</button>
-
-        <ModalWrapper><h1>ss</h1></ModalWrapper>
+        <button onClick={useUnit(opendModalEvent)}>open</button>
+        <SelectTwonModal2 />
         <RegionButton
           className='lg:hidden flex justify-center m-4'
           currentTown={currentTown}
-          onClick={openModal}
-        />
+          onClick={openModal} />
+
         <div className='flex flex-col items-end hidden lg:block'>
           <RegionButton
             className=''
@@ -46,7 +44,7 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
         помогают друг другу прекратить употреблять наркотики и научиться жить
         без них. Единственная цель сообщества АН — сделать доступной информацию
         о возможности выздоровления тем, кто еще употребляет наркотики и
-        страдает от наркомании. Единственное условие для членства - желание
+        стра дает от наркомании. Единственное условие для членства - желание
         прекратить употребление.
       </div>
     </header>
