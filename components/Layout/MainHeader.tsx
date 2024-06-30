@@ -7,8 +7,10 @@ import { FC } from 'react'
 import { RegionButton } from '@components/Layout/RegionButton'
 import { NaLogo } from '@components/NaLogo'
 import { PhoneBlock } from '@components/PhoneBlock'
-
+import { SelectTownModal as SelectTwonModal2 } from '@/Widgets/SelectTownModal'
 import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
+import { opendModalEvent } from '@/Widgets/SelectTownModal/SelectTwonModal'
+
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   const openModal = useUnit(selectTownModal.openModalEvent)
@@ -21,6 +23,8 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
             <HeaderTitle currentTown={currentTown} />
           </div>
         </div>
+        <button onClick={useUnit(opendModalEvent)}>open</button>
+        <SelectTwonModal2 />
         <RegionButton
           className='lg:hidden flex justify-center m-4'
           currentTown={currentTown}
