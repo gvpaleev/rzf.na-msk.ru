@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 
 export interface ModalProps extends PropsWithChildren {
-  // isOpen: boolean;
-  // onClose: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }

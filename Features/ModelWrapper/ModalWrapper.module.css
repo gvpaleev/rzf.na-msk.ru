@@ -1,7 +1,7 @@
 .item {
   /* Другие стили для модального окна */
-  display: grid;
   border-radius: 16px;
+  z-index: 20;
 }
 
 .backdrop {
@@ -12,4 +12,5 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   /* Цвет фона */
+  z-index: 10;
 }
