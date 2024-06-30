@@ -1,0 +1,43 @@
+.item {
+  display: grid;
+  grid-template-areas:
+    "input input"
+    "bigCity bigCity"
+    "region town";
+  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  max-width: 600px;
+  padding: 16px;
+  gap: 8px;
+}
+
+.input {
+  grid-area: input;
+  height: 48px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid;
+  padding: 8px;
+}
+
+.bigCity {
+  grid-area: bigCity;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.region {
+  grid-area: region;
+  max-height: 200px;
+  /* Максимальная высота элемента */
+  overflow-y: auto;
+}
+
+.town {
+  grid-area: town;
+  max-height: 200px;
+  /* Максимальная высота элемента */
+  overflow-y: auto;
+}
