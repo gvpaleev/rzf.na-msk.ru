@@ -13,7 +13,6 @@ import { $townId } from '@/shared/state/userAppState'
 import { ConfirmTownModal } from '@/Widgets/ConfirmTownModal/ConfirmTownModal'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
-  const isTown = useUnit($townId) !== -1;
   debugger;
   const openModal = useUnit(selectTownModal.openModalEvent)
   return (
@@ -27,7 +26,7 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
         </div>
         {/* <button onClick={useUnit(opendModalEvent)}>open</button> */}
 
-        {!isTown ? <ConfirmTownModal /> : null}
+        <ConfirmTownModal />
         <RegionButton
           className='lg:hidden flex justify-center m-4'
           currentTown={currentTown}
