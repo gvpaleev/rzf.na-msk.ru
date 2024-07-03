@@ -28,7 +28,9 @@ export function SelectTwonModal2() {
   const loadCityList = useUnit(loadCityListEx)
   useEffect(() => {
     loadCityList();
+
   }, [])
+
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <div className={classNames(styles.item)}>
