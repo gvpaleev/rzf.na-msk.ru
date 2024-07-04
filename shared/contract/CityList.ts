@@ -1,4 +1,4 @@
-import { Region } from "./ServiceRegion"
+import { Region } from "./Region"
 import { Town } from "./Town"
 
 export interface CityList {
