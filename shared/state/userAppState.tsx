@@ -1,6 +1,31 @@
+'use client'
 import { createStore } from "effector";
+import localStorageCache from "./localStorageCache";
 
-export const $townId = createStore<number>(-1);
-export const $townName = createStore<string>('Москва')
-export const $regionId = createStore<number>(-1)
-export const $regionName = createStore<string>('Большая Москва')
+const townId = localStorageCache.getItem('townId');
+
+const townName = localStorageCache.getItem('townName');
+
+const regionId = localStorageCache.getItem('regionId');
+
+const regionName = localStorageCache.getItem('regionName')
+
+export const $townId = createStore<number>(townId === '' ? -1 : +townId);
+$townId.watch((newState) => {
+  localStorageCache.setItem('townId', `${newState}`)
+});
+
+export const $townName = createStore<string>(townName);
+$townName.watch((newState) => {
+  localStorageCache.setItem('townName', `${newState}`)
+});
+
+export const $regionId = createStore<number>(regionId === '' ? -1 : +townId);
+$regionId.watch((newState) => {
+  localStorageCache.setItem('regionId', `${newState}`)
+});
+
+export const $regionName = createStore<string>(regionName);
+$regionName.watch((newState) => {
+  localStorageCache.setItem('regionName', `${newState}`)
+});
