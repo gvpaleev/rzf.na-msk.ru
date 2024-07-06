@@ -11,29 +11,34 @@ import { SelectTownModal } from '@components/SelectTownModal'
 import { $currentTown, loadTownsEvent } from '../SelectTownModal/store/currentTown'
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import TownsListModal from '../TownsListModal'
+import { loadMeetingTypesEvent } from '../Main/store/meetings'
+import { AuthModal } from '../AuthModal'
 import { $townName } from '@/shared/state/userAppState'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const loadTowns = useUnit(loadTownsEvent);
-  const currentTown = useUnit($townName)
+  const loadMeetingTypes = useUnit(loadMeetingTypesEvent);
+  const currentTown = useUnit($townName);
 
   const checkTownSelected = useUnit(checkTownIsSelectedEvent)
 
-  // useEffect(() => {
-  //   loadTowns();
-  //   /**
-  //    * @todo: сейчас модалка вызывается всегда-всегда,
-  //    * хотя, например, на 404 ей не следует появляться.
-  //    * Вероятно следует пересмотреть логику появления модалки
-  //    */
-  //   if (currentTown) return
-  //   checkTownSelected()
-  // }, [])
+  useEffect(() => {
+    loadTowns();
+    loadMeetingTypes();
+    /**
+     * @todo: сейчас модалка вызывается всегда-всегда,
+     * хотя, например, на 404 ей не следует появляться.
+     * Вероятно следует пересмотреть логику появления модалки
+     */
+    if (currentTown) return
+    checkTownSelected()
+  }, [])
 
   return (
     <>
       {/* <SelectTownModal /> */}
       <TownsListModal />
+      <AuthModal />
       <TopBanner />
       <div className='container mx-auto flex flex-col min-h-screen'>
         <div className={`flex flex-col mx-auto flex-grow`}>
