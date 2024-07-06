@@ -1,0 +1,21 @@
+.item {
+  display: grid;
+  grid-template-columns: 200px auto;
+  border: 3px solid #F1F2F6;
+  border-radius: 12px;
+  padding: 30px 20px;
+}
+
+.date {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.time {
+  font-size: 12px;
+  color: #94AFD7;
+}
+
+.title {
+  font-weight: 700;
+}
