@@ -1,4 +1,4 @@
-export { opendModalEvent } from "./SelectTownModal";
+export { opendModalEvent } from "./model";
 
-export { SelectTwonModal2 } from "./SelectTownModal";
+export { SelectTwonModal } from "./SelectTownModal";
 

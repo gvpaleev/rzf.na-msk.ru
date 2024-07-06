@@ -1,31 +1,23 @@
 'use client'
 import classNames from "classnames";
-import styles from './SelectTwonModal.module.css'
-import { ModalWrapper } from "@/Features/ModelWrapper";
-import { createEffect, createEvent, createStore } from "effector";
+import styles from './SelectTownModal.module.css'
 import { useUnit } from "effector-react";
-import { CityList } from "@/shared/contract/CityList";
-import { getCityList } from "@/api/getCityList";
 import { useEffect } from "react";
-export const opendModalEvent = createEvent();
-export const closedModalEvent = createEvent();
-export const $isOpen = createStore<boolean>(true)
-  .on(opendModalEvent, () => true)   // Обновляем стор при вызове события открытия
-  .on(closedModalEvent, () => false);
-
-const $cityList = createStore<CityList>({ big_towns: [], towns: [], regions: [] })
-const loadCityListEx = createEffect(async () => {
-  let data = await getCityList();
-  debugger;
-  return data;
-})
-$cityList.on(loadCityListEx.doneData, (_, cityList) => cityList)
-
-export function SelectTwonModal2() {
+import { ModalWrapper } from "@/Features/ModelWrapper";
+import { $bigTown, $isOpen, $regions, $towns, closedModalEvent, loadCityListEx, selectdRegionEvent, selectdTownEvent, setFilterEvent } from "./model";
+export function SelectTwonModal() {
   const isOpen = useUnit($isOpen)
   const onClose = useUnit(closedModalEvent)
-  const cityList = useUnit($cityList)
   const loadCityList = useUnit(loadCityListEx)
+
+  const towns = useUnit($towns)
+  const regions = useUnit($regions)
+  const bigTown = useUnit($bigTown)
+
+  const setFilter = useUnit(setFilterEvent)
+  const selectedRegion = useUnit(selectdRegionEvent)
+  const selectedTown = useUnit(selectdTownEvent)
+
   useEffect(() => {
     loadCityList();
 
@@ -34,25 +26,24 @@ export function SelectTwonModal2() {
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
       <div className={classNames(styles.item)}>
-        <input className={classNames(styles.input)} placeholder='Введите город...' />
+        <input className={classNames(styles.input)} placeholder='Введите город...' onChange={(e) => { setFilter(e.target.value) }} />
 
-        <div className={classNames(styles.bigCity)}>
-          {cityList.big_towns.map((town, index) => {
-            debugger;
-            return (<p key={index}>{town.name}</p>)
+        <div className={classNames(styles.BlockBigCity)}>
+          {bigTown.map((town, index) => {
+            return (<span className={classNames(styles.ButtonBigCity)} key={index}>{town.name}</span>)
           })}
         </div>
-        <div className={classNames(styles.region)}>
-          {cityList.regions.map((region, index) => {
+        <div className={classNames(styles.BlockRegion)}>
+          {regions.map((region, index) => {
             return (
-              <p key={index}>{region.name}</p>
+              <span className={classNames(styles.ButtonRegion)} onClick={() => { selectedRegion(region.id || -1) }} key={index}>{region.name}</span>
             )
           })}
         </div>
-        <div className={classNames(styles.town)}>
-          {cityList.towns.map((town, index) => {
+        <div className={classNames(styles.BlockTown)}>
+          {towns.map((town, index) => {
             return (
-              <p key={index}>{town.name}</p>
+              <span className={classNames(styles.ButtonTown)} onClick={() => { selectedTown(town.id || -1) }} key={index}>{town.name}</span>
             )
           })}
         </div>

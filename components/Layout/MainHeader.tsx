@@ -8,13 +8,12 @@ import { RegionButton } from '@components/Layout/RegionButton'
 import { NaLogo } from '@components/NaLogo'
 import { PhoneBlock } from '@components/PhoneBlock'
 
-import { selectTownModal } from '../SelectTownModal/store/selectDefaultTown'
-import { $townId } from '@/shared/state/userAppState'
-import { ConfirmTownModal } from '@/Widgets/ConfirmTownModal/ConfirmTownModal'
+import { ConfirmTownModal } from '@/Widgets/ConfirmTownModal'
+import { SelectTwonModal } from '@/Widgets/SelectTownModal'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
   debugger;
-  const openModal = useUnit(selectTownModal.openModalEvent)
+  const openModal = () => { };
   return (
     <header>
       <div className='flex flex-col lg:flex-row lg:justify-around lg:-mt-5 content-end lg:items-end'>
@@ -26,7 +25,8 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
         </div>
         {/* <button onClick={useUnit(opendModalEvent)}>open</button> */}
 
-        <ConfirmTownModal />
+        {/* <ConfirmTownModal /> */}
+        <SelectTwonModal />
         <RegionButton
           className='lg:hidden flex justify-center m-4'
           currentTown={currentTown}

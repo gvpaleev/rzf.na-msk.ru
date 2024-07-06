@@ -1,0 +1,31 @@
+import { getCityList } from "@/api/getCityList";
+import { $regionId, $regionName, $townId, $townName } from "@/shared/state/userAppState";
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { spread } from "patronum";
+
+export const opendModalEvent = createEvent();
+export const closedModalEvent = createEvent();
+export const $isOpen = createStore<boolean>(true)
+  .on(opendModalEvent, () => true)   // Обновляем стор при вызове события открытия
+  .on(closedModalEvent, () => false);
+
+
+export const loadCityListFx = createEffect(async () => {
+  return await getCityList();
+
+})
+
+sample({
+  source: loadCityListFx.doneData,
+  fn: (data) => {
+    let { id: townId, name: townName, geographic_region: regionId } = data.towns.filter((item) => item.name == 'Москва')[0];
+    let { name: regionName } = data.regions.filter((item) => item.id == regionId)[0];
+
+    return { townId, townName, regionId, regionName };
+  },
+  target: spread({
+    townId: $townId, townName: $townName, regionId: $regionId, regionName: $regionName
+  }),
+});
+
+
