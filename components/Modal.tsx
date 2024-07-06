@@ -16,10 +16,7 @@ export const Modal: FC<
     <dialog
       className='modal'
       ref={modalRef}
-      onClose={() => {
-        onClose()
-        console.log('>>>>>>>>>>>>>>>> onClose!')
-      }}
+      onClose={onClose}
     >
       <div className='modal-box'>{children}</div>
       <form method='dialog' className='modal-backdrop'>
