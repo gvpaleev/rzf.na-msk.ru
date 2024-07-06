@@ -3,6 +3,11 @@ import { AxiosResponse } from 'axios'
 import { Response, requestWrapper } from './helpers'
 import { requestService } from './requestService'
 
+export interface MeetingType {
+  id: number
+  name: string
+}
+
 export interface Meeting {
   id?: number
   group?: Group
@@ -58,6 +63,25 @@ export const loadMeetingsToday = (townId: number): Promise<Meeting[]> => {
   return requestWrapper(
     requestService.get<void, AxiosResponse<Response<Meeting[]>>>(
       '/meetings-today/',
+      {
+        params: { town: townId },
+      },
+    ),
+  )
+}
+
+export const loadMeetingTypes = (): Promise<MeetingType[]> => {
+  return requestWrapper(
+    requestService.get<void, AxiosResponse<Response<MeetingType[]>>>(
+      '/meeting-types/',
+    ),
+  )
+}
+
+export const loadScheduledMeetings = (townId: number): Promise<Meeting[]> => {
+  return requestWrapper(
+    requestService.get<void, AxiosResponse<Response<Meeting[]>>>(
+      '/scheduled-meetings/',
       {
         params: { town: townId },
       },
