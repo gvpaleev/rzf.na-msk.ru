@@ -13,6 +13,7 @@ import { $currentTown, loadTownsEvent } from '../../components/SelectTownModal/s
 import { checkTownIsSelectedEvent } from '../../components/SelectTownModal/store/selectTownFromLocalStorage';
 import SideMenu from '../../components/Layout/SideMenu';
 import { loadMeetingTypesEvent } from '@/components/Main/store/meetings';
+import { AuthModal } from '@/components/AuthModal';
 
 export default function RootLayout({
   children,
@@ -59,6 +60,7 @@ function Main({
     <>
       <SelectTownModal />
       <TownsListModal />
+      <AuthModal />
       <TopBanner />
       <div className='container mx-auto flex flex-col min-h-screen'>
         <div className={`flex flex-col mx-auto flex-grow`}>

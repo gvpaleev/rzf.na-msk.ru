@@ -1,4 +1,7 @@
+import { useUnit } from "effector-react";
 import Link from "next/link";
+import { authModal } from "../AuthModal/store/authModal";
+import { $token, logoutEvent } from "@/utils/store/tokenStore";
 
 type Group = {
   name: string;
@@ -9,6 +12,7 @@ type MenuItem = {
   text: string;
   href: string;
   group: string;
+  action?: () => void;
 }
 
 export const groups: Group[] = [
@@ -159,15 +163,38 @@ export const menu: MenuItem[] = [
 ];
 
 export const Menu = () => {
+  const openAuthModal = useUnit(authModal.openModalEvent)
+  const logout = useUnit(logoutEvent);
+  const accessToken = useUnit($token);
+  
+  const loginMenuLink = accessToken ? 
+  {
+    text: 'Разлогиниться',
+    href: '/login',
+    group: 'professional',
+    action: logout,
+  } :
+  {
+    text: 'Авторизоваться',
+    href: '/login',
+    group: 'professional',
+    action: openAuthModal,
+  }
+
+  const additionalMenuLinks = [loginMenuLink];
+
   return (
     <div className='flex-row w-full flex-grow items-start justify-between gap-x-10 flex max-lg:hidden'>
       {groups.map(group => (
         <div key={group.name} className="flex flex-col grow gap-y-5">
           <div className="text-xl font-bold">{group.label}</div>
 
-          {menu.filter(item => item.group === group.name).map(item => (
+          {[...menu,...additionalMenuLinks].filter(item => item.group === group.name).map(item => (
             <div key={item.text} className="text-sm text-primary-blue">
-              <Link href={item.href}>{item.text}</Link>
+              <Link href={item.href} onClick={item.action ? (e) => {
+                e.preventDefault();
+                item.action?.();
+              } : undefined}>{item.text}</Link>
             </div>
           ))}
         </div>

@@ -12,6 +12,7 @@ import { $currentTown, loadTownsEvent } from '../SelectTownModal/store/currentTo
 import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFromLocalStorage'
 import TownsListModal from '../TownsListModal'
 import { loadMeetingTypesEvent } from '../Main/store/meetings'
+import { AuthModal } from '../AuthModal'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const loadTowns = useUnit(loadTownsEvent);
@@ -36,6 +37,7 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
     <>
       <SelectTownModal />
       <TownsListModal />
+      <AuthModal />
       <TopBanner />
       <div className='container mx-auto flex flex-col min-h-screen'>
         <div className={`flex flex-col mx-auto flex-grow`}>
