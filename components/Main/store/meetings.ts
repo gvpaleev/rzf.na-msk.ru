@@ -1,6 +1,8 @@
 import {
   Meeting,
+  MeetingType,
   MeetingsCounter,
+  loadMeetingTypes,
   loadMeetingsCounter,
   loadMeetingsToday,
 } from '@/api/meetings'
@@ -9,12 +11,14 @@ import { Town } from '@/utils/types/town'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 
 export const $meetings = createStore<Meeting[]>([])
+export const $meetingTypes = createStore<Record<number, string>>([])
 export const $meetingsLoading = createStore<boolean>(true)
 export const $meetingsCounter = createStore<MeetingsCounter>({
   group_count: 0,
   meetings_count: 0,
 })
 
+export const loadMeetingTypesEvent = createEvent()
 const loadMeetingsTodayEvent = createEvent<Town | null>()
 
 const loadMeetingsTodayFx = createEffect<Town | null, Meeting[]>((town) => {
@@ -22,6 +26,10 @@ const loadMeetingsTodayFx = createEffect<Town | null, Meeting[]>((town) => {
     throw new Error('Не выбран город')
   }
   return loadMeetingsToday(town.id)
+})
+
+const loadMeetingTypesFx = createEffect(() => {
+  return loadMeetingTypes()
 })
 
 const loadMeetingsCounterFx = createEffect<Town | null, MeetingsCounter>(
@@ -32,6 +40,24 @@ const loadMeetingsCounterFx = createEffect<Town | null, MeetingsCounter>(
     return loadMeetingsCounter(town.id)
   },
 )
+
+sample({
+  clock: loadMeetingTypesEvent,
+  target: loadMeetingTypesFx,
+})
+
+sample({
+  clock: loadMeetingTypesFx.doneData,
+  fn: (data) => {
+    const result: Record<number, string> = {}
+    for (const m of data) {
+      result[m.id] = m.name
+    }
+
+    return result
+  },
+  target: $meetingTypes,
+})
 
 sample({
   clock: $currentTown,

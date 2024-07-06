@@ -12,6 +12,7 @@ import { useUnit } from 'effector-react';
 import { $currentTown, loadTownsEvent } from '../../components/SelectTownModal/store/currentTown';
 import { checkTownIsSelectedEvent } from '../../components/SelectTownModal/store/selectTownFromLocalStorage';
 import SideMenu from '../../components/Layout/SideMenu';
+import { loadMeetingTypesEvent } from '@/components/Main/store/meetings';
 
 export default function RootLayout({
   children,
@@ -37,12 +38,14 @@ function Main({
   children: React.ReactNode
 })  {
   const loadTowns = useUnit(loadTownsEvent);
+  const loadMeetingTypes = useUnit(loadMeetingTypesEvent);
   const currentTown = useUnit($currentTown)
 
   const checkTownSelected = useUnit(checkTownIsSelectedEvent)
 
   useEffect(() => {
     loadTowns();
+    loadMeetingTypes();
     /**
      * @todo: сейчас модалка вызывается всегда-всегда,
      * хотя, например, на 404 ей не следует появляться.
