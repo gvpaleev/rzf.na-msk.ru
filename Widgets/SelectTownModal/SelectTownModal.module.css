@@ -1,0 +1,86 @@
+.item {
+  display: grid;
+  grid-template-areas:
+    "input input"
+    "bigCity bigCity"
+    "region town";
+  grid-template-rows: auto auto auto;
+  grid-template-columns: auto auto;
+  justify-items: center;
+  max-width: 600px;
+  padding: 16px;
+  gap: 16px;
+}
+
+.input {
+  grid-area: input;
+  height: 48px;
+  width: 100%;
+  border-radius: 8px;
+  /* border: 1px solid; */
+  padding: 12px;
+  background-color: #f7f7f7;
+}
+
+.input:focus {
+  /* background-color: #f0f8ff; */
+  outline: none;
+  border: none;
+  /* Изменяет цвет фона */
+  /* color: #333; */
+}
+
+.BlockBigCity {
+  grid-area: bigCity;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ButtonBigCity {
+  background-color: #f7f7f7;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 100px
+}
+
+.ButtonBigCity:hover {
+  background-color: #4a40ff;
+  color: white;
+  cursor: pointer;
+}
+
+.BlockRegion {
+  grid-area: region;
+  max-height: 200px;
+  /* Максимальная высота элемента */
+  overflow-y: auto;
+  display: grid;
+  scrollbar-width: thin;
+}
+
+.ButtonRegion {}
+
+.ButtonRegion:hover {
+  color: #4a40ff;
+
+  cursor: pointer;
+}
+
+.ButtonTown {}
+
+.ButtonTown:hover {
+  color: #4a40ff;
+
+  cursor: pointer;
+}
+
+.BlockTown {
+  grid-area: town;
+  max-height: 200px;
+  /* Максимальная высота элемента */
+  display: grid;
+  grid-auto-rows: min-content;
+  scrollbar-width: thin;
+  overflow-y: auto;
+}

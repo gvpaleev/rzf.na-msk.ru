@@ -13,11 +13,12 @@ import { checkTownIsSelectedEvent } from '../SelectTownModal/store/selectTownFro
 import TownsListModal from '../TownsListModal'
 import { loadMeetingTypesEvent } from '../Main/store/meetings'
 import { AuthModal } from '../AuthModal'
+import { $townName } from '@/shared/state/userAppState'
 
 export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const loadTowns = useUnit(loadTownsEvent);
   const loadMeetingTypes = useUnit(loadMeetingTypesEvent);
-  const currentTown = useUnit($currentTown)
+  const currentTown = useUnit($townName);
 
   const checkTownSelected = useUnit(checkTownIsSelectedEvent)
 
@@ -35,13 +36,13 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
-      <SelectTownModal />
+      {/* <SelectTownModal /> */}
       <TownsListModal />
       <AuthModal />
       <TopBanner />
       <div className='container mx-auto flex flex-col min-h-screen'>
         <div className={`flex flex-col mx-auto flex-grow`}>
-          <MainHeader currentTown={currentTown?.name} />
+          <MainHeader currentTown={currentTown} />
           <main className='flex-grow'>{children}</main>
         </div>
       </div>

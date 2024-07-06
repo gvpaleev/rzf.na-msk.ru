@@ -4,6 +4,7 @@ import { AxiosResponse } from 'axios'
 
 import { Response, requestWrapper } from '@api/helpers'
 import { requestService } from '@api/requestService'
+import { CityList } from '@/shared/contract/CityList'
 
 export type GetCityListResponseType = {
   /**
@@ -16,7 +17,7 @@ export type GetCityListResponseType = {
 
 export const getCityList = () => {
   return requestWrapper(
-    requestService.get<void, AxiosResponse<Response<GetCityListResponseType>>>(
+    requestService.get<void, AxiosResponse<Response<CityList>>>(
       '/get-city-list/',
     ),
   )

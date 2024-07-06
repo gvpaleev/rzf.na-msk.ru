@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 
 import { setCurrentTownIdEvent } from '../SelectTownModal/store/currentTown'
 import { townListModal } from '../TownsListModal/store/townListModal'
+import { CityList } from '@/shared/contract/CityList'
 
 export const RegionList: React.FC = () => {
-  const [data, setData] = useState<GetCityListResponseType | null>(null)
-  const [selectedRegion, setSelectedRegion] = useState<number | null>(null)
+  const [data, setData] = useState<CityList | null>(null)
+  const [selectedRegion, setSelectedRegion] = useState<number | undefined>(undefined)
 
   const closeModal = useUnit(townListModal.closeModalEvent)
   const setTown = useUnit(setCurrentTownIdEvent)
@@ -16,7 +17,7 @@ export const RegionList: React.FC = () => {
     getCityList().then(setData)
   }, [])
 
-  const handleRegionClick = (regionId: number) => {
+  const handleRegionClick = (regionId: number | undefined) => {
     setSelectedRegion(regionId)
   }
 
@@ -30,9 +31,8 @@ export const RegionList: React.FC = () => {
         {data.regions.map((region) => (
           <div
             key={region.id}
-            className={`p-2 ${
-              selectedRegion === region.id ? 'bg-card-light-blue' : ''
-            } cursor-pointer`}
+            className={`p-2 ${selectedRegion === region.id ? 'bg-card-light-blue' : ''
+              } cursor-pointer`}
             onClick={() => handleRegionClick(region.id)}
           >
             {region.name}
