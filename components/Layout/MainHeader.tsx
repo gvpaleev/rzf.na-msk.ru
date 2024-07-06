@@ -10,10 +10,10 @@ import { PhoneBlock } from '@components/PhoneBlock'
 
 import { ConfirmTownModal } from '@/Widgets/ConfirmTownModal'
 import { SelectTwonModal } from '@/Widgets/SelectTownModal'
+import { opendModalEvent } from '@/Widgets/ConfirmTownModal/model'
 
 export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
-  debugger;
-  const openModal = () => { };
+  const openModal = useUnit(opendModalEvent);
   return (
     <header>
       <div className='flex flex-col lg:flex-row lg:justify-around lg:-mt-5 content-end lg:items-end'>
@@ -23,9 +23,8 @@ export const MainHeader: FC<{ currentTown?: string }> = ({ currentTown }) => {
             <HeaderTitle currentTown={currentTown} />
           </div>
         </div>
-        {/* <button onClick={useUnit(opendModalEvent)}>open</button> */}
 
-        {/* <ConfirmTownModal /> */}
+        <ConfirmTownModal />
         <SelectTwonModal />
         <RegionButton
           className='lg:hidden flex justify-center m-4'

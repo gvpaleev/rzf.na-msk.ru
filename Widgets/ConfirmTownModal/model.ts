@@ -5,7 +5,7 @@ import { spread } from "patronum";
 
 export const opendModalEvent = createEvent();
 export const closedModalEvent = createEvent();
-export const $isOpen = createStore<boolean>(true)
+export const $isOpen = createStore<boolean>($townId.getState() == -1)
   .on(opendModalEvent, () => true)   // Обновляем стор при вызове события открытия
   .on(closedModalEvent, () => false);
 

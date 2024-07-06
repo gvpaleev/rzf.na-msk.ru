@@ -4,7 +4,7 @@ import styles from './SelectTownModal.module.css'
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { ModalWrapper } from "@/Features/ModelWrapper";
-import { $bigTown, $isOpen, $regions, $towns, closedModalEvent, loadCityListEx, selectdRegionEvent, selectdTownEvent, setFilterEvent } from "./model";
+import { $bigTown, $isOpen, $regions, $towns, closedModalEvent, loadCityListEx, selectdRegionEvent, selectdTownEvent, selectedBigCityEvent, setFilterEvent } from "./model";
 export function SelectTwonModal() {
   const isOpen = useUnit($isOpen)
   const onClose = useUnit(closedModalEvent)
@@ -17,6 +17,7 @@ export function SelectTwonModal() {
   const setFilter = useUnit(setFilterEvent)
   const selectedRegion = useUnit(selectdRegionEvent)
   const selectedTown = useUnit(selectdTownEvent)
+  const selectedBigCity = useUnit(selectedBigCityEvent);
 
   useEffect(() => {
     loadCityList();
@@ -30,7 +31,7 @@ export function SelectTwonModal() {
 
         <div className={classNames(styles.BlockBigCity)}>
           {bigTown.map((town, index) => {
-            return (<span className={classNames(styles.ButtonBigCity)} key={index}>{town.name}</span>)
+            return (<span className={classNames(styles.ButtonBigCity)} key={index} onClick={() => { selectedBigCity(town.id || -1) }}>{town.name}</span>)
           })}
         </div>
         <div className={classNames(styles.BlockRegion)}>

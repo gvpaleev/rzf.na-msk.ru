@@ -20,7 +20,7 @@ $townName.watch((newState) => {
   localStorageCache.setItem('townName', `${newState}`)
 });
 
-export const $regionId = createStore<number>(regionId === '' ? -1 : +townId);
+export const $regionId = createStore<number>(regionId === '' ? -1 : +regionId);
 $regionId.watch((newState) => {
   localStorageCache.setItem('regionId', `${newState}`)
 });
