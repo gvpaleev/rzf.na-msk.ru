@@ -24,20 +24,20 @@ export default function AllMeetings() {
     (meeting) => meeting.group?.name.toLowerCase().includes(groupsFilter.toLowerCase())
   );
   return (
-        <div>
-          <div>
-            <FilterGroup onChange={setGroupsFilter}/>
-          </div>
-          <div className='mt-8'>
-            {meetingsLoading ?
-              <span className="loading loading-spinner loading-lg"></span> :
-              groupMeetings.length > 0 ? 
-                <MeetingsSchedule meetings={groupMeetings}/> :
-                'По заданному фильтру не найдено групп'
+    <div>
+      <div>
+        <FilterGroup onChange={setGroupsFilter} />
+      </div>
+      <div className='mt-8'>
+        {meetingsLoading ?
+          <span className="loading loading-spinner loading-lg"></span> :
+          groupMeetings.length > 0 ?
+            <MeetingsSchedule meetings={groupMeetings} /> :
+            'По заданному фильтру не найдено групп'
 
-            }         
-          </div>
-        </div>
+        }
+      </div>
+    </div>
   )
 }
 

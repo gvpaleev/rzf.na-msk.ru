@@ -18,7 +18,7 @@ export const clearTownFilterEvent = createEvent()
 
 const $currentTownId = createStore<number | null>(null)
 
-export const setCurrentTownIdEvent = createEvent<number>()
+export const setCurrentTownIdEvent = createEvent<number | undefined>()
 $currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
 export const $currentTown = combine([$towns, $currentTownId]).map(
