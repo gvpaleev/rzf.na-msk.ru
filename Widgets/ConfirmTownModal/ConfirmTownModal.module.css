@@ -1,0 +1,52 @@
+.item {
+  display: grid;
+  /* grid-template-rows: auto 16px auto auto; */
+  position: relative;
+  padding: 16px;
+  gap: 8px;
+  justify-items: center;
+}
+
+.h1 {
+  font-size: 24px;
+  font-weight: 100;
+  margin-bottom: 16px;
+}
+
+.h1 b {
+  font-weight: 700;
+}
+
+.accept {
+  background-color: #4a40ff;
+  color: #fff;
+
+  transition: 0.2s;
+
+}
+
+.accept:hover {
+  background-color: #4a00ff;
+}
+
+.cancel {
+  background-color: #f2f2f2;
+  transition: 0.2s;
+  color: #000;
+
+}
+
+.cancel:hover {
+  background-color: #d0d0d0;
+
+}
+
+.button {
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  width: 80%;
+  height: 48px;
+  border-radius: 8px;
+  max-width: 216px;
+}

@@ -16,14 +16,17 @@ export const $currentRegionId = createStore<number | null>(null)
 
 
 //Town
-const $currentTownId = createStore<number | null>(null)
 export const $towns = createStore<Town[]>([])
 export const $filteredTowns = createStore<Town[]>([])
 
 export const loadTownsEvent = createEvent()
 export const filterTownEvent = createEvent<string>()
 export const clearTownFilterEvent = createEvent()
-export const setCurrentTownIdEvent = createEvent<number>()
+
+const $currentTownId = createStore<number | null>(null)
+
+export const setCurrentTownIdEvent = createEvent<number | undefined>()
+$currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
 export const $currentTown = combine([$towns, $currentTownId]).map(
   ([towns, currentId]) => towns.find(({ id }) => id === currentId) ?? null,

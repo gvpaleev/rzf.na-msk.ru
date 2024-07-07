@@ -1,5 +1,5 @@
 import { Group } from '@/shared/contract/Group';
-import { ServiceRegion } from '@/shared/contract/ServiceRegion';
+import { Region } from '@/shared/contract/Region';
 import { requestWrapper } from '@api/helpers'
 import { requestService } from '@api/requestService'
 
@@ -16,8 +16,8 @@ export async function getRegionIdByCity(townId: number): Promise<number | undefi
     requestService.get<Locality>(`/localities/${localityId}/`, {})
   )
   let { service_region: serviceId } = locality;
-  let service: ServiceRegion = await requestWrapper(
-    requestService.get<ServiceRegion>(`/service-regions/${serviceId}/`, {})
+  let service: Region = await requestWrapper(
+    requestService.get<Region>(`/service-regions/${serviceId}/`, {})
   )
   // debugger;
   return service.id;
