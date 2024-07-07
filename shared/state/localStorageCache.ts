@@ -1,4 +1,5 @@
 'use client'
+const isClient = typeof window !== 'undefined';
 class localStorageCache {
   private static instance: localStorageCache;
 
@@ -12,10 +13,13 @@ class localStorageCache {
   }
 
   public setItem(key: string, value: string) {
-    localStorage.setItem(key, value);
+    if (isClient)
+      localStorage.setItem(key, value);
   }
   public getItem(key: string): string {
-    return localStorage.getItem(key) || ''
+    if (isClient)
+      return localStorage.getItem(key) || ''
+    return ''
 
   }
 }
