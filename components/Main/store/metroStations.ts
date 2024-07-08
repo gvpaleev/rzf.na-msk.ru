@@ -31,7 +31,7 @@ const loadMetroStationsFX = createEffect<Town | null, MetroStation[]>(
     if (!town) {
       throw new Error('Не выбран город')
     }
-    return loadMetroStations(town.id)
+    return loadMetroStations(town.id || 0)
   },
 )
 

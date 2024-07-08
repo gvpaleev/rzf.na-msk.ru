@@ -1,4 +1,5 @@
 import { getCityList } from "@/api/getCityList";
+import { $currentTown } from "@/components/SelectTownModal/store/currentTown";
 import { $regionId, $regionName, $townId, $townName } from "@/shared/state/userAppState";
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { spread } from "patronum";
@@ -16,15 +17,21 @@ export const loadCityListFx = createEffect(async () => {
 })
 
 sample({
-  source: loadCityListFx.doneData,
+  clock: loadCityListFx.doneData,
   fn: (data) => {
     let { id: townId, name: townName, geographic_region: regionId } = data.towns.filter((item) => item.name == 'Москва')[0];
+
+
     let { name: regionName } = data.regions.filter((item) => item.id == regionId)[0];
 
-    return { townId, townName, regionId, regionName };
+    return { townId, townName, regionId, regionName, currentTown: { 'id': townId, 'name': townName, 'geographic_region': regionId } };
   },
   target: spread({
-    townId: $townId, townName: $townName, regionId: $regionId, regionName: $regionName
+    townId: $townId,
+    townName: $townName,
+    regionId: $regionId,
+    regionName: $regionName,
+    currentTown: $currentTown
   }),
 });
 

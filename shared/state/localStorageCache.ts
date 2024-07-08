@@ -1,4 +1,3 @@
-'use client'
 const isClient = typeof window !== 'undefined';
 class localStorageCache {
   private static instance: localStorageCache;

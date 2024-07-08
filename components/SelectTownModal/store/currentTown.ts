@@ -21,9 +21,11 @@ const $currentTownId = createStore<number | null>(null)
 export const setCurrentTownIdEvent = createEvent<number | undefined>()
 $currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
 
-export const $currentTown = combine([$towns, $currentTownId]).map(
-  ([towns, currentId]) => towns.find(({ id }) => id === currentId) ?? null,
-)
+export const $currentTown =
+  createStore<Town | null>(null)
+// combine([$towns, $currentTownId]).map(
+//   ([towns, currentId]) => towns.find(({ id }) => id === currentId) ?? null,
+// )
 
 $currentTown.watch((currentTown) => {
   if (!currentTown) return

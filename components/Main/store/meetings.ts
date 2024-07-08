@@ -25,7 +25,7 @@ const loadMeetingsTodayFx = createEffect<Town | null, Meeting[]>((town) => {
   if (!town) {
     throw new Error('Не выбран город')
   }
-  return loadMeetingsToday(town.id)
+  return loadMeetingsToday(town.id || 0)
 })
 
 const loadMeetingTypesFx = createEffect(() => {
@@ -37,7 +37,7 @@ const loadMeetingsCounterFx = createEffect<Town | null, MeetingsCounter>(
     if (!town) {
       throw new Error('Не выбран город')
     }
-    return loadMeetingsCounter(town.id)
+    return loadMeetingsCounter(town.id || 0)
   },
 )
 
