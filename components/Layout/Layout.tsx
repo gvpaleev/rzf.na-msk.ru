@@ -35,7 +35,6 @@ export const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <>
-      <SelectTownModal />
       <TownsListModal />
       <AuthModal />
       <TopBanner />

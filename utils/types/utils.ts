@@ -1,3 +1,7 @@
 export enum LocalStorageKeys {
   CURRENT_TOWN = 'CURRENT_TOWN',
+  TOWN_ID = 'TOWN_ID',
+  TOWN_NAME = 'TOWN_NAME',
+  REGION_ID = 'REGION_ID',
+  REGION_NAME = 'REGION_NAME'
 }
