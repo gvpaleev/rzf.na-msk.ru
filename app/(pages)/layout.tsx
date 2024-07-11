@@ -4,16 +4,16 @@ import { EffectorNext } from '@effector/next'
 import React, { useEffect } from 'react'
 
 import '../globals.css'
-import { SelectTownModal } from '../../components/SelectTownModal';
-// import TownsListModal from '../../components/TownsListModal';
-import { TopBanner } from '../../components/Layout/TopBanner';
-import { MainFooter, MainHeader } from '../../components/Layout';
+import { SelectTownModal } from '@/shared/components/SelectTownModal';
+// import TownsListModal from '@/shared/components/TownsListModal';
+import { TopBanner } from '@/shared/components/Layout/TopBanner';
+import { MainFooter, MainHeader } from '@/shared/components/Layout';
 import { useUnit } from 'effector-react';
-import { $currentTown, loadTownsEvent } from '../../components/SelectTownModal/store/currentTown';
-import { checkTownIsSelectedEvent } from '../../components/SelectTownModal/store/selectTownFromLocalStorage';
-import SideMenu from '../../components/Layout/SideMenu';
-import { loadMeetingTypesEvent } from '@/components/Main/store/meetings';
-import { AuthModal } from '@/components/AuthModal';
+import { $currentTown, loadTownsEvent } from '@/shared/components/SelectTownModal/store/currentTown';
+import { checkTownIsSelectedEvent } from '@/shared/components/SelectTownModal/store/selectTownFromLocalStorage';
+import SideMenu from '@/shared/components/Layout/SideMenu';
+import { loadMeetingTypesEvent } from '@/shared/components/Main/store/meetings';
+import { AuthModal } from '@/shared/components/AuthModal';
 
 export default function RootLayout({
   children,

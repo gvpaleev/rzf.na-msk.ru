@@ -1,5 +1,5 @@
-import { getItemFromLocalStorage, setItemToLocalStorage } from "@/utils/getItemFromLocalStorage";
-import { LocalStorageKeys } from "@/utils/types/utils";
+import { getItemFromLocalStorage, setItemToLocalStorage } from "@/shared/utils/getItemFromLocalStorage";
+import { LocalStorageKeys } from "@/shared/utils/types/utils";
 import { createEffect, createStore, sample } from "effector";
 import { spread } from "patronum";
 

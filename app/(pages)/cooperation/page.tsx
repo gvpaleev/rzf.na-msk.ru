@@ -1,4 +1,4 @@
-import { Divider } from '@/components/ui/Divider'
+import { Divider } from '@/shared/components/ui/Divider'
 import classNames from 'classnames'
 import style from './page.module.css'
 import Image from 'next/image'

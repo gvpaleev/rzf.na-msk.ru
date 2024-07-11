@@ -1,4 +1,4 @@
-import { Divider } from '@/components/ui/Divider'
+import { Divider } from '@/shared/components/ui/Divider'
 
 export default async function Questions() {
   return (

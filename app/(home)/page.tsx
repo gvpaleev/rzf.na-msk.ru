@@ -1,6 +1,6 @@
 'use client'
 
-import { Main } from '@components/Main/Main'
+import { Main } from '@/shared/components/Main/Main'
 
 export default function Home() {
   return <Main />

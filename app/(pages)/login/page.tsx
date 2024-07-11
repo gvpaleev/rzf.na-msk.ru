@@ -1,6 +1,6 @@
 'use client'
 
-import LoginForm from '@/components/AuthModal'
+import LoginForm from '@/shared/components/AuthModal'
 
 export default function Login() {
   return <LoginForm />
