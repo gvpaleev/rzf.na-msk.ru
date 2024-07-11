@@ -19,13 +19,26 @@ export const clearTownFilterEvent = createEvent()
 const $currentTownId = createStore<number | null>(null)
 
 export const setCurrentTownIdEvent = createEvent<number | undefined>()
-$currentTownId.on(setCurrentTownIdEvent, (_, townId) => townId)
+$currentTownId.on(setCurrentTownIdEvent, (_, townId) => {
+  // debugger;
+  return townId
+})
 
-export const $currentTown = combine([$towns, $currentTownId]).map(
-  ([towns, currentId]) => towns.find(({ id }) => id === currentId) ?? null,
-)
-
+export const $currentTown =
+  createStore<Town | null>(null);
+// combine([$towns, $currentTownId]).map(
+//   ([towns, currentId]) => towns.find(({ id }) => {
+//     // debugger;
+//     return id === currentId
+//   }) ?? null,
+// )
+$currentTown.on(setCurrentTownIdEvent, (_, newTownId) => {
+  let towns = $towns.getState();
+  // debugger;
+  return towns.filter((town) => town.id == newTownId)[0];
+})
 $currentTown.watch((currentTown) => {
+  // debugger;
   if (!currentTown) return
   setItemToLocalStorage(LocalStorageKeys.CURRENT_TOWN, currentTown)
 })

@@ -1,11 +1,11 @@
 'use client'
 
 import { EffectorNext } from '@effector/next'
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 
 import '../globals.css'
 import { SelectTownModal } from '../../components/SelectTownModal';
-import TownsListModal from '../../components/TownsListModal';
+// import TownsListModal from '../../components/TownsListModal';
 import { TopBanner } from '../../components/Layout/TopBanner';
 import { MainFooter, MainHeader } from '../../components/Layout';
 import { useUnit } from 'effector-react';
@@ -37,7 +37,7 @@ function Main({
   children,
 }: {
   children: React.ReactNode
-})  {
+}) {
   const loadTowns = useUnit(loadTownsEvent);
   const loadMeetingTypes = useUnit(loadMeetingTypesEvent);
   const currentTown = useUnit($currentTown)
@@ -58,8 +58,8 @@ function Main({
 
   return (
     <>
-      <SelectTownModal />
-      <TownsListModal />
+      {/* <SelectTownModal /> */}
+      {/* <TownsListModal /> */}
       <AuthModal />
       <TopBanner />
       <div className='container mx-auto flex flex-col min-h-screen'>

@@ -17,7 +17,7 @@ const loadScheduledMeetingsFx = createEffect<Town | null, Meeting[]>((town) => {
   if (!town) {
     throw new Error('Не выбран город')
   }
-  return loadScheduledMeetings(town.id)
+  return loadScheduledMeetings(town.id || 0)
 })
 
 sample({
