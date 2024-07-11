@@ -3,7 +3,7 @@
 import { EffectorNext } from '@effector/next'
 import React from 'react'
 
-import { MainLayout } from '@components/Layout/Layout'
+import { MainLayout } from '@/shared/components/Layout/Layout'
 
 import '../globals.css'
 

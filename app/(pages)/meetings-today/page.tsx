@@ -1,7 +1,7 @@
 'use client'
 
-import { GroupCardDetailed } from '@/components/GroupCard/GroupCard';
-import { $meetings, $meetingsLoading } from '@/components/Main/store/meetings'
+import { GroupCardDetailed } from '@/shared/components/GroupCard/GroupCard';
+import { $meetings, $meetingsLoading } from '@/shared/components/Main/store/meetings'
 import { useUnit } from 'effector-react'
 import { ChangeEvent, FC, useState } from 'react';
 

@@ -1,8 +1,8 @@
 'use client'
 
-import { getCityList } from "@/api/getCityList";
-import { GetNewsListResponseType, getNewsList } from "@/api/getNewsList";
-import News from "@/components/News/News";
+import { getCityList } from "@/shared/api/getCityList";
+import { GetNewsListResponseType, getNewsList } from "@/shared/api/getNewsList";
+import News from "@/shared/components/News/News";
 import { useEffect, useState } from "react";
 import styles from './page.module.css'
 import classNames from "classnames";

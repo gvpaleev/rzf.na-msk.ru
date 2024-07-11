@@ -1,11 +1,11 @@
 'use client'
 
-import { MeetingsSchedule } from '@/components/MeetingsSchedule/MeetingsSchedule';
-import { $meetings, $meetingsLoading } from '@/components/Main/store/meetings'
+import { MeetingsSchedule } from '@/shared/components/MeetingsSchedule/MeetingsSchedule';
+import { $meetings, $meetingsLoading } from '@/shared/components/Main/store/meetings'
 import { useUnit } from 'effector-react'
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { $scheduledMeetings, $scheduledMeetingsLoading, loadScheduledMeetingsEvent } from './store/scheduled-meetings';
-import { $currentTown } from '@/components/SelectTownModal/store/currentTown';
+import { $currentTown } from '@/shared/components/SelectTownModal/store/currentTown';
 
 export default function AllMeetings() {
   const town = useUnit($currentTown);
