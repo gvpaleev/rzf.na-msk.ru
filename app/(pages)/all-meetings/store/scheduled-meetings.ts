@@ -3,9 +3,9 @@ import {
   MeetingsCounter,
   loadMeetingsCounter,
   loadScheduledMeetings,
-} from '@/api/meetings'
-import { $currentTown } from '@/components/SelectTownModal/store/currentTown'
-import { Town } from '@/utils/types/town'
+} from '@/shared/api/meetings'
+import { $currentTown } from '@/shared/components/SelectTownModal/store/currentTown'
+import { Town } from '@/shared/utils/types/town'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 
 export const $scheduledMeetings = createStore<Meeting[]>([])
