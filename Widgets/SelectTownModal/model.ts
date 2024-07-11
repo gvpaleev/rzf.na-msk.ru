@@ -1,4 +1,5 @@
 import { getCityList } from "@/api/getCityList";
+import { $currentTown } from "@/components/SelectTownModal/store/currentTown";
 import { CityList } from "@/shared/contract/CityList";
 import { Region } from "@/shared/contract/Region";
 import { Town } from "@/shared/contract/Town";
@@ -60,10 +61,12 @@ sample({
     let { id: townId, name: townName, geographic_region: regionId } = data.towns.filter((item) => item.id == inTownId)[0];
     let { name: regionName } = data.regions.filter((item) => item.id == regionId)[0];
 
-    return { townId, townName, regionId, regionName };
+    // return { townId, townName, regionId, regionName };
+    return { townId, townName, regionId, regionName, currentTown: { 'id': townId, 'name': townName, 'geographic_region': regionId } };
+
   },
   target: [spread({
-    townId: $townId, townName: $townName, regionId: $regionId, regionName: $regionName
+    townId: $townId, townName: $townName, regionId: $regionId, regionName: $regionName, currentTown: $currentTown
   }), closedModalEvent],
 
 })

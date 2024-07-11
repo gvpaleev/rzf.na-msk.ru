@@ -5,7 +5,7 @@ import { ModalWrapper } from "@/Features/ModelWrapper";
 import { useUnit } from "effector-react";
 import { useEffect } from "react";
 import { $isOpen, closedModalEvent, loadCityListFx } from "./model";
-import { $townName } from "@/shared/state/userAppState";
+import { $townName, } from "@/shared/state/userAppState";
 import { opendModalEvent } from "../SelectTownModal";
 
 
@@ -17,9 +17,14 @@ export function ConfirmTownModal() {
   const openSelectTownModal = useUnit(opendModalEvent)
   const townName = useUnit($townName);
 
+  // const installState = useUnit(installStateFx)
   useEffect(() => {
-    if (townName == '')
+    console.log(`ConfirmTown ${townName}`)
+    if (townName === '') {
       loadCityList();
+      // installState();
+
+    }
   }, [])
   return (
     <ModalWrapper isOpen={isOpen} onClose={onClose}>
