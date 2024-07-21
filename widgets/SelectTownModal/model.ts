@@ -86,7 +86,9 @@ sample({
   clock: setFilterEvent,
   source: $cityList,
   fn: (data, filter) => {
-    return data.towns.filter((item) => item.name.includes(filter))
+    return data.towns.filter((item) =>
+      item.name.toLowerCase().includes(filter.toLowerCase()))
+
   },
   target: $towns
 })
