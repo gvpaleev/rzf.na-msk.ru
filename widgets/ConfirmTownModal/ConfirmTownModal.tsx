@@ -19,7 +19,6 @@ export function ConfirmTownModal() {
 
   // const installState = useUnit(installStateFx)
   useEffect(() => {
-    console.log(`ConfirmTown ${townName}`)
     if (townName === '') {
       loadCityList();
       // installState();
