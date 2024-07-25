@@ -16,8 +16,7 @@ export function groupMeetingsByDay(
     groupedMeetings.set(day, (groupedMeetings.get(day) || []).concat(meeting))
   }
 
-  return Array.from(groupedMeetings.entries()).filter(([_, meetings]) => {
-    console.log(meetings)
-    meetings.length > 0
-  })
+  return Array.from(groupedMeetings.entries()).filter(
+    ([_, meetings]) => meetings.length > 0,
+  )
 }

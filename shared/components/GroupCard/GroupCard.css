@@ -1,0 +1,8 @@
+.space-between {
+    justify-content: space-between;
+}
+
+
+.group-schedule-time + .group-schedule-time {
+    margin-top: 8px
+}

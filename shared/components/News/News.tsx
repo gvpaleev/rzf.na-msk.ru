@@ -6,7 +6,6 @@ interface NewsProps {
   data: GetNewsListResponseType;
 }
 export default function News({ data }: NewsProps) {
-  console.log(data.image)
   return (
 
     <div className={classNames(styles['item'])}>
