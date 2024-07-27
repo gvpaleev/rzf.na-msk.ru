@@ -19,33 +19,23 @@ $townName.watch((newState) => {
   setItemToLocalStorage<string>(LocalStorageKeys.TOWN_NAME, newState)
 })
 
-export const $regionId = createStore<number>(-1)
+export const $regionGeographicId = createStore<number>(-1)
 
-$regionId.watch((newState) => {
+$regionGeographicId.watch((newState) => {
   if (newState == -1) return
-  setItemToLocalStorage<number>(LocalStorageKeys.REGION_ID, newState)
+  setItemToLocalStorage<number>(LocalStorageKeys.REGION_GEOGRAPHIC_ID, newState)
 })
 
-export const $regionName = createStore<string>('')
+export const $regionGeographicName = createStore<string>('')
 
-$regionName.watch((newState) => {
+$regionGeographicName.watch((newState) => {
   if (newState == '') return
 
-  setItemToLocalStorage<string>(LocalStorageKeys.REGION_NAME, newState)
+  setItemToLocalStorage<string>(LocalStorageKeys.REGION_GEOGRAPHIC_NAME, newState)
 })
 
-// sample({
-//   clock: installStateFx.doneData,
-//   fn: (data) => {
-//     // debugger;
-//     return data
-//
-//   },
-//   target: spread({
-//     townId: $townId,
-//     townName: $townName,
-//     regionId: $regionId,
-//     regionName: $regionName
-//   })
-// })
-//
+export const $regionServiceId = createStore(-1);
+$regionServiceId.watch((newState) => {
+  if (newState == -1) return
+  setItemToLocalStorage<number>(LocalStorageKeys.REGION_SERVICE_ID, newState)
+})

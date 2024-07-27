@@ -12,4 +12,5 @@ export interface Town {
   is_big?: boolean;
   /** Географический регион города */
   geographic_region?: number;
+  service_region?: number;
 };

@@ -3,7 +3,7 @@ import { $currentTown } from "@/shared/components/SelectTownModal/store/currentT
 import { CityList } from "@/shared/contract/CityList";
 import { Region } from "@/shared/contract/Region";
 import { Town } from "@/shared/contract/Town";
-import { $regionId, $regionName, $townId, $townName } from "@/shared/state/userAppState";
+import { $regionGeographicId, $regionGeographicName, $townId, $townName } from "@/shared/state/userAppState";
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { spread } from "patronum";
 
@@ -50,7 +50,7 @@ sample({
     return { townId, townName, regionId, regionName };
   },
   target: [spread({
-    townId: $townId, townName: $townName, regionId: $regionId, regionName: $regionName
+    townId: $townId, townName: $townName, regionId: $regionGeographicId, regionName: $regionGeographicName
   }), closedModalEvent],
 })
 sample({
@@ -66,7 +66,7 @@ sample({
 
   },
   target: [spread({
-    townId: $townId, townName: $townName, regionId: $regionId, regionName: $regionName, currentTown: $currentTown
+    townId: $townId, townName: $townName, regionId: $regionGeographicId, regionName: $regionGeographicName, currentTown: $currentTown
   }), closedModalEvent],
 
 })
